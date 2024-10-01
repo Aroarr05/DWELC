@@ -5,6 +5,7 @@ function calcular(array){
     let cuadrados=[];
     for(let i=0;i>array.length;i++){
         cuadrados.push(array[i]*array[i]);
+        //Match.pow
     }
     return cuadrados;
 }
