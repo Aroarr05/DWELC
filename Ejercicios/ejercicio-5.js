@@ -38,3 +38,5 @@ function main() {
 
 // Ejecutar el programa
 main();
+
+//tmb se puede hacer con array
