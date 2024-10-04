@@ -4,4 +4,4 @@ function extraer (texto, posicion){
     }
     return texto.slice(0,posicion);
 }
-console.log(extraer("Robin String", 4));
+console.log(extraer("Robin String", 10));
