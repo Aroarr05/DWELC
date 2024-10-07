@@ -1,3 +1,4 @@
+
 function abreviacion(nombreApellido){
     let nombre = '';
     let apellido = '';
@@ -5,8 +6,10 @@ function abreviacion(nombreApellido){
 
     nombre = partes[0];
 
-    if (partes.length != 1){
-        apellido = partes[partes.length-1].charAt(0).toUpperCase();
+    //for (let i =1;<partes.lenght)
+
+    if (partes.length > 1){
+        apellido = partes[1].charAt(0).toUpperCase();
     }
     console.log(nombre + ' ' + apellido + '.');
 }
