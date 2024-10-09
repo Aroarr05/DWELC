@@ -1,3 +1,4 @@
+
 function string_parametrize(texto){
     if(typeof texto !== 'string'){
         return null;

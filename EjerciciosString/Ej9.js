@@ -1,3 +1,4 @@
+
 function swapcase(texto) {
     if (typeof texto !== "string") {
         return null;
