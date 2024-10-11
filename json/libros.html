@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>Información de Libros</h1>
+
+    <h1>Información de los libros:</h1>
+
+    <!-- Tabla para mostrar todos los libros -->
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Género</th>
+                <th>Autores</th>
+                <th>Páginas</th>
+                <th>Publicado</th>
+                <th>Leído</th>
+                <th>Sitio Web</th>
+            </tr>
+        </thead>
+        <tbody id="tabla"></tbody>
+    </table>
+
+    <!--Botones-->
     <button id="question1">Lista de Géneros</button>
     <button id="question2">Libros con Más de 300 Páginas</button>
     <button id="question3">Libros Publicados Hace Más de 2 Años</button>
     <button id="question4">Autores y Número de Libros</button>
     <button id="question5">Libros Leídos Ordenados por Fecha</button>
-<!--tabla q se vena todo-->
-<!--div con los 5 botones-->
-<!--2,3,5 que los libros se en negra-->
-<!--usar los metdos del dom-->
-    <div class="result" id="result"></div>
+
+    <div class="result" id="output"></div>
+
+    <!--Enlace a los archivos JavaScript-->
+    <script src="libros.js"></script>
+    <script src="funciones-libros.js"></script>
+
 </body>
+
 </html>

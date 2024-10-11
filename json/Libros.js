@@ -1,57 +1,50 @@
 
-   const books= [
-      {
-        "title": "Cien años de soledad",
-        "genre": "Realismo mágico",
-        "authors": ["Gabriel García Márquez"],
-        "pages": 417,
-        "published": "1967-06-05",
-        "read": true,
-        "website": ""
-      },
-      {
-        "title": "Don Quijote de la Mancha",
-        "genre": "Novela",
-        "authors": ["Miguel de Cervantes"],
-        "pages": 1023,
-        "published": "1605-01-16",
-        "read": true,
-        "website": ""
-      },
-      {
-        "title": "La sombra del viento",
-        "genre": "Novela histórica",
-        "authors": ["Carlos Ruiz Zafón"],
-        "pages": 487,
-        "published": "2001-04-17",
-        "read": false,
-        "website": ""
-      },
-      {
-        "title": "El amor en los tiempos del cólera",
-        "genre": "Novela",
-        "authors": ["Gabriel García Márquez"],
-        "pages": 348,
-        "published": "1985-03-05",
-        "read": true,
-        "website": ""
-      },
-      {
-        "title": "Pedro Páramo",
-        "genre": "Realismo mágico",
-        "authors": ["Juan Rulfo"],
-        "pages": 124,
-        "published": "1955-07-01",
-        "read": false,
-        "website": ""
-      },
-      {
-        "title": "Los detectives salvajes",
-        "genre": "Novela",
-        "authors": ["Roberto Bolaño"],
-        "pages": 388,
-        "published": "1998-01-01",
-        "read": true,
-        "website": ""
-      }
-    ]
+const libros = [
+  {
+    Titulo: "Shingeki no Kyojin",
+    Genero: ["Acción", "Fantasía oscura", "Post-apocalíptico"],
+    Autor: ["Hajime Isayama"],
+    Paginas: 192,
+    Publicado: "2009-09-09",
+    Leido: true,
+    SitioWeb: "https://www.attackontitan.com"
+  },
+  {
+    Titulo: "Naruto",
+    Genero: ["Acción", "Aventura", "Artes marciales"],
+    Autor: ["Masashi Kishimoto"],
+    Paginas: 400,
+    Publicado: "1999-09-21",
+    Leido: true,
+    SitioWeb: "https://www.naruto.com"
+  },
+  {
+    Titulo: "One Piece",
+    Genero: ["Acción", "Aventura", "Fantasía"],
+    Autor: ["Eiichiro Oda"],
+    Paginas: 180,
+    Publicado: "1997-07-22",
+    Leido: false,
+    SitioWeb: "https://onepieceofficial.com"
+  },
+  {
+    Titulo: "Death Note",
+    Genero: ["Thriller", "Sobrenatural", "Psicológico"],
+    Autor: ["Tsugumi Ohba", "Takeshi Obata"],
+    Paginas: 200,
+    Publicado: "2003-12-01",
+    Leido: true,
+    SitioWeb: ""
+  },
+  {
+    Titulo: "Boku no Hero Academia",
+    Genero: ["Acción", "Superhéroes", "Aventura"],
+    Autor: ["Kohei Horikoshi"],
+    Paginas: 192,
+    Publicado: "2014-07-07",
+    Leido: false,
+    SitioWeb: ""
+  }
+]
+
+
