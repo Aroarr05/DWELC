@@ -3,8 +3,8 @@ function findMondaySept15() {
     const mondayYears = [];
   
     for (let year = currentYear; year <= 2070; year++) {
-      const sept15 = new Date(year, 8, 15); // September 15
-      if (sept15.getDay() === 1) { // Check if it's a Monday
+      const sept15 = new Date(year, 8, 15); 
+      if (sept15.getDay() === 1) { 
         mondayYears.push(year);
       }
     }
@@ -12,5 +12,5 @@ function findMondaySept15() {
     return mondayYears;
   }
   
-  console.log(findMondaySept15()); // Output: [2031, 2036, 2042, 2047, 2053, 2058, 2064, 2070]
+  console.log(findMondaySept15()); 
   

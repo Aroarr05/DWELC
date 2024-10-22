@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Eventos - Ejercicio 7</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: auto;
+        }
+        td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        /* Estilo para las columnas pares */
+        .columna-par {
+            background-color: #f0f0f0;
+        }
+        /* Estilo para las columnas impares */
+        .columna-impar {
+            background-color: #d0e0ff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generador de Tabla con Estilos Alternos</h1>
+
+    <!-- Formularios para ingresar las propiedades de la tabla -->
+    <label for="filas">Número de filas:</label>
+    <input type="number" id="filas" placeholder="Ej: 3" />
+
+    <label for="columnas">Número de columnas:</label>
+    <input type="number" id="columnas" placeholder="Ej: 4" />
+
+    <label for="anchura">Anchura de las celdas (px):</label>
+    <input type="number" id="anchura" placeholder="Ej: 100" />
+
+    <label for="altura">Altura de las celdas (px):</label>
+    <input type="number" id="altura" placeholder="Ej: 50" />
+
+    <!-- Botón para generar la tabla -->
+    <button id="generarTablaBtn">Generar Tabla</button>
+
+    <!-- Contenedor para la tabla generada -->
+    <div id="tablaContenedor"></div>
+
+    <!-- Enlazamos el archivo JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

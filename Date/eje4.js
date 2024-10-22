@@ -1,6 +1,6 @@
 function diasDesdeSeptiembre15() {
   const hoy = new Date();
-  const sept15 = new Date(hoy.getFullYear(), 8, 15); // Septiembre es el mes 8 (indexado desde 0)
+  const sept15 = new Date(hoy.getFullYear(), 8, 15);
   
   const diferenciaTiempo = Math.abs(hoy - sept15);
   const diferenciaDias = Math.ceil(diferenciaTiempo / (1000 * 60 * 60 * 24));
