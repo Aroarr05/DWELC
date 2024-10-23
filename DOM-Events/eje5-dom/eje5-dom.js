@@ -20,3 +20,8 @@ function asignarColores() {
 }
 
 document.getElementById('asignarColoresBtn').addEventListener('click', asignarColores);
+
+/*
+for (const ele of celda)
+else
+*/
