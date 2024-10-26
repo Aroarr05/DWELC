@@ -1,22 +1,30 @@
-function agregarIconoEnlaces() {
-    const enlaces = document.querySelectorAll('a');
+// Mapeo de extensiones a íconos
+const iconosPorExtension = {
+    "pdf": "📄",
+    "jpg": "🖼️",
+    "jpeg": "🖼️",
+    "png": "🖼️",
+    "doc": "📝",
+    "docx": "📝",
+    "ppt": "📊",
+    "pptx": "📊",
+    "xls": "📑",
+    "xlsx": "📑"
+};
 
+function agregarIconosEnlaces() {
+    const enlaces = document.querySelectorAll("a");
     enlaces.forEach(enlace => {
-        const href = enlace.href;
-        let icono;
+        const url = enlace.getAttribute("href");
+        const extension = url.split('.').pop().toLowerCase();
 
-        if (href.endsWith('.pdf')) {
-            icono = '📄'; 
-        } else if (href.endsWith('.jpg') || href.endsWith('.png')) {
-            icono = '🖼️'; 
-        } else if (href.endsWith('.zip')) {
-            icono = '🗜️'; 
-        } else {
-            icono = '🔗'; 
+        if (iconosPorExtension[extension]) {
+            const icono = document.createTextNode(" " + iconosPorExtension[extension]);
+           
+            enlace.appendChild(icono);
         }
-
-        enlace.innerHTML += ` ${icono}`;
     });
 }
 
-agregarIconoEnlaces();
+document.addEventListener("DOMContentLoaded", agregarIconosEnlaces);
+

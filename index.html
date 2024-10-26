@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        form {
+            width:600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+            
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .radio-group div,
+        .checkbox-group div {
+            margin: 5px 0;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            font-weight: normal;
+            color: #333;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-group label {
+            width: 45%;
+            margin-bottom: 5px;
+        }
+
+        form button[type="submit"],
+        form button[type="reset"] {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            box-sizing: border-box;
+            margin-top: 15px;
+        }
+
+        form button[type="submit"] {
+            background-color: #4CAF50;
+        }
+
+        form button[type="reset"] {
+            background-color: #f44336;
+        }
+
+        form div.button-group {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulario</h1>
+
+    <form action="hello-servlet" method="post">
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        <div>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido">
+        </div>
+        <div>
+            <label for="edad">Edad:</label>
+            <select id="edad" name="edad">
+                <option value="">Selecciona</option>
+                <option value="18">10</option>
+                <option value="19">20</option>
+                <option value="20">30</option>
+                <option value="21">40</option>
+                <option value="22">50</option>
+            </select>
+        </div>
+        <div>
+            <label for="peso">Peso:</label>
+            <input type="number" id="peso" name="peso"> kg
+        </div>
+        <div>
+            <label>Género:</label><br>
+            <div>
+                <input type="radio" id="male" name="sexo" value="hombre">
+                <label for="male">Hombre</label>
+            </div>
+            <div>
+                <input type="radio" id="fem" name="sexo" value="mujer">
+                <label for="fem">Mujer</label>
+            </div>
+        </div>
+        <div>
+            <label>Estado Civil:</label><br>
+            <div>
+                <input type="radio" id="soltero" name="estado" value="soltero">
+                <label for="soltero">Soltero</label>
+            </div>
+            <div>
+                <input type="radio" id="casado" name="estado" value="casado">
+                <label for="casado">Casado</label>
+            </div>
+            <div>
+                <input type="radio" id="otro" name="estado" value="otro">
+                <label for="otro">Otro</label>
+            </div>
+        </div>
+        <div>
+            <label>Aficiones:</label>
+            <div>
+                <input type="checkbox" id="cine" name="cine">
+                <label for="cine">Cine</label>
+                <input type="checkbox" id="deporte" name="deporte">
+                <label for="deporte">Deporte</label>
+                <input type="checkbox" id="literatura" name="literatura">
+                <label for="literatura">Literatura</label>
+                <input type="checkbox" id="musica" name="musica">
+                <label for="musica">Música</label>
+                <input type="checkbox" id="tebeos" name="tebeos">
+                <label for="tebeos">Tebeos</label>
+                <input type="checkbox" id="television" name="television">
+                <label for="television">Televisión</label>
+            </div>
+        </div>
+        <button type="submit">Enviar</button>
+        <button type="reset">Borrar</button>
+    </form>
+
+</body>
+
+</html>
