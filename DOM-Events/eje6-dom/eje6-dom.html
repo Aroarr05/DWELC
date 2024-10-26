@@ -7,6 +7,7 @@
     <style>
         table {
             border-collapse: collapse;
+            width: auto;
         }
         td {
             border: 1px solid black;
@@ -18,27 +19,23 @@
 
     <h1>Generador de Tabla Dinámica</h1>
 
-    <!-- Formularios para ingresar las propiedades de la tabla -->
     <label for="filas">Número de filas:</label>
-    <input type="number" id="filas" placeholder="Ej: 3" />
+    <input type="number" id="filas"/>
 
     <label for="columnas">Número de columnas:</label>
-    <input type="number" id="columnas" placeholder="Ej: 4" />
+    <input type="number" id="columnas"/>
 
     <label for="anchura">Anchura de las celdas (px):</label>
-    <input type="number" id="anchura" placeholder="Ej: 100" />
+    <input type="number" id="anchura"/>
 
     <label for="altura">Altura de las celdas (px):</label>
-    <input type="number" id="altura" placeholder="Ej: 50" />
+    <input type="number" id="altura"/>
 
-    <!-- Botón para generar la tabla -->
     <button id="generarTablaBtn">Generar Tabla</button>
 
-    <!-- Contenedor para la tabla generada -->
     <div id="tablaContenedor"></div>
 
-    <!-- Enlazamos el archivo JavaScript -->
-    <script src="script.js"></script>
+    <script src="eje6-dom.js"></script>
 
 </body>
 </html>
