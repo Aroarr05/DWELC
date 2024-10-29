@@ -39,7 +39,7 @@ function agregarColumnaFinal() {
     }
 }
 
-document.getElementById('agregarFilaInicioBtn').addEventListener('click', agregarFilaInicio);
-document.getElementById('agregarFilaFinalBtn').addEventListener('click', agregarFilaFinal);
-document.getElementById('agregarColumnaInicioBtn').addEventListener('click', agregarColumnaInicio);
-document.getElementById('agregarColumnaFinalBtn').addEventListener('click', agregarColumnaFinal);
+document.querySelector('agregarFilaInicioBtn').addEventListener('click', agregarFilaInicio);
+document.querySelector('agregarFilaFinalBtn').addEventListener('click', agregarFilaFinal);
+document.querySelector('agregarColumnaInicioBtn').addEventListener('click', agregarColumnaInicio);
+document.querySelector('agregarColumnaFinalBtn').addEventListener('click', agregarColumnaFinal);

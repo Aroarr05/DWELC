@@ -40,4 +40,4 @@ function crearTabla() {
     contenedor.appendChild(tabla);
 }
 
-document.getElementById('generarTablaBtn').addEventListener('click', crearTabla);
+document.querySelector('generarTablaBtn').addEventListener('click', crearTabla);

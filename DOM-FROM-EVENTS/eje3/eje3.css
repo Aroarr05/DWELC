@@ -1,0 +1,80 @@
+/* Main container styling */
+.enrollment-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Section title styling */
+.enrollment-form h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Form group styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+/* Labels styling */
+.form-group label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Input and select styling */
+.form-group select,
+.form-group input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Required field asterisk styling */
+.form-group label .required {
+    color: red;
+    margin-left: 5px;
+}
+
+/* Form section header styling */
+.form-header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1em;
+    color: white;
+    background-color: #00796b;
+    border-radius: 4px;
+}
+
+/* Specific adjustments for different form rows */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-group-full {
+    width: 100%;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}

@@ -20,5 +20,5 @@ document.getElementById('agregarBtn').addEventListener('click', function() {
 
     lista.insertBefore(nuevoItem, lista.firstChild);
 
-    document.getElementById('textoItem').value = "";
+    document.querySelector('textoItem').value = "";
 });
