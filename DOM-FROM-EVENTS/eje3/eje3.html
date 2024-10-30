@@ -9,73 +9,41 @@
 <body>
     <div class="enrollment-form">
         <h1>Datos de matrícula</h1>
+        <hr>
         <p>Centro decente en  el que se matricula:</p>
         <hr>
         <div class="from-group">
             <label>Provincia:<span class="required">*</span></label>
-            <select>
-                <option value="">Huelva</option>
-                <option value="">Sevilla</option>
-                <option value="">Córdoba</option>
-                <option value="">Jaen</option>
-                <option value="">Málaga</option>
-                <option value="">Cadiz</option>
-                <option value="">Granada</option>
-                <option value="">Almería</option>
-            </select>
-            <label>Municipio:<span class="required">*</span></label>
-            <select>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-            <label>Localidad:<span class="required">*</span></label>
-            <select>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-            <label>Centro:<span class="required">*</span></label>
-            <select>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-            <label>Eseñanza:</label>
-            <select>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-            <label>Curso:<span class="required">*</span></label>
-            <select>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
-        </div>
+            <select id=""></select>
 
+            <label>Municipio:<span class="required">*</span></label>
+            <select id="municipio-select"></select>
+
+            <label>Localidad:<span class="required">*</span></label>
+            <select id=""></select>
+
+            <label>Centro:<span class="required">*</span></label>
+            <select id=""></select>
+
+            <label>Eseñanza:</label>
+            <select id=""></select>
+
+            <label>Curso:<span class="required">*</span></label>
+            <select id=""></select>
+        </div>
     </div>
 
     <div class="enrollment-form">
         <h1>PERSONAS AUTORIZADAS PARA RECOGER A SU HIJO/A DURANTE EL CURSO 2020/2021</h1>
+        <hr>
         <p>Las personas que a continuación relaciona podrián recoger a su hijo/a durante el curso 2020/2021 de cualquier servicio del centro: </p>
-        <h2>1ª Persona autorizada:</h2>
+        <div>
+            <button>+</button>
+            <button>-</button>
+            <input type="button" id="submit" name="submit">
+            <input type="button" id="" name="submit">
+        </div>
+        <h1>1ª Persona autorizada:</h1>
         <div class="from-group">
             <label>Nombre:</label>
             <input type="texto" id="nombre" name="nombre" placeholder="Nombre">
