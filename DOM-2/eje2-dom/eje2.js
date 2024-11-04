@@ -1,5 +1,5 @@
-// Mapeo de extensiones a íconos
-const iconosPorExtension = {
+
+const iconos = {
     "pdf": "📄",
     "jpg": "🖼️",
     "jpeg": "🖼️",
@@ -12,19 +12,18 @@ const iconosPorExtension = {
     "xlsx": "📑"
 };
 
-function agregarIconosEnlaces() {
+function agregarIconos() {
     const enlaces = document.querySelectorAll("a");
     enlaces.forEach(enlace => {
         const url = enlace.getAttribute("href");
         const extension = url.split('.').pop().toLowerCase();
 
-        if (iconosPorExtension[extension]) {
-            const icono = document.createTextNode(" " + iconosPorExtension[extension]);
-           
+        if (iconos[extension]) {
+            const icono = document.createTextNode(" " + iconos[extension]);
             enlace.appendChild(icono);
         }
     });
 }
 
-document.addEventListener("DOMContentLoaded", agregarIconosEnlaces);
+document.addEventListener("DOMContentLoaded", agregarIconos);
 
