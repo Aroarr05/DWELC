@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="eje3.css">
-    <title>Enrollment from</title>
+    <title>Enrollment Form</title>
 </head>
+
 <body>
     <div class="enrollment-form">
         <h1>Datos de matrícula</h1>
+        <p>Centro decente en el que se matricula:</p>
         <hr>
-        <p>Centro decente en  el que se matricula:</p>
-        <hr>
-        <div class="from-group">
+        <div class="form-group">
             <label>Provincia:<span class="required">*</span></label>
             <select id="provincia-select"></select>
 
@@ -25,7 +26,7 @@
             <label>Centro:<span class="required">*</span></label>
             <select id=""></select>
 
-            <label>Eseñanza:</label>
+            <label>Enseñanza:</label>
             <select id=""></select>
 
             <label>Curso:<span class="required">*</span></label>
@@ -33,38 +34,46 @@
         </div>
     </div>
 
-    <div class="enrollment-form">
-        <h1>PERSONAS AUTORIZADAS PARA RECOGER A SU HIJO/A DURANTE EL CURSO 2020/2021</h1>
-        <hr>
-        <p>Las personas que a continuación relaciona podrián recoger a su hijo/a durante el curso 2020/2021 de cualquier servicio del centro: </p>
-        <div>
-            <button>+</button>
-            <button>-</button>
+    <!-- Aquí comienza el formulario de autorización -->
+    <form id="enrollmentForm">
+        <div class="enrollment-form">
+            <h1>PERSONAS AUTORIZADAS PARA RECOGER A SU HIJO/A DURANTE EL CURSO 2020/2021</h1>
+            <p>Las personas que a continuación relaciona podrían recoger a su hijo/a durante el curso 2020/2021 de
+                cualquier
+                servicio del centro: </p>
+
+            <div class="add-remove-buttons">
+                <button type="button" id="add-person">+</button>
+                <button type="button" id="remove-person">-</button>
+            </div>
+            <div class="authorized-person">
+                <h1>1ª Persona autorizada:</h1>
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+                    <label>Primer apellido:</label>
+                    <input type="text" id="primer-apellido" name="primer-apellido" placeholder="Primer apellido">
+                    <label>Segundo apellido:</label>
+                    <input type="text" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo apellido">
+                    <label>Tipo de documentación:</label>
+                    <select style="width: 30%;">
+                        <option value="">Tipo de documentación</option>
+                        <option value="nie">NIE</option>
+                        <option value="nif">NIF</option>
+                        <option value="pasaporte">Pasaporte</option>
+                    </select>
+                    <label>NIF/NIE/Pasaporte:</label>
+                    <input type="text" id="dni" name="dni" placeholder="NIF/NIE/Pasaporte">
+                    <label>Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
+                </div>
+            </div>
+            <button type="submit">Enviar formulario</button>
         </div>
-        <h1>1ª Persona autorizada:</h1>
-        <div class="from-group">
-            <label>Nombre:</label>
-            <input type="texto" id="nombre" name="nombre" placeholder="Nombre">
-            <label>Primer apellido:</label>
-            <input type="texto" id="primer-apellido" name="primer-apellido" placeholder="Primer apellido">
-            <label>Segundo apellido:</label>
-            <input type="texto" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo apellido">
-            <label>Tipo de documentación:</label>
-            <select>
-                <option value="">Tipo de docuentación</option>
-                <option value="">Tipo 1</option>
-                <option value="">Tipo 2</option>
-                <option value="">Tipo 3</option>
-                <option value="">Tipo 4</option>
-                <option value="">Tipo 5</option>
-            </select>
-            <label>NIF/NIE/Pasaporte:</label>
-            <input type="texto" id="pasaporte" name="pasaporte" placeholder="NIF/NIE/Pasaporte">
-            <label>Teléfono:</label>
-            <input type="texto" id="telefono" name="telefono" placeholder="Teléfono">
-        </div>
-    </div>
-    <script src="eje3.js"></script>
+    </form>
+
     <script src="provincias.js"></script>
+    <script src="eje3.js"></script>
 </body>
+
 </html>
