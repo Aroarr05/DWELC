@@ -1,16 +1,19 @@
-function findMondaySept15() {
-    const currentYear = new Date().getFullYear();
-    const mondayYears = [];
-  
-    for (let year = currentYear; year <= 2070; year++) {
-      const sept15 = new Date(year, 8, 15); 
-      if (sept15.getDay() === 1) { 
-        mondayYears.push(year);
-      }
-    }
-  
-    return mondayYears;
+const day = new Date("2024-9-15");
+const year = 2070;
+let manyMondays = (day, year) => {
+  let match=0;
+  let years =[];
+  while(day.getFullYear()<= year)
+{
+  if(day.getDay()==1){
+    match++;
+    year.push(day.getFullYear());
+
   }
-  
-  console.log(findMondaySept15()); 
-  
+  day.setFullYear(day.getFullYear()+1);
+
+}
+years.push("Total:"+ match);
+return years;
+}
+console.log(manyMondays(day,year));
