@@ -1,3 +1,5 @@
+
+//Procincia y Municipio
 document.addEventListener("DOMContentLoaded", function() {
     const provinciaSelect = document.getElementById("provincia-select");
     const municipioSelect = document.getElementById("municipio-select");
@@ -12,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
     provinciaSelect.addEventListener("change", function() {
         const selectedProvince = provinciaSelect.value;
         municipioSelect.innerHTML = "";  
-
         const provincia = datosProvincia.provincias[0].provinces.find(p => p.label === selectedProvince);
         if (provincia) {
             provincia.towns.forEach(municipio => {
@@ -24,3 +25,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+// Nombre y primer apelliodo se necesita
+
+
+//NIF/NIE/PASSPORT tienen que ser valido
+
+
+//Persona autorizada y un maximo de 5

@@ -7,7 +7,6 @@ function bloquearPalabrasProhibidas() {
     let nodoActual;
     while (nodoActual = textoNodos.nextNode()) {
         palabrasProhibidas.forEach(palabra => {
-            
             if (nodoActual.nodeValue.toLowerCase().includes(palabra)) {
                 const contenidoBloqueado = document.createElement("strong");
                 contenidoBloqueado.textContent = "Contenido bloqueado";
