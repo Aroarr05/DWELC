@@ -45,7 +45,7 @@ label {
 input[type="text"], select {
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 100%;
+    width: 92%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -60,26 +60,15 @@ input[type="text"], select {
 }
 
 .add-remove-buttons button {
-    font-size: 1.2em;
     padding: 5px 10px;
-    cursor: pointer;
     background-color: #28a745;
     color: #fff;
-    border: none;
-    border-radius: 50%;
+    border-color: #28a745;
 }
 
-.add-remove-buttons button {
-    font-size: 1.2em;
-    padding: 5px 10px;
-    cursor: pointer;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-}
 .add-remove-buttons button#remove-person {
     background-color: #dc3545;
+    border-color: #dc3545;
 }
 
 .authorized-person h2 {

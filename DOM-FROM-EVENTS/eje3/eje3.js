@@ -1,16 +1,17 @@
 
-//Procincia y Municipio
-
 document.addEventListener("DOMContentLoaded", function() {
     const provinciaSelect = document.getElementById("provincia-select");
     const municipioSelect = document.getElementById("municipio-select");
 
-    datosProvincia.provincias[0].provinces.forEach(provincia => {
-        const option = document.createElement("option");
-        option.value = provincia.label;  
-        option.textContent = provincia.label;
-        provinciaSelect.appendChild(option);
-    });
+    
+    if (typeof datosProvincia !== "undefined" && datosProvincia.provincias) {
+        datosProvincia.provincias[0].provinces.forEach(provincia => {
+            const option = document.createElement("option");
+            option.value = provincia.label;
+            option.textContent = provincia.label;
+            provinciaSelect.appendChild(option);
+        });
+    }
 
     function cargarMunicipios() {
         const selectedProvince = provinciaSelect.value;
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (provincia) {
             provincia.towns.forEach(municipio => {
                 const option = document.createElement("option");
-                option.value = municipio.label;  
+                option.value = municipio.label;
                 option.textContent = municipio.label;
                 municipioSelect.appendChild(option);
             });
@@ -28,80 +29,68 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     provinciaSelect.addEventListener("change", cargarMunicipios);
-    cargarMunicipios();
 });
 
 
-// Nombre , primer apelliodo y NIF/NIE/PASSPORT tienen que ser validos
-
-function validateFrom(){
+function validateForm() {
     const nombre = document.getElementById("nombre").value.trim();
     const primerApellido = document.getElementById("primer-apellido").value.trim();
     const dni = document.getElementById("dni").value.trim();
 
-    if(nombre === ""){
+    if (nombre === "") {
         alert("El nombre es obligatorio.");
-        return;
+        return false;
     }
-    if(primerApellido === ""){
+    if (primerApellido === "") {
         alert("El primer apellido es obligatorio.");
-        return;
+        return false;
     }
-    if(dni === ""){
-        alert("El dni es obligatorio");
-        return;
+    if (dni === "") {
+        alert("El dni es obligatorio.");
+        return false;
     }
-    alert("Formulario exitoso.");
+    return true;
 }
 
-document.getElementById("enrollmentForm").addEventListener("submit", function(event) {
-    const nombre = document.getElementById("nombre").value.trim();
-    const primerApellido = document.getElementById("primer-apellido").value.trim();
-    const dni = document.getElementById("dni").value.trim();
 
-    if (nombre === "" || primerApellido === "" || dni === "") {
-        event.preventDefault();  // Evita el envío del formulario
-        alert("Por favor, complete los campos obligatorios: 'Nombre', 'Primer apellido' y 'NIF/NIE/Pasaporte'.");
+document.getElementById("enrollmentForm").addEventListener("submit", function(event) {
+    if (!validateForm()) {
+        event.preventDefault(); 
     } else {
         alert("Formulario enviado con éxito.");
     }
 });
 
 
-//Persona autorizada y un maximo de 5
+let personCount = 1;
+const maxPersons = 5;
 
 const addPerson = () => {
-    const nombre = document.getElementById("nombre").value.trim();
-    const primerApellido = document.getElementById("primer-apellido").value.trim();
-    const segundoApellido = document.getElementById("segundo-apellido").value.trim();
-    const dni = document.getElementById("dni").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-
-    if (validate() && personCount < 5) {
-        let person = document.createElement("div");
-        let registro = document.createElement("p");
-        registro.classList.add("fw-bold");
-        registro.textContent = `${nombre} ${primerApellido} ${segundoApellido ? segundoApellido : ""} Dni: ${dni} ${telefono ? "Tlf: " + telefono : ""}`;
-        person.appendChild(registro);
-        autorithed.appendChild(person);
-        personCount++;
-        contador.textContent = personCount; // Actualiza el contador visualmente
-    } else {
-        alert("Por favor, complete todos los campos obligatorios y no exceda el límite de 5 personas.");
+    if (personCount >= maxPersons) {
+        alert("No puedes añadir más de 5 personas.");
+        return;
     }
+
+    
+    const originalPerson = document.querySelector(".authorized-person");
+    const newPerson = originalPerson.cloneNode(true);
+
+    
+    newPerson.querySelectorAll("input").forEach(input => input.value = "");
+    newPerson.querySelector("h1").textContent = `${++personCount}ª Persona autorizada:`;
+
+    
+    originalPerson.parentNode.appendChild(newPerson);
 };
 
 const removePerson = () => {
-    const dni = document.getElementById("dni").value.trim();
-    const authorizedPersons = document.querySelectorAll(".authorized-list p");
-
-    authorizedPersons.forEach(p => {
-        if (p.textContent.includes(dni)) {
-            p.remove();
-            personCount--;
-            contador.textContent = personCount; // Actualiza el contador visualmente
-        }
-    });
+    if (personCount > 1) {
+        const persons = document.querySelectorAll(".authorized-person");
+        persons[persons.length - 1].remove();
+        personCount--;
+    } else {
+        alert("Debe haber al menos una persona autorizada.");
+    }
 };
 
 document.getElementById("add-person").addEventListener("click", addPerson);
