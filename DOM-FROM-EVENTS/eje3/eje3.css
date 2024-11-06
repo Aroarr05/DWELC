@@ -39,6 +39,7 @@ p {
 label {
     font-weight: bold;
     margin-bottom: 5px;
+    width: 92%;
     color: #333;
 }
 

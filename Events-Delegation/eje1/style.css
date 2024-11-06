@@ -1,0 +1,12 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ffff;
+}
+body{
+    background-color: black;
+    color: white;
+}
+.container{
+    text-align: center;
+    padding: 20PX;
+}

@@ -21,20 +21,19 @@
             <select id="municipio-select"></select>
 
             <label>Localidad:<span class="required">*</span></label>
-            <select id=""></select>
+            <select id="Localidad"></select>
 
             <label>Centro:<span class="required">*</span></label>
-            <select id=""></select>
+            <select id="centro"></select>
 
             <label>Enseñanza:</label>
-            <select id=""></select>
+            <select id="ensenanza"></select>
 
             <label>Curso:<span class="required">*</span></label>
-            <select id=""></select>
+            <select id="curso"></select>
         </div>
     </div>
-
-    <!-- Aquí comienza el formulario de autorización -->
+<!--boostrap tarjetaas- badgets - style: display="none"-->
     <form id="enrollmentForm">
         <div class="enrollment-form">
             <h1>PERSONAS AUTORIZADAS PARA RECOGER A SU HIJO/A DURANTE EL CURSO 2020/2021</h1>
@@ -43,7 +42,7 @@
                 servicio del centro: </p>
 
             <div class="add-remove-buttons">
-                <button type="button" id="add-person">+</button>
+                <button type="submit" id="add-person">+</button>
                 <button type="button" id="remove-person">-</button>
             </div>
             <div class="authorized-person">
@@ -56,7 +55,7 @@
                     <label>Segundo apellido:</label>
                     <input type="text" id="segundo-apellido" name="segundo-apellido" placeholder="Segundo apellido">
                     <label>Tipo de documentación:</label>
-                    <select style="width: 100%;">
+                    <select>
                         <option value="">Tipo de documentación</option>
                         <option value="nie">NIE</option>
                         <option value="nif">NIF</option>
@@ -68,9 +67,15 @@
                     <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
                 </div>
             </div>
-            <button type="submit">Enviar formulario</button>
+            <!--<button type="submit">Agregar persona</button>
+            <button type="delete">Eliminar persona</button>-->
         </div>
     </form>
+
+    <div id="lista-container">
+        <h3>Lista de Personas Autorizadas:</h3>
+        <ul id="listaDatos"></ul>
+    </div>
 
     <script src="provincias.js"></script>
     <script src="eje3.js"></script>

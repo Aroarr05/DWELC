@@ -1,9 +1,8 @@
-
+// PROVINCIAS Y MUNICIPIO
 document.addEventListener("DOMContentLoaded", function() {
     const provinciaSelect = document.getElementById("provincia-select");
     const municipioSelect = document.getElementById("municipio-select");
 
-    
     if (typeof datosProvincia !== "undefined" && datosProvincia.provincias) {
         datosProvincia.provincias[0].provinces.forEach(provincia => {
             const option = document.createElement("option");
@@ -31,37 +30,37 @@ document.addEventListener("DOMContentLoaded", function() {
     provinciaSelect.addEventListener("change", cargarMunicipios);
 });
 
+// Lista de personas autorizadas
+function addLista(event){
+    event.preventDefault(); // Prevenir que el formulario se envíe para manejar la acción de forma personalizada
 
-function validateForm() {
     const nombre = document.getElementById("nombre").value.trim();
     const primerApellido = document.getElementById("primer-apellido").value.trim();
+    const segundoApellido = document.getElementById("segundo-apellido").value.trim();
     const dni = document.getElementById("dni").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
 
-    if (nombre === "") {
-        alert("El nombre es obligatorio.");
-        return false;
+    // Validar que los campos necesarios no estén vacíos
+    if (!nombre || !primerApellido || !dni) {
+        alert("Por favor, complete todos los campos obligatorios.");
+        return;
     }
-    if (primerApellido === "") {
-        alert("El primer apellido es obligatorio.");
-        return false;
-    }
-    if (dni === "") {
-        alert("El dni es obligatorio.");
-        return false;
-    }
-    return true;
+
+    const listaDatos = document.getElementById("listaDatos");
+
+    const nuevoElemento = document.createElement("li");
+    nuevoElemento.textContent = `Nombre: ${nombre}, Primer Apellido: ${primerApellido}, Segundo Apellido: ${segundoApellido}, DNI: ${dni}, Teléfono: ${telefono}`;
+
+    listaDatos.appendChild(nuevoElemento);
+
+    document.getElementById("enrollmentForm").reset();
 }
 
+// Manejar el envío del formulario para agregar la persona a la lista
+document.getElementById("enrollmentForm").addEventListener("submit", addLista);
 
-document.getElementById("enrollmentForm").addEventListener("submit", function(event) {
-    if (!validateForm()) {
-        event.preventDefault(); 
-    } else {
-        alert("Formulario enviado con éxito.");
-    }
-});
-
-
+// AGRAGAR HASTA 5 PERSONAS CON EL BOTÓN
+// QUITAR PERSONAS CON EL BOTÓN
 let personCount = 1;
 const maxPersons = 5;
 
@@ -71,15 +70,12 @@ const addPerson = () => {
         return;
     }
 
-    
     const originalPerson = document.querySelector(".authorized-person");
     const newPerson = originalPerson.cloneNode(true);
 
-    
     newPerson.querySelectorAll("input").forEach(input => input.value = "");
     newPerson.querySelector("h1").textContent = `${++personCount}ª Persona autorizada:`;
 
-    
     originalPerson.parentNode.appendChild(newPerson);
 };
 
