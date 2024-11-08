@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Eventos - Ejercicio 7</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: auto;
+        }
+        td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        
+        .columna-par {
+            background-color: #f0f0f0;
+        }
+
+        .columna-impar {
+            background-color: #d0e0ff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generador de Tabla con Estilos Alternos</h1>
+
+    <label for="filas">Número de filas:</label>
+    <input type="number" id="filas"/>
+
+    <label for="columnas">Número de columnas:</label>
+    <input type="number" id="columnas"/>
+
+    <label for="anchura">Anchura de las celdas (px):</label>
+    <input type="number" id="anchura"/>
+
+    <label for="altura">Altura de las celdas (px):</label>
+    <input type="number" id="altura"/>
+
+    <button id="generarTablaBtn">Generar Tabla</button>
+
+    <div id="tablaContenedor"></div>
+
+    <script src="./eje7-dom.js"></script>
+
+</body>
+</html>
