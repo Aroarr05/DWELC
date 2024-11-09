@@ -1,23 +1,18 @@
-table{
-    width: 50%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-td{
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-}
-.green{
-    background-color: green;
+.highlight {
+    background-color: yellow;
+  }
+
+  .green {
+    background-color: green !important;
     color: white;
-}
-.red{
-    background-color: red;
+  }
+
+  .red {
+    background-color: red !important;
     color: white;
-}
-.blue{
-    background-color: blue;
-    width: white;
-}
+  }
+
+  .blue {
+    background-color: blue !important;
+    color: white;
+  }

@@ -1,5 +1,4 @@
-const datosProvincia = {
-  "provincias":[
+const datos= [
   {
     "parent_code": "0",
     "label": "Andalucía",
@@ -41153,4 +41152,3 @@ const datosProvincia = {
     ]
   }
 ]
-};

@@ -10,40 +10,35 @@ and it will be changed again when it exits (uses the toggle method of classList)
 
 */
 
-// Selecciona los elementos de la interfaz donde se mostrará la información
-const screenPos = document.getElementById("screen-pos");
-const currentElement = document.getElementById("current-element");
-const elementPos = document.getElementById("element-pos");
+// script.js
 
-// Función para manejar el evento de entrada del ratón
-function onMouseEnter(event) {
-  // Cambia el color de fondo del elemento actual
-  event.target.classList.toggle("highlight");
+
+function handleMouseMove(event) {
+  const mousePosition = document.getElementById('mouse-position');
+  const elementInfo = document.getElementById('element-info');
+  const elementPosition = document.getElementById('element-position');
+
+  mousePosition.textContent = `X: ${event.clientX}, Y: ${event.clientY}`;
+ 
+  const targetElement = event.target;
+  elementInfo.textContent = targetElement.id || targetElement.className || 'Elemento sin ID';
+
+  const xPos = event.offsetX;
+  const yPos = event.offsetY;
+  elementPosition.textContent = `X: ${xPos}, Y: ${yPos}`;
+
+  if (event.type === 'mouseenter') {
+    targetElement.classList.toggle('highlight');
+  }
+  if (event.type === 'mouseleave') {
+    targetElement.classList.toggle('highlight');
+  }
 }
 
-// Función para manejar el evento de movimiento del ratón
-function onMouseMove(event) {
-  // Muestra la posición del ratón en la pantalla
-  screenPos.textContent = `X: ${event.screenX}, Y: ${event.screenY}`;
-  
-  // Muestra el nombre del elemento sobre el que está el ratón
-  currentElement.textContent = event.target.tagName;
+const elements = document.querySelectorAll('.element');
 
-  // Muestra la posición del ratón dentro del elemento
-  const offsetX = event.offsetX;
-  const offsetY = event.offsetY;
-  elementPos.textContent = `X: ${offsetX}, Y: ${offsetY}`;
-}
 
-// Función para manejar el evento de salida del ratón
-function onMouseLeave(event) {
-  // Cambia el color de fondo del elemento al salir
-  event.target.classList.toggle("highlight");
-}
-
-// Añade los event listeners a todos los elementos con la clase "hoverable"
-document.querySelectorAll(".hoverable").forEach(element => {
-  element.addEventListener("mouseenter", onMouseEnter);
-  element.addEventListener("mousemove", onMouseMove);
-  element.addEventListener("mouseleave", onMouseLeave);
+elements.forEach(element => {
+  element.addEventListener('mouseenter', handleMouseMove);
+  element.addEventListener('mouseleave', handleMouseMove);
 });

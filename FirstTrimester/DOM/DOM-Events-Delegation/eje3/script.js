@@ -16,3 +16,57 @@ created.
 
 */
 
+
+
+const table = document.getElementById('myTable');
+const tagSpan = document.getElementById('tag');
+const idSpan = document.getElementById('id');
+const textContentSpan = document.getElementById('textContent');
+const rowTextSpan = document.getElementById('rowText');
+const colTextSpan = document.getElementById('colText');
+
+
+function handleCellClick(event) {
+  const cell = event.target;
+
+  const rowIndex = cell.parentNode.rowIndex;
+  const colIndex = cell.cellIndex;
+
+  if (event.ctrlKey) {
+    cell.classList.add('red');
+  } else if (event.shiftKey) {
+    cell.classList.add('blue');
+  } else {
+    cell.classList.add('green');
+  }
+
+  const rows = table.rows;
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    for (let j = 0; j < row.cells.length; j++) {
+      const currentCell = row.cells[j];
+      if (i === rowIndex || j === colIndex) {
+        currentCell.classList.add('highlight');
+      } else {
+        currentCell.classList.remove('highlight');
+      }
+    }
+  }
+
+  const cellInfo = {
+    tag: cell.tagName,
+    id: cell.id,
+    textContent: cell.textContent,
+    rowTextContent: Array.from(cell.parentNode.cells).map(c => c.textContent),
+    columnTextContent: Array.from(table.rows).map(row => row.cells[colIndex].textContent)
+  };
+
+  tagSpan.textContent = cellInfo.tag;
+  idSpan.textContent = cellInfo.id || 'No tiene ID';
+  textContentSpan.textContent = cellInfo.textContent;
+  rowTextSpan.textContent = cellInfo.rowTextContent.join(', ');
+  colTextSpan.textContent = cellInfo.columnTextContent.join(', ');
+}
+
+table.addEventListener('click', handleCellClick);
+

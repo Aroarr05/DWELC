@@ -3,24 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detección de Posición del Ratón</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Detectar posición del ratón</title>
+
+  <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css"> 
+
+  <style>
+    .highlight {
+      background-color: yellow !important;
+    }
+    .element {
+      width: 200px;
+      height: 100px;
+      margin: 20px;
+      background-color: lightgray;
+      border: 1px solid #ccc;
+      display: inline-block;
+      text-align: center;
+      line-height: 100px;
+      transition: background-color 0.3s ease;
+    }
+  </style>
 </head>
 <body>
-  <h1>Desplaza el ratón sobre los elementos</h1>
-  
-  <!-- Contenedor de información de la posición del ratón -->
-  <div id="info">
-    <p>Posición en la pantalla: <span id="screen-pos"></span></p>
-    <p>Elemento actual: <span id="current-element"></span></p>
-    <p>Posición dentro del elemento: <span id="element-pos"></span></p>
+
+  <div class="container mt-5">
+    <h1 class="text-center">Detectar Posición del Ratón</h1>
+
+    <div class="element" id="box1">Caja 1</div>
+    <div class="element" id="box2">Caja 2</div>
+    <div class="element" id="box3">Caja 3</div>
+
+    <div id="info" class="mt-4 p-3 border bg-light">
+      <p><strong>Posición del ratón en la pantalla:</strong> <span id="mouse-position"></span></p>
+      <p><strong>Elemento sobre el que está el ratón:</strong> <span id="element-info"></span></p>
+      <p><strong>Posición dentro del elemento:</strong> <span id="element-position"></span></p>
+    </div>
   </div>
 
-  <!-- Algunos elementos para probar -->
-  <div class="hoverable">Elemento 1</div>
-  <div class="hoverable">Elemento 2</div>
-  <div class="hoverable">Elemento 3</div>
-
+  <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
   <script src="./script.js"></script>
 </body>
 </html>

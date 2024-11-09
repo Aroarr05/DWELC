@@ -11,16 +11,19 @@ position.
 
 */
 
-document.getElementById("style-select").addEventListener("change", function(){
-    const theme = this.ariaValueMax;
-    const stylesheet = document.getElementById("theme-styesheet");
+// script.js
 
-    if (theme === "light") {
-        stylesheet.href = "light.css";
-      } else if (theme === "dark") {
-        stylesheet.href = "dark.css";
-      } else if (theme === "minimalist") {
-        stylesheet.href = "minimalist.css";
-      }
+const themeSelector = document.getElementById('theme-selector');
+const themeLink = document.getElementById('theme-stylesheet');
 
-})
+themeSelector.addEventListener('change', function() {
+  const selectedTheme = themeSelector.value;
+  
+  if (selectedTheme === 'light') {
+    themeLink.setAttribute('href', 'light.css');
+  } else if (selectedTheme === 'dark') {
+    themeLink.setAttribute('href', 'dark.css');
+  } else if (selectedTheme === 'minimal') {
+    themeLink.setAttribute('href', 'minimal.css');
+  }
+});

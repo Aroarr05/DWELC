@@ -14,13 +14,14 @@ Use a button to display all the indicated data when pressed.
 
 */
 
-// PROVINCIAS Y MUNICIPIO
 document.addEventListener("DOMContentLoaded", function() {
     const provinciaSelect = document.getElementById("provincia-select");
     const municipioSelect = document.getElementById("municipio-select");
+    const localidadSelect = document.getElementById("localidad-select");
 
-    if (typeof datosProvincia !== "undefined" && datosProvincia.provincias) {
-        datosProvincia.provincias[0].provinces.forEach(provincia => {
+  
+    if (Array.isArray(datos) && datos.length > 0 && datos[0].provinces) {
+        datos[0].provinces.forEach(provincia => {
             const option = document.createElement("option");
             option.value = provincia.label;
             option.textContent = provincia.label;
@@ -28,11 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+
+    localidadSelect.innerHTML = "<option value=''>Selecciona una localidad</option>";
+
+
     function cargarMunicipios() {
         const selectedProvince = provinciaSelect.value;
-        municipioSelect.innerHTML = "";  
+        municipioSelect.innerHTML = "<option value=''>Selecciona un municipio</option>"; // Limpiar municipios
 
-        const provincia = datosProvincia.provincias[0].provinces.find(p => p.label === selectedProvince);
+        const provincia = datos[0].provinces.find(p => p.label === selectedProvince);
         if (provincia) {
             provincia.towns.forEach(municipio => {
                 const option = document.createElement("option");
@@ -41,14 +46,42 @@ document.addEventListener("DOMContentLoaded", function() {
                 municipioSelect.appendChild(option);
             });
         }
+
+        localidadSelect.innerHTML = "<option value=''>Selecciona una localidad</option>";
     }
 
-    provinciaSelect.addEventListener("change", cargarMunicipios);
+    function cargarLocalidades() {
+        const selectedMunicipio = municipioSelect.value;
+        localidadSelect.innerHTML = "<option value=''>Selecciona una localidad</option>";  // Limpiar localidades
+
+        if (selectedMunicipio) {
+            const selectedProvince = provinciaSelect.value;
+            const provincia = datos[0].provinces.find(p => p.label === selectedProvince);
+            if (provincia) {
+                const municipio = provincia.towns.find(town => town.label === selectedMunicipio);
+                if (municipio && municipio.localities) { // Asegurarse de que las localidades existan
+                    municipio.localities.forEach(localidad => {
+                        const option = document.createElement("option");
+                        option.value = localidad.label;
+                        option.textContent = localidad.label;
+                        localidadSelect.appendChild(option);
+                    });
+                }
+            }
+        }
+    }
+
+    provinciaSelect.addEventListener("change", function() {
+        cargarMunicipios();  
+    });
+    municipioSelect.addEventListener("change", function() {
+        cargarLocalidades();  
+    });
 });
 
-// Lista de personas autorizadas
+
 function addLista(event){
-    event.preventDefault(); // Prevenir que el formulario se envíe para manejar la acción de forma personalizada
+    event.preventDefault(); 
 
     const nombre = document.getElementById("nombre").value.trim();
     const primerApellido = document.getElementById("primer-apellido").value.trim();
