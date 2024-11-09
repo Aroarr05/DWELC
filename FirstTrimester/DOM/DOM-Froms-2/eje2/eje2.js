@@ -22,6 +22,7 @@ If it does not have any decimals, put '.' and two 00.
 
 */
 
+
 document.addEventListener("DOMContentLoaded", function() {
     const nombreInput = document.getElementById("nombre");
     const amountInput = document.getElementById("amount");

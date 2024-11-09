@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    
     provinciaSelect.addEventListener("change", function() {
         cargarMunicipios();  
     });
