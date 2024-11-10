@@ -15,8 +15,8 @@ position.
 
 
 
-const themeSelector = document.getElementById('theme-selector');
-const themeLink = document.getElementById('theme-stylesheet');
+const themeSelector = document.querySelector('#theme-selector');
+const themeLink = document.querySelector('#theme-stylesheet');
 
 themeSelector.addEventListener('change', function() {
   const selectedTheme = themeSelector.value;
@@ -29,3 +29,4 @@ themeSelector.addEventListener('change', function() {
     themeLink.setAttribute('href', 'minimal.css');
   }
 });
+

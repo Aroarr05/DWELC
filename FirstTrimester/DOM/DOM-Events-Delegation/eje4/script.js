@@ -11,56 +11,58 @@ fields of the form.
 
 */
 
-const table = document.getElementById('personTable');
-const editForm = document.getElementById('editForm');
-const nameInput = document.getElementById('name');
-const surnameInput = document.getElementById('surname');
-const ageInput = document.getElementById('age');
-const emancipatedSelect = document.getElementById('emancipated');
-let currentRow = null; // Fila seleccionada
+document.addEventListener('DOMContentLoaded', () => {
+  const table = document.querySelector('#personTable');
+  const editForm = document.querySelector('#editForm');
+  const nameInput = document.querySelector('#name');
+  const surnameInput = document.querySelector('#surname');
+  const ageInput = document.querySelector('#age');
+  const emancipatedSelect = document.querySelector('#emancipated');
+  let currentRow = null; // Fila seleccionada
 
+  // Manejar el clic en la tabla para cargar los datos en el formulario
+  table.addEventListener('click', (event) => {
+    const cell = event.target;
+    const row = cell.closest('tr');
 
-table.addEventListener('click', function(event) {
-  const cell = event.target;
-  const row = cell.closest('tr');
+    const editCount = parseInt(row.dataset.editCount, 10); // Usar dataset para acceder al atributo 'data-edit-count'
 
-  const editCount = parseInt(row.getAttribute('data-edit-count'), 10);
-  if (editCount > 3 && !confirm('Esta fila ha sido editada más de tres veces. ¿Deseas continuar editando?')) {
-    return; 
-  }
+    // Verificar si la fila ha sido editada más de tres veces
+    if (editCount > 3 && !confirm('Esta fila ha sido editada más de tres veces. ¿Deseas continuar editando?')) return;
 
-  nameInput.value = row.cells[0].textContent;
-  surnameInput.value = row.cells[1].textContent;
-  ageInput.value = row.cells[2].textContent;
-  emancipatedSelect.value = row.cells[3].textContent.includes('Sí') ? 'true' : 'false';
+    // Cargar los valores de la fila en el formulario
+    nameInput.value = row.cells[0].textContent;
+    surnameInput.value = row.cells[1].textContent;
+    ageInput.value = row.cells[2].textContent;
+    emancipatedSelect.value = row.cells[3].textContent.includes('Sí') ? 'true' : 'false';
 
- 
-  currentRow = row;
-});
+    currentRow = row;
+  });
 
-// Manejar el envío del formulario
-editForm.addEventListener('submit', function(event) {
-  event.preventDefault(); // Prevenir que el formulario se envíe
+  // Manejar el envío del formulario
+  editForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevenir el envío del formulario
 
-  if (!currentRow) return; // Si no hay fila seleccionada, no hacer nada
+    if (!currentRow) return; // Si no hay fila seleccionada, no hacer nada
 
-  // Obtener los valores del formulario
-  const name = nameInput.value;
-  const surname = surnameInput.value;
-  const age = ageInput.value;
-  const emancipated = emancipatedSelect.value === 'true';
+    // Obtener los valores del formulario
+    const name = nameInput.value;
+    const surname = surnameInput.value;
+    const age = ageInput.value;
+    const emancipated = emancipatedSelect.value === 'true';
 
-  // Actualizar la tabla con los nuevos datos
-  currentRow.cells[0].textContent = name;
-  currentRow.cells[1].textContent = surname;
-  currentRow.cells[2].textContent = age;
-  currentRow.cells[3].innerHTML = emancipated ? '<span class="icon-yes">&#10003;</span>' : '<span class="icon-no">&#10007;</span>';
+    // Actualizar los valores en la tabla
+    currentRow.cells[0].textContent = name;
+    currentRow.cells[1].textContent = surname;
+    currentRow.cells[2].textContent = age;
+    currentRow.cells[3].innerHTML = emancipated ? '<span class="icon-yes">&#10003;</span>' : '<span class="icon-no">&#10007;</span>';
 
-  // Incrementar el contador de ediciones
-  const newEditCount = parseInt(currentRow.getAttribute('data-edit-count'), 10) + 1;
-  currentRow.setAttribute('data-edit-count', newEditCount);
+    // Incrementar el contador de ediciones y actualizar el atributo data-edit-count
+    const newEditCount = (parseInt(currentRow.dataset.editCount, 10) || 0) + 1;
+    currentRow.dataset.editCount = newEditCount;
 
-  // Limpiar el formulario y deseleccionar la fila
-  editForm.reset();
-  currentRow = null;
+    // Limpiar el formulario y deseleccionar la fila
+    editForm.reset();
+    currentRow = null;
+  });
 });

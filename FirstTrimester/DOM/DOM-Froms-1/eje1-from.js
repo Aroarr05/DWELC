@@ -17,56 +17,57 @@
 
 */
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("registrationForm");
-  const submitButton = document.getElementById("submitButton");
-  const resultDiv = document.getElementById("result");
-
-  submitButton.addEventListener("click", function (event) {
-      event.preventDefault(); // Evitar el envío del formulario
-
-      // Obtener todos los elementos de entrada del formulario
-      const inputs = form.querySelectorAll("input, select, textarea");
-      let isValid = true;
-      let formData = {};
-
-      // Limpiar mensajes anteriores
-      resultDiv.innerHTML = "";
-
-      // Validar cada campo
-      inputs.forEach(input => {
-          if (input.type !== "checkbox" && input.type !== "radio") {
-              // Para inputs normales
-              if (input.value.trim() === "") {
-                  input.classList.add("is-invalid");
-                  isValid = false;
-              } else {
-                  input.classList.remove("is-invalid");
-                  formData[input.name] = input.value;
-              }
-          } else if (input.type === "checkbox" || input.type === "radio") {
-              // Para checkboxes y radios
-              const group = form.querySelectorAll(`[name="${input.name}"]`);
-              const checked = [...group].some(item => item.checked);
-
-              if (!checked) {
-                  group.forEach(item => item.classList.add("is-invalid"));
-                  isValid = false;
-              } else {
-                  group.forEach(item => item.classList.remove("is-invalid"));
-                  if (!formData[input.name]) formData[input.name] = [];
-                  if (input.checked) formData[input.name].push(input.value);
-              }
-          }
-      });
-
-      if (isValid) {
-          // Mostrar los datos del formulario en el div `resultDiv`
-          resultDiv.innerHTML = "<h3>Información del Formulario</h3>";
-          for (let key in formData) {
-              resultDiv.innerHTML += `<p><strong>${key}:</strong> ${formData[key]}</p>`;
-          }
-      } else {
-          resultDiv.innerHTML = "<p class='text-danger'>Por favor, complete todos los campos.</p>";
-      }
+    const form = document.querySelector("#registrationForm");
+    const submitButton = document.querySelector("#submitButton");
+    const resultDiv = document.querySelector("#result");
+  
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Evitar el envío del formulario
+  
+        // Obtener todos los elementos de entrada del formulario
+        const inputs = form.querySelectorAll("input, select, textarea");
+        let isValid = true;
+        let formData = {};
+  
+        // Limpiar mensajes anteriores
+        resultDiv.innerHTML = "";
+  
+        // Validar cada campo
+        inputs.forEach(input => {
+            if (input.type !== "checkbox" && input.type !== "radio") {
+                // Para inputs normales
+                if (input.value.trim() === "") {
+                    input.classList.add("is-invalid");
+                    isValid = false;
+                } else {
+                    input.classList.remove("is-invalid");
+                    formData[input.name] = input.value;
+                }
+            } else if (input.type === "checkbox" || input.type === "radio") {
+                // Para checkboxes y radios
+                const group = form.querySelectorAll(`[name="${input.name}"]`);
+                const checked = [...group].some(item => item.checked);
+  
+                if (!checked) {
+                    group.forEach(item => item.classList.add("is-invalid"));
+                    isValid = false;
+                } else {
+                    group.forEach(item => item.classList.remove("is-invalid"));
+                    if (!formData[input.name]) formData[input.name] = [];
+                    if (input.checked) formData[input.name].push(input.value);
+                }
+            }
+        });
+  
+        if (isValid) {
+            // Mostrar los datos del formulario en el div `resultDiv`
+            resultDiv.innerHTML = "<h3>Información del Formulario</h3>";
+            for (let key in formData) {
+                resultDiv.innerHTML += `<p><strong>${key}:</strong> ${formData[key]}</p>`;
+            }
+        } else {
+            resultDiv.innerHTML = "<p class='text-danger'>Por favor, complete todos los campos.</p>";
+        }
+    });
   });
-});
+  

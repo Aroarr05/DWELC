@@ -1,7 +1,7 @@
 
-document.getElementById('agregarBtn').addEventListener('click', function() {
+document.querySelector('#agregarBtn').addEventListener('click', function() {
     
-    let texto = document.getElementById('textoItem').value;
+    let texto = document.querySelector('#textoItem').value;
 
     if (texto.trim() === "") {
         alert("Por favor, ingresa un texto para el ítem.");
@@ -12,7 +12,7 @@ document.getElementById('agregarBtn').addEventListener('click', function() {
 
     if (!lista) {
         lista = document.createElement('ol');
-        document.getElementById('contenedorLista').appendChild(lista);
+        document.querySelector('#contenedorLista').appendChild(lista);
     }
 
     let nuevoItem = document.createElement('li');
@@ -20,5 +20,5 @@ document.getElementById('agregarBtn').addEventListener('click', function() {
 
     lista.insertBefore(nuevoItem, lista.firstChild);
 
-    document.querySelector('textoItem').value = "";
+    document.querySelector('#textoItem').value = "";
 });

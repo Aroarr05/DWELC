@@ -7,18 +7,17 @@
 */
 
 const imagenes = [
-    "imagenes/image1.jpg",
-    "imagenes/image2.jpg",
-    "imagenes/image3.jpg",
-    "imagenes/image4.jpg"
+    "imagenes/mariposa.jpg",
+    "imagenes/mono.jpg",
+    "imagenes/serpiente.jpg",
+    "imagenes/husky.jpg"
 ];
 
 let indiceActual = 0;
 
-
-const imgElement = document.getElementById("image");
-const nextButton = document.getElementById("next");
-const previousButton = document.getElementById("previous");
+const imgElement = document.querySelector("#image");
+const nextButton = document.querySelector("#next");
+const previousButton = document.querySelector("#previous");
 
 function mostrarImagen() {
     imgElement.src = imagenes[indiceActual];

@@ -16,57 +16,64 @@ created.
 
 */
 
+document.addEventListener('DOMContentLoaded', () => {
+  const table = document.querySelector('#myTable');
+  const tagSpan = document.querySelector('#tag');
+  const idSpan = document.querySelector('#id');
+  const textContentSpan = document.querySelector('#textContent');
+  const rowTextSpan = document.querySelector('#rowText');
+  const colTextSpan = document.querySelector('#colText');
 
+  function handleCellClick(event) {
+    const cell = event.target;
 
-const table = document.getElementById('myTable');
-const tagSpan = document.getElementById('tag');
-const idSpan = document.getElementById('id');
-const textContentSpan = document.getElementById('textContent');
-const rowTextSpan = document.getElementById('rowText');
-const colTextSpan = document.getElementById('colText');
+    // Verificar que sea una celda y no el borde de la tabla
+    if (cell.tagName !== 'TD') return;
 
+    const rowIndex = cell.parentNode.rowIndex;
+    const colIndex = cell.cellIndex;
 
-function handleCellClick(event) {
-  const cell = event.target;
+    // Eliminar las clases previas de color para evitar conflictos
+    cell.classList.remove('red', 'blue', 'green');
 
-  const rowIndex = cell.parentNode.rowIndex;
-  const colIndex = cell.cellIndex;
+    // Aplicar el color dependiendo de la tecla presionada
+    if (event.ctrlKey) {
+      cell.classList.add('red');
+    } else if (event.shiftKey) {
+      cell.classList.add('blue');
+    } else {
+      cell.classList.add('green');
+    }
 
-  if (event.ctrlKey) {
-    cell.classList.add('red');
-  } else if (event.shiftKey) {
-    cell.classList.add('blue');
-  } else {
-    cell.classList.add('green');
-  }
-
-  const rows = table.rows;
-  for (let i = 0; i < rows.length; i++) {
-    const row = rows[i];
-    for (let j = 0; j < row.cells.length; j++) {
-      const currentCell = row.cells[j];
-      if (i === rowIndex || j === colIndex) {
-        currentCell.classList.add('highlight');
-      } else {
-        currentCell.classList.remove('highlight');
+    // Resaltar la fila y columna correspondiente
+    const rows = table.rows;
+    for (let i = 0; i < rows.length; i++) {
+      const row = rows[i];
+      for (let j = 0; j < row.cells.length; j++) {
+        const currentCell = row.cells[j];
+        if (i === rowIndex || j === colIndex) {
+          currentCell.classList.add('highlight');
+        } else {
+          currentCell.classList.remove('highlight');
+        }
       }
     }
+
+    // Mostrar la información de la celda seleccionada
+    const cellInfo = {
+      tag: cell.tagName,
+      id: cell.id || 'No tiene ID',
+      textContent: cell.textContent,
+      rowTextContent: Array.from(cell.parentNode.cells).map(c => c.textContent),
+      columnTextContent: Array.from(table.rows).map(row => row.cells[colIndex].textContent)
+    };
+
+    tagSpan.textContent = cellInfo.tag;
+    idSpan.textContent = cellInfo.id;
+    textContentSpan.textContent = cellInfo.textContent;
+    rowTextSpan.textContent = cellInfo.rowTextContent.join(', ');
+    colTextSpan.textContent = cellInfo.columnTextContent.join(', ');
   }
 
-  const cellInfo = {
-    tag: cell.tagName,
-    id: cell.id,
-    textContent: cell.textContent,
-    rowTextContent: Array.from(cell.parentNode.cells).map(c => c.textContent),
-    columnTextContent: Array.from(table.rows).map(row => row.cells[colIndex].textContent)
-  };
-
-  tagSpan.textContent = cellInfo.tag;
-  idSpan.textContent = cellInfo.id || 'No tiene ID';
-  textContentSpan.textContent = cellInfo.textContent;
-  rowTextSpan.textContent = cellInfo.rowTextContent.join(', ');
-  colTextSpan.textContent = cellInfo.columnTextContent.join(', ');
-}
-
-table.addEventListener('click', handleCellClick);
-
+  table.addEventListener('click', handleCellClick);
+});

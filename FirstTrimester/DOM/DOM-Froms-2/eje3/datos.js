@@ -8701,7 +8701,6 @@ const datos= [
             "label": "Guancha, La"
           },
           {
-
             "parent_code": "38",
             "code": "7",
             "label": "Guía de Isora"

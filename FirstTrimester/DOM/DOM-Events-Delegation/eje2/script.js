@@ -10,35 +10,28 @@ and it will be changed again when it exits (uses the toggle method of classList)
 
 */
 
-// script.js
 
+document.addEventListener('DOMContentLoaded', () => {
+  const mousePosition = document.querySelector('#mouse-position');
+  const elementInfo = document.querySelector('#element-info');
+  const elementPosition = document.querySelector('#element-position');
 
-function handleMouseMove(event) {
-  const mousePosition = document.getElementById('mouse-position');
-  const elementInfo = document.getElementById('element-info');
-  const elementPosition = document.getElementById('element-position');
+  // Función que maneja el movimiento del ratón
+  const handleMouseMove = (event) => {
+    mousePosition.textContent = `X: ${event.clientX}, Y: ${event.clientY}`;
 
-  mousePosition.textContent = `X: ${event.clientX}, Y: ${event.clientY}`;
- 
-  const targetElement = event.target;
-  elementInfo.textContent = targetElement.id || targetElement.className || 'Elemento sin ID';
+    const targetElement = event.target;
+    elementInfo.textContent = targetElement.id || targetElement.className || 'Elemento sin ID';
 
-  const xPos = event.offsetX;
-  const yPos = event.offsetY;
-  elementPosition.textContent = `X: ${xPos}, Y: ${yPos}`;
+    const { offsetX, offsetY } = event; // Desestructuración de las posiciones X y Y
+    elementPosition.textContent = `X: ${offsetX}, Y: ${offsetY}`;
 
-  if (event.type === 'mouseenter') {
-    targetElement.classList.toggle('highlight');
-  }
-  if (event.type === 'mouseleave') {
-    targetElement.classList.toggle('highlight');
-  }
-}
+    targetElement.classList.toggle('highlight', event.type === 'mouseenter' || event.type === 'mouseleave');
+  };
 
-const elements = document.querySelectorAll('.element');
-
-
-elements.forEach(element => {
-  element.addEventListener('mouseenter', handleMouseMove);
-  element.addEventListener('mouseleave', handleMouseMove);
+  // Selecciona todos los elementos con la clase .element y les asigna los event listeners
+  document.querySelectorAll('.element').forEach((element) => {
+    element.addEventListener('mouseenter', handleMouseMove);
+    element.addEventListener('mouseleave', handleMouseMove);
+  });
 });

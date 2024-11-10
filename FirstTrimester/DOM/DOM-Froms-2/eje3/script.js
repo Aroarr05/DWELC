@@ -14,130 +14,160 @@ Use a button to display all the indicated data when pressed.
 
 */
 
-document.addEventListener("DOMContentLoaded", function() {
-    const provinciaSelect = document.getElementById("provincia-select");
-    const municipioSelect = document.getElementById("municipio-select");
-    const localidadSelect = document.getElementById("localidad-select");
+document.addEventListener("DOMContentLoaded", () => {
+    const comunidadSelect = document.querySelector("#Comunidad-select");
+    const provinciaSelect = document.querySelector("#provincia-select");
+    const localidadSelect = document.querySelector("#localidad-select");
 
-  
-    if (Array.isArray(datos) && datos.length > 0 && datos[0].provinces) {
-        datos[0].provinces.forEach(provincia => {
+    // Cargar comunidades
+    datos.forEach(comunidad => {
+        const option = document.createElement("option");
+        option.value = comunidad.label;
+        option.textContent = comunidad.label;
+        comunidadSelect.appendChild(option);
+    });
+
+    // Función para cargar provincias
+    const cargarProvincias = () => {
+        const selectedComunidad = comunidadSelect.value;
+
+        const comunidad = datos.find(c => c.label === selectedComunidad);
+        provinciaSelect.innerHTML = ""; // Limpiar provincias anteriores
+        comunidad?.provinces.forEach(provincia => {
             const option = document.createElement("option");
             option.value = provincia.label;
             option.textContent = provincia.label;
             provinciaSelect.appendChild(option);
         });
-    }
+    };
 
+    // Función para cargar localidades
+    const cargarLocalidades = () => {
+        const selectedProvincia = provinciaSelect.value;
+        const selectedComunidad = comunidadSelect.value;
+        const comunidad = datos.find(c => c.label === selectedComunidad);
+        localidadSelect.innerHTML = ""; // Limpiar localidades anteriores
+        const provincia = comunidad?.provinces.find(p => p.label === selectedProvincia);
+        provincia?.towns.forEach(localidad => {
+            const option = document.createElement("option");
+            option.value = localidad.label;
+            option.textContent = localidad.label;
+            localidadSelect.appendChild(option);
+        });
+    };
 
-    localidadSelect.innerHTML = "<option value=''>Selecciona una localidad</option>";
+    comunidadSelect.addEventListener("change", cargarProvincias);
+    provinciaSelect.addEventListener("change", cargarLocalidades);
 
+    // Variables para controlar el número de personas
+    let personCount = 0;
+    const maxPersons = 5;
 
-    function cargarMunicipios() {
-        const selectedProvince = provinciaSelect.value;
-        municipioSelect.innerHTML = "<option value=''>Selecciona un municipio</option>"; // Limpiar municipios
+    // Agregar persona autorizada
+    const addLista = (event) => {
+        event.preventDefault();
 
-        const provincia = datos[0].provinces.find(p => p.label === selectedProvince);
-        if (provincia) {
-            provincia.towns.forEach(municipio => {
-                const option = document.createElement("option");
-                option.value = municipio.label;
-                option.textContent = municipio.label;
-                municipioSelect.appendChild(option);
-            });
+        // Si ya hay 5 personas, no se puede agregar más
+        if (personCount >= maxPersons) {
+            alert("No puedes añadir más de 5 personas.");
+            return;
         }
 
-        localidadSelect.innerHTML = "<option value=''>Selecciona una localidad</option>";
-    }
+        const nombre = document.querySelector("#nombre").value.trim();
+        const primerApellido = document.querySelector("#primer-apellido").value.trim();
+        const segundoApellido = document.querySelector("#segundo-apellido").value.trim();
+        const dni = document.querySelector("#dni").value.trim();
+        const telefono = document.querySelector("#telefono").value.trim();
 
-    function cargarLocalidades() {
-        const selectedMunicipio = municipioSelect.value;
-        localidadSelect.innerHTML = "<option value=''>Selecciona una localidad</option>";  // Limpiar localidades
+        // Validar campos
+        if (!nombre || !primerApellido || !dni) {
+            alert("Por favor, complete el nombre, primer apellido y el DNI.");
+            return;
+        }
 
-        if (selectedMunicipio) {
-            const selectedProvince = provinciaSelect.value;
-            const provincia = datos[0].provinces.find(p => p.label === selectedProvince);
-            if (provincia) {
-                const municipio = provincia.towns.find(town => town.label === selectedMunicipio);
-                if (municipio && municipio.localities) { // Asegurarse de que las localidades existan
-                    municipio.localities.forEach(localidad => {
-                        const option = document.createElement("option");
-                        option.value = localidad.label;
-                        option.textContent = localidad.label;
-                        localidadSelect.appendChild(option);
-                    });
-                }
+        const listaDatos = document.querySelector("#listaDatos");
+
+        // Crear un nuevo <li> con los datos y un botón de editar
+        const nuevoElemento = document.createElement("li");
+        nuevoElemento.classList.add("list-group-item");
+        nuevoElemento.innerHTML = `
+            <strong>Nombre:</strong> ${nombre} <br>
+            <strong>Primer Apellido:</strong> ${primerApellido} <br>
+            <strong>Segundo Apellido:</strong> ${segundoApellido} <br>
+            <strong>DNI:</strong> ${dni} <br>
+            <strong>Teléfono:</strong> ${telefono} 
+            <button class="btn btn-primary btn-sm float-right editar-persona">Editar</button>
+        `;
+
+        listaDatos.appendChild(nuevoElemento);
+        document.querySelector("#enrollmentForm").reset();
+
+        // Aumentar el contador de personas
+        personCount++;
+    };
+
+    // Función para eliminar una persona de la lista
+    const eliminarPersona = (event) => {
+        if (event.target.id === "remove-person") {
+            const personas = document.querySelectorAll(".authorized-person");
+            if (personas.length > 1) {
+                // Eliminar la última persona agregada
+                personas[personas.length - 1].remove();
+                personCount--;
+            } else {
+                alert("Debe haber al menos una persona autorizada.");
             }
         }
-    }
+    };
 
-    
-    provinciaSelect.addEventListener("change", function() {
-        cargarMunicipios();  
-    });
-    municipioSelect.addEventListener("change", function() {
-        cargarLocalidades();  
-    });
+    // Escuchar el evento de clic para eliminar personas
+    document.querySelector("#remove-person").addEventListener("click", eliminarPersona);
+
+    // Resaltar persona seleccionada
+    let selectedElement = null;
+
+    const resaltarPersona = (event) => {
+        // Eliminar la clase 'seleccionado' de cualquier elemento previamente seleccionado
+        if (selectedElement) {
+            selectedElement.classList.remove("seleccionado");
+        }
+
+        // Resaltar el nuevo elemento
+        selectedElement = event.target.closest("li");
+        selectedElement.classList.add("seleccionado");
+    };
+
+    // Escuchar el evento de clic para resaltar
+    document.querySelector("#listaDatos").addEventListener("click", resaltarPersona);
+
+    // Función para editar una persona
+    const editarPersona = (event) => {
+        if (event.target.classList.contains("editar-persona")) {
+            const liElemento = event.target.closest("li");
+            const nombre = liElemento.querySelector("strong:nth-of-type(1) + br").previousElementSibling.textContent.split(":")[1].trim();
+            const primerApellido = liElemento.querySelector("strong:nth-of-type(2) + br").previousElementSibling.textContent.split(":")[1].trim();
+            const segundoApellido = liElemento.querySelector("strong:nth-of-type(3) + br").previousElementSibling.textContent.split(":")[1].trim();
+            const dni = liElemento.querySelector("strong:nth-of-type(4) + br").previousElementSibling.textContent.split(":")[1].trim();
+            const telefono = liElemento.querySelector("strong:nth-of-type(5) + br").previousElementSibling.textContent.split(":")[1].trim();
+
+            // Prellenar el formulario de edición con los datos de la persona
+            document.querySelector("#nombre").value = nombre;
+            document.querySelector("#primer-apellido").value = primerApellido;
+            document.querySelector("#segundo-apellido").value = segundoApellido;
+            document.querySelector("#dni").value = dni;
+            document.querySelector("#telefono").value = telefono;
+
+            // Eliminar el li actual
+            liElemento.remove();
+
+            // Reducir el contador de personas
+            personCount--;
+        }
+    };
+
+    // Escuchar el evento de clic en el botón de editar
+    document.querySelector("#listaDatos").addEventListener("click", editarPersona);
+
+    // Agregar evento al botón de añadir persona
+    document.querySelector("#enrollmentForm").addEventListener("submit", addLista);
 });
-
-
-function addLista(event){
-    event.preventDefault(); 
-
-    const nombre = document.getElementById("nombre").value.trim();
-    const primerApellido = document.getElementById("primer-apellido").value.trim();
-    const segundoApellido = document.getElementById("segundo-apellido").value.trim();
-    const dni = document.getElementById("dni").value.trim();
-    const telefono = document.getElementById("telefono").value.trim();
-
-    // Validar que los campos necesarios no estén vacíos
-    if (!nombre || !primerApellido || !dni) {
-        alert("Por favor, complete todos los campos obligatorios.");
-        return;
-    }
-
-    const listaDatos = document.getElementById("listaDatos");
-
-    const nuevoElemento = document.createElement("li");
-    nuevoElemento.textContent = `Nombre: ${nombre}, Primer Apellido: ${primerApellido}, Segundo Apellido: ${segundoApellido}, DNI: ${dni}, Teléfono: ${telefono}`;
-
-    listaDatos.appendChild(nuevoElemento);
-
-    document.getElementById("enrollmentForm").reset();
-}
-
-// Manejar el envío del formulario para agregar la persona a la lista
-document.getElementById("enrollmentForm").addEventListener("submit", addLista);
-
-// AGRAGAR HASTA 5 PERSONAS CON EL BOTÓN
-// QUITAR PERSONAS CON EL BOTÓN
-let personCount = 1;
-const maxPersons = 5;
-
-const addPerson = () => {
-    if (personCount >= maxPersons) {
-        alert("No puedes añadir más de 5 personas.");
-        return;
-    }
-
-    const originalPerson = document.querySelector(".authorized-person");
-    const newPerson = originalPerson.cloneNode(true);
-
-    newPerson.querySelectorAll("input").forEach(input => input.value = "");
-    newPerson.querySelector("h1").textContent = `${++personCount}ª Persona autorizada:`;
-
-    originalPerson.parentNode.appendChild(newPerson);
-};
-
-const removePerson = () => {
-    if (personCount > 1) {
-        const persons = document.querySelectorAll(".authorized-person");
-        persons[persons.length - 1].remove();
-        personCount--;
-    } else {
-        alert("Debe haber al menos una persona autorizada.");
-    }
-};
-
-document.getElementById("add-person").addEventListener("click", addPerson);
-document.getElementById("remove-person").addEventListener("click", removePerson);

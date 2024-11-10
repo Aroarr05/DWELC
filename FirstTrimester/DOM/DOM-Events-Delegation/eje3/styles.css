@@ -1,18 +1,18 @@
 .highlight {
-    background-color: yellow;
-  }
+  background-color: yellow !important;
+}
 
-  .green {
-    background-color: green !important;
-    color: white;
-  }
+.green {
+  background-color: green !important;
+  color: white;
+}
 
-  .red {
-    background-color: red !important;
-    color: white;
-  }
+.red {
+  background-color: red !important;
+  color: white;
+}
 
-  .blue {
-    background-color: blue !important;
-    color: white;
-  }
+.blue {
+  background-color: blue !important;
+  color: white;
+}

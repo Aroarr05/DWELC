@@ -23,134 +23,104 @@ If it does not have any decimals, put '.' and two 00.
 */
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const nombreInput = document.getElementById("nombre");
-    const amountInput = document.getElementById("amount");
-    const cardInput = document.getElementById("num-card");
-    const codeInput = document.getElementById("code");
-    const dateInput = document.getElementById("date");
-    const submitButton = document.getElementById("submit");
+// Definir las reglas de validación en un objeto
+const validations = {
+    amount: {
+        keyPress: /\d|\./,
+        pattern: /^[1-9]\d*(\.\d{2})?$/,
+    },
+    card: {
+        keyPress: /\d/,
+        pattern: /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/,
+        max: 19,
+        autocomplete: handleCardAutocomplete,
+    },
+    name: {
+        keyPress: /[A-Za-z]|\s/,
+        pattern: /^[A-Za-z]{3,}\s[A-Za-z]{3,}$/,
+    },
+    expiration: {
+        keyPress: /\d|\//,
+        pattern: /^(0[1-9]|1[0-2])\/\d{2}$/,
+        max: 5,
+        autocomplete: handleExpirationAutocomplete,
+    },
+    csv: {
+        keyPress: /\d/,
+        pattern: /^\d{3}$/,
+        max: 3,
+    },
+};
 
-    // Funciones de validación
-    const validateName = (name) => {
-        const namePattern = /^[A-Z][a-zA-Z\s]{6,}$/; 
-        return namePattern.test(name);
-    };
+// Validación de cada tecla presionada
+function handleKeyPress(event) {
+    const { id, value, inputType } = event.target;
+    const validation = validations[id];
 
-    const validateCardNumber = (cardNumber) => {
-        const cardPattern = /^(?:\d{4}[- ]){3}\d{4}$|^\d{16}$/; 
-        return cardPattern.test(cardNumber);
-    };
+    if (!validation.keyPress.test(value[value.length - 1]) || (validation.max && value.length > validation.max)) {
+        event.target.value = value.slice(0, -1);
+    }
 
-    const validateSecurityCode = (code) => {
-        const codePattern = /^\d{3}$/; 
-        return codePattern.test(code);
-    };
+    if (validation.autocomplete) {
+        validation.autocomplete(event);
+    }
+}
 
-    const validateExpirationDate = (date) => {
-        const today = new Date();
-        const expirationDate = new Date(date);
-        return expirationDate > today; 
-    };
+// Validación al perder el foco
+function handlePatternValidation(event) {
+    const { id, value } = event.target;
+    const validation = validations[id];
+    const isValid = validation.pattern.test(value) && (!isExpirationField(id) || checkExpirationDate(value));
 
-    const validateAmount = (amount) => {
-        const amountPattern = /^\d+(\.\d{1,2})?$/;
-        return amountPattern.test(amount);
-    };
+    updateInputStyle(event.target, isValid);
+}
 
-    // Resaltar el campo activo
-    const highlightActiveField = (event) => {
-        document.querySelectorAll("input").forEach(input => input.classList.remove("active"));
-        event.target.classList.add("active");
-    };
+// Verificar si es el campo de expiración
+function isExpirationField(id) {
+    return id === "expiration";
+}
 
-    // Función para manejar el evento de salida
-    const handleBlur = (event) => {
-        if (event.target === nombreInput) {
-            // Capitalizar el nombre
-            event.target.value = event.target.value
-                .split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-        } else if (event.target === cardInput) {
-            // Formatear el número de tarjeta
-            const value = event.target.value.replace(/\s+/g, '').replace(/(.{4})/g, '$1 ').trim();
-            event.target.value = value;
-        } else if (event.target === dateInput) {
-            // Formatear la fecha de expiración
-            const value = event.target.value;
-            if (value.length === 2) {
-                event.target.value = value + '/';
-            }
-        } else if (event.target === amountInput) {
-            // Cambiar el separador decimal
-            let value = event.target.value.replace(',', '.');
-            if (!value.includes('.')) {
-                value += '.00';
-            } else if (value.split('.')[1].length < 2) {
-                value += '0';
-            }
-            event.target.value = value;
-        }
-    };
+// Actualizar el estilo del campo de entrada según su validez
+function updateInputStyle(input, isValid) {
+    input.classList.toggle("is-valid", isValid);
+    input.classList.toggle("is-invalid", !isValid);
+}
 
-    // Validar campos al hacer clic en "Submit"
-    const validateFields = () => {
-        let isValid = true;
+// Función para validar la fecha de expiración
+function checkExpirationDate(value) {
+    const [month, year] = value.split("/").map(Number);
+    const today = new Date();
+    const currentYear = today.getFullYear() % 100; // Dos últimos dígitos del año
 
-        // Limpia los mensajes de error
-        document.querySelectorAll(".error-message").forEach(msg => msg.textContent = "");
-        document.querySelectorAll("input").forEach(input => input.classList.remove("error"));
+    if (month < 1 || month > 12 || year < currentYear || (year === currentYear && month < today.getMonth() + 1)) {
+        return false;
+    }
+    return true;
+}
 
-        // Validar nombre
-        if (!validateName(nombreInput.value)) {
-            isValid = false;
-            nombreInput.classList.add("error");
-            document.getElementById("name-error").textContent = "El nombre debe contener al menos un nombre y un apellido (mínimo 7 caracteres).";
-        }
+// Autocompletar campo de tarjeta
+function handleCardAutocomplete(event) {
+    if (!["deleteContentBackward", "deleteContentForward"].includes(event.inputType) &&
+        [4, 9, 14].includes(event.target.value.length)) {
+        event.target.value += " ";
+    }
+}
 
-        // Validar monto
-        if (!validateAmount(amountInput.value)) {
-            isValid = false;
-            amountInput.classList.add("error");
-            document.getElementById("amount-error").textContent = "Monto inválido. Debe ser un número con hasta dos decimales.";
-        }
+// Autocompletar campo de expiración
+function handleExpirationAutocomplete(event) {
+    if (!["deleteContentBackward", "deleteContentForward"].includes(event.inputType) &&
+        event.target.value.length === 2) {
+        event.target.value += "/";
+    }
+}
 
-        // Validar número de tarjeta
-        if (!validateCardNumber(cardInput.value)) {
-            isValid = false;
-            cardInput.classList.add("error");
-            document.getElementById("card-error").textContent = "Número de tarjeta inválido. Debe tener el formato correcto.";
-        }
-
-        // Validar código de seguridad
-        if (!validateSecurityCode(codeInput.value)) {
-            isValid = false;
-            codeInput.classList.add("error");
-            document.getElementById("code-error").textContent = "El código de seguridad debe contener exactamente 3 números.";
-        }
-
-        // Validar fecha de expiración
-        if (!validateExpirationDate(dateInput.value)) {
-            isValid = false;
-            dateInput.classList.add("error");
-            document.getElementById("date-error").textContent = "La fecha de expiración no debe ser pasada.";
-        }
-
-        return isValid;
-    };
-
-    // Manejar el clic en el botón de enviar
-    submitButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Evitar el envío del formulario
-        if (validateFields()) {
-            alert("Formulario enviado con éxito."); // Aquí se puede añadir lógica para el envío real
-        }
+// Asignar los eventos a los campos de entrada
+function assignValidationEvents() {
+    document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", handleKeyPress);
+        input.addEventListener("blur", handlePatternValidation);
     });
+}
 
-    // Añadir eventos de foco y desenfoque
-    document.querySelectorAll("input").forEach(input => {
-        input.addEventListener("focus", highlightActiveField);
-        input.addEventListener("blur", handleBlur);
-    });
-});
+// Inicializar las validaciones al cargar la página
+assignValidationEvents();
