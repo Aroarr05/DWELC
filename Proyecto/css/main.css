@@ -1,0 +1,96 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Banner */
+.banner {
+    background-image: url('https://via.placeholder.com/1920x600');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    padding: 100px 0;
+}
+
+/* Destinos */
+.card-img-top{
+}
+.destino .card-img-top {
+    width: 300px;
+    height: 200px;
+    transition: transform 0.3s ease;
+}
+
+.destino .card-img-top:hover {
+    transform: scale(1.05);
+}
+
+/* Servicios */
+#servicios i {
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* Formulario de Contacto */
+form input, form textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form input:focus, form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Pie de página */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+footer {
+    background-color: #343a40; /* Color de fondo oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+footer h4 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+footer a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #0d6efd; /* Azul de Bootstrap */
+}
+
+footer .form-control {
+    background-color: #495057; /* Fondo oscuro para inputs */
+    border: none;
+    color: #ffffff;
+}
+
+footer .form-control::placeholder {
+    color: #d6d6d6;
+}
+
+footer .form-control:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid #0d6efd;
+}
+
+footer .btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+footer .btn-primary:hover {
+    background-color: #0056b3;
+}
