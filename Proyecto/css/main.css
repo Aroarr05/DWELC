@@ -4,22 +4,207 @@ body {
     background-color: #f8f9fa;
 }
 
+/* Logo */
+.logo{
+    width: 60px;
+}
+
 /* Banner */
 .banner {
-    background-image: url('https://via.placeholder.com/1920x600');
     background-size: cover;
     background-position: center;
     color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     padding: 100px 0;
 }
 
-/* Destinos */
-.card-img-top{
+/*-----------------------------------------------------------*/
+/* Estilo general del contenedor del formulario */
+.bg-white {
+    border-radius: 50px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px; 
+    margin: 0 auto; 
+    background-color: #fff;
 }
-.destino .card-img-top {
+
+/* Labels de los campos */
+form label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+/* Campos de entrada (inputs y select) */
+form input, form select {
+    border: none;
+    border-radius: 30px;
+    background-color: #f7f7f7;
+    padding: 10px 15px;
+    color: #333;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; 
+}
+
+/* Placeholder de los campos */
+form input::placeholder, form select {
+    font-style: italic;
+    color: #999;
+}
+
+/* Borde en focus */
+form input:focus, form select:focus {
+    outline: none;
+    border: 2px solid #007bff; /* Cambié el color azul aquí */
+    background-color: #fff;
+}
+
+/* Botón de búsqueda */
+.btn-warning {
+    border-radius: 50%;
+    background-color: #007bff; /* Color azul */
+    color: white;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    padding: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón hover */
+.btn-warning:hover {
+    background-color: rgba(0, 123, 255, 0.5); /* Color azul claro al pasar el mouse */
+    transform: scale(1.1);
+}
+
+/* Botón general en las secciones */
+.btn-azul {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: 1px solid #007bff;
+    border-radius: 30px;
+    padding: 10px 20px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-azul:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+    border-color: #0056b3;
+    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+}
+
+/* Ajuste de espacio entre campos */
+.row .col-md-2, .col-md-3, .col-md-1 {
+    padding: 0 10px;
+}
+
+/* RESPONSIVIDAD: Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .bg-white {
+        padding: 15px;
+        max-width: 90%; 
+    }
+
+    /* Cambiar la distribución a una sola columna */
+    .row .col-md-2, .col-md-3, .col-md-1 {
+        flex: 0 0 100%; 
+        max-width: 100%; 
+        margin-bottom: 10px; 
+    }
+
+    /* Botón de búsqueda ocupa toda la fila */
+    .btn-warning {
+        margin-top: 10px;
+    }
+}
+
+/* RESPONSIVIDAD: Ajustes para pantallas muy pequeñas */
+@media (max-width: 576px) {
+    .bg-white {
+        padding: 10px;
+        max-width: 95%;
+    }
+
+    form label {
+        font-size: 0.8rem;
+    }
+
+    form input, form select {
+        font-size: 0.85rem;
+    }
+
+    .btn-warning {
+        font-size: 1.2rem;
+    }
+}
+
+/*------------------------------------------*/
+/* Mosaico de Imágenes en Movimiento */
+#mosaico {
+    padding: 50px 0;
+}
+
+.mosaico-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.mosaico-items {
+    display: flex;
+    animation: mosaico-mover 30s linear infinite;
+}
+
+.mosaico-item {
+    flex: 0 0 auto;
     width: 300px;
-    height: 200px;
+    margin: 0 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.mosaico-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto al pasar el ratón por encima de las imágenes */
+.mosaico-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Animación de desplazamiento de las imágenes */
+@keyframes mosaico-mover {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .mosaico-item {
+        width: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .mosaico-item {
+        width: 200px;
+    }
+}
+
+/*---------------------------------*/
+/* Destinos */
+
+.destino .card-img-top {
     transition: transform 0.3s ease;
 }
 
@@ -48,11 +233,6 @@ form input:focus, form textarea:focus {
 footer {
     background-color: #343a40;
     color: #ffffff;
-}
-
-footer {
-    background-color: #343a40; /* Color de fondo oscuro */
-    color: #ffffff; /* Texto blanco */
 }
 
 footer h4 {
