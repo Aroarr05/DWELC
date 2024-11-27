@@ -2,6 +2,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
+    min-height: 100vh;
 }
 
 /* Logo */
@@ -60,7 +61,7 @@ form input:focus, form select:focus {
 }
 
 /* Botón de búsqueda */
-.btn-warning {
+.btn-primary {
     border-radius: 50%;
     background-color: #007bff; /* Color azul */
     color: white;
@@ -69,27 +70,13 @@ form input:focus, form select:focus {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Botón hover */
-.btn-warning:hover {
-    background-color: rgba(0, 123, 255, 0.5); /* Color azul claro al pasar el mouse */
-    transform: scale(1.1);
-}
-
-/* Botón general en las secciones */
-.btn-azul {
-    background-color: #007bff; /* Azul */
+.reserva{
+    align-items: center;
+    background-color: #007bff; /* Color azul */
     color: white;
-    border: 1px solid #007bff;
-    border-radius: 30px;
-    padding: 10px 20px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-azul:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
-    border-color: #0056b3;
-    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    padding: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Ajuste de espacio entre campos */
@@ -184,7 +171,7 @@ form input:focus, form select:focus {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
 
@@ -200,6 +187,7 @@ form input:focus, form select:focus {
         width: 200px;
     }
 }
+
 
 /*---------------------------------*/
 /* Destinos */
