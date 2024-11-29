@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,15 @@
     <link rel="stylesheet" href="./destino.css">
     <title>Hop & Discover</title>
     <link rel="icon" type="image/png" href="./../assets/imagenes/logo/logo.png">
-
-
 </head>
+
 <body>
     <!-- Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#"><img class="logo" src="./../assets/imagenes/logo/logo.png"> Hop & Discover</a>
+            <a class="navbar-brand" href="#">
+                <img class="logo" src="./../assets/imagenes/logo/logo.png" alt="Logo"> Hop & Discover
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -30,40 +32,44 @@
             </div>
         </div>
     </nav>
-    <!-- Banner Principal -->
-    <div class="bg-light text-center py-5 banner" style="background-image: url('./../assets/imagenes/img-index/Banner/avion.jpg');">
 
-        <div class="button">
+    <!-- Banner Principal -->
+    <div class="bg-light text-center py-5 banner"
+        style="background-image: url('./../assets/imagenes/img-index/Banner/avion.jpg'); background-size: cover; background-position: center;">
+        <div class="button ">
             <a href="./editarDestinos.html" class="btn btn-primary">Editar</a>
             <a href="./crearDestino.html" class="btn btn-primary">Crear</a>
         </div>
         <br>
+        <!-- Sección de Búsqueda -->
         <div class="bg-white py-3">
             <div class="container">
-                <form class="row g-3 align-items-center">
+                <form class="row g-3 align-items-center" action="#" method="get">
                     <!-- Campo: Destino -->
-                    <div class="col-md-2">
-                        <label for="inputDe" class="form-label">Busca destino</label>
-                        <input type="text" class="form-control" id="inputDestino" placeholder="Nombre del destino">
+                    <div class="col-md-3">
+                        <label for="inputDestino" class="form-label">Busca destino</label>
+                        <input type="text" class="form-control" id="inputDestino" name="destino"
+                            placeholder="Nombre del destino" aria-label="Buscar destino">
                     </div>
                     <!-- Botón de búsqueda -->
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100" aria-label="Buscar">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
                 </form>
             </div>
         </div>
+
         <br>
-        <h1 class="display-4">¿Donde nos vamos?</h1>
+
+        <h4 class="display-4 text-white">¿Dónde nos vamos?</h4>
+
     </div>
 
-    <div class="espacio">
-        
-    </div>
-    
-    <!-- Pie de página -->
+    <div class="espacio"></div>
+
+    <!-- Pie de Página -->
     <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
@@ -72,9 +78,15 @@
                     <h4>Síguenos</h4>
                     <p>Conéctate con nosotros a través de nuestras redes sociales:</p>
                     <div>
-                        <a href="https://www.facebook.com/" class="text-white me-3"><i class="bi bi-facebook fs-3"></i></a>
-                        <a href="https://x.com/" class="text-white me-3"><i class="bi bi-twitter fs-3"></i></a>
-                        <a href="https://www.instagram.com/" class="text-white me-3"><i class="bi bi-instagram fs-3"></i></a>
+                        <a href="https://www.facebook.com/" class="text-white me-3" aria-label="Facebook">
+                            <i class="bi bi-facebook fs-3"></i>
+                        </a>
+                        <a href="https://x.com/" class="text-white me-3" aria-label="X (Twitter)">
+                            <i class="bi bi-twitter fs-3"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" class="text-white me-3" aria-label="Instagram">
+                            <i class="bi bi-instagram fs-3"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -87,8 +99,9 @@
         </div>
     </footer>
 
-    <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="Destinos.js"></script>
-
+    <!-- Scripts -->
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./Destinos.js"></script>
 </body>
+
 </html>

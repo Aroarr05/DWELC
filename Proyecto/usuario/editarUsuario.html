@@ -10,16 +10,15 @@
     <link rel="stylesheet" href="./usuario.css">
     <title>Hop & Discover</title>
     <link rel="icon" type="image/png" href="./../assets/imagenes/logo/logo.png">
-
-
 </head>
 
 <body>
     <!-- Barra de Navegación -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#"><img class="logo" src="./../assets/imagenes/logo/logo.png"> Hop &
-                Discover</a>
+            <a class="navbar-brand" href="#">
+                <img class="logo" src="./../assets/imagenes/logo/logo.png" alt="Logo"> Hop & Discover
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,79 +32,83 @@
             </div>
         </div>
     </nav>
+
+    <!-- Espacio Principal -->
     <div class="espacio">
         <h1>Editar Usuario</h1>
-       
-            <div class="container">
-                <div class="back-btn-container">
-                    <button class="btn btn-primary" onclick="window.history.back()">Volver atrás</button>
-                </div>
+
+        <div class="container">
+            <div class="back-btn-container">
+                <button class="btn btn-primary" onclick="window.history.back()">Volver atrás</button>
             </div>
-       
+        </div>
+
         <div class="container">
             <div class="form-container">
                 <h2>Edición de Datos:</h2>
-                <div>
-                    <from> <!-- Correo electrónico -->
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo electrónico:</label>
-                            <input type="email" class="form-control" id="email1"
-                                placeholder="Ingrese su correo electrónico" value="juan.perez@example.com" required>
-                        </div>
 
-                        <!-- Contraseña -->
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña:</label>
-                            <input type="password" class="form-control" id="password1"
-                                placeholder="Ingrese una nueva contraseña" required>
-                        </div>
-                        <button type="submit" onclick="desplegar()" class="btn btn-primary">Comprobar</button>
-                    </from>
-                </div>
-                
+                <!-- Primer Formulario -->
+                <form id="verifyForm">
+                    <!-- Correo electrónico -->
+                    <div class="mb-3">
+                        <label for="email1" class="form-label">Correo electrónico:</label>
+                        <input type="email" class="form-control" id="email1"
+                            placeholder="Ingrese su correo electrónico" value="juan.perez@example.com" required>
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="mb-3">
+                        <label for="password1" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="password1"
+                            placeholder="Ingrese una nueva contraseña" required>
+                    </div>
+
+                    <button type="button" onclick="desplegar()" class="btn btn-primary">Comprobar</button>
+                </form>
+
                 <br>
-                <p>Al comprobar los datos y que cuicinadan se tiene que abrir el resto de promulario para poder editarlo.</p>
                 
-                <div>
-                    <form style="display: none;" id="form">
-                        <!-- Nombre completo -->
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre completo:</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo"
-                                value="Juan Pérez" required>
-                        </div>
+                <p>Al comprobar los datos y que coincidan, se mostrará el resto del formulario para poder editarlo.</p>
 
-                        <!-- Correo electrónico -->
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo electrónico:</label>
-                            <input type="email" class="form-control" id="email"
-                                placeholder="Ingrese su correo electrónico" value="juan.perez@example.com" required>
-                        </div>
+                <!-- Formulario Oculto -->
+                <form style="display: none;" id="editForm">
+                    <!-- Nombre completo -->
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre completo:</label>
+                        <input type="text" class="form-control" id="nombre"
+                            placeholder="Ingrese su nombre completo" value="Juan Pérez" required>
+                    </div>
 
-                        <!-- Contraseña -->
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña:</label>
-                            <input type="password" class="form-control" id="password"
-                                placeholder="Ingrese una nueva contraseña" required>
-                        </div>
+                    <!-- Correo electrónico -->
+                    <div class="mb-3">
+                        <label for="email2" class="form-label">Correo electrónico:</label>
+                        <input type="email" class="form-control" id="email2"
+                            placeholder="Ingrese su correo electrónico" value="juan.perez@example.com" required>
+                    </div>
 
-                        <!-- Confirmar contraseña -->
-                        <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
-                            <input type="password" class="form-control" id="confirmPassword"
-                                placeholder="Repita la nueva contraseña" required>
-                        </div>
+                    <!-- Contraseña -->
+                    <div class="mb-3">
+                        <label for="password2" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="password2"
+                            placeholder="Ingrese una nueva contraseña" required>
+                    </div>
 
-                        <!-- Aceptar términos -->
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="terms" checked required>
-                            <label class="form-check-label" for="terms">Acepto los términos y condiciones</label>
-                        </div>
+                    <!-- Confirmar contraseña -->
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
+                        <input type="password" class="form-control" id="confirmPassword"
+                            placeholder="Repita la nueva contraseña" required>
+                    </div>
 
-                        <!-- Botón de enviar -->
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </form>
-                </div>
+                    <!-- Aceptar términos -->
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="terms" checked required>
+                        <label class="form-check-label" for="terms">Acepto los términos y condiciones</label>
+                    </div>
+
+                    <!-- Botón de enviar -->
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
             </div>
         </div>
     </div>
@@ -119,9 +122,11 @@
                     <h4>Síguenos</h4>
                     <p>Conéctate con nosotros a través de nuestras redes sociales:</p>
                     <div>
-                        <a href="https://www.facebook.com/" class="text-white me-3"><i class="bi bi-facebook fs-3"></i></a>
+                        <a href="https://www.facebook.com/" class="text-white me-3"><i
+                                class="bi bi-facebook fs-3"></i></a>
                         <a href="https://x.com/" class="text-white me-3"><i class="bi bi-twitter fs-3"></i></a>
-                        <a href="https://www.instagram.com/" class="text-white me-3"><i class="bi bi-instagram fs-3"></i></a>
+                        <a href="https://www.instagram.com/" class="text-white me-3"><i
+                                class="bi bi-instagram fs-3"></i></a>
                     </div>
                 </div>
             </div>
@@ -134,9 +139,14 @@
         </div>
     </footer>
 
-    <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script src="Usuario.js"></script>
-
+    <!-- Scripts -->
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Función para mostrar el segundo formulario
+        function desplegar() {
+            document.getElementById('editForm').style.display = 'block';
+        }
+    </script>
 </body>
 
 </html>
