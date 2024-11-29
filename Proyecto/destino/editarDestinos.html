@@ -27,59 +27,66 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="./../index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="./../destino/listarDestinos.html">Destinos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./listaUsuarios.html">Usuario</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./../usuario/listaUsuarios.html">Usuario</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Contenido Principal -->
-    <div class="container ">
+    <div class="espacio">
         <h1>Editar Destino</h1>
 
-        <!-- Botón para Volver Atrás -->
-        <div class="text-start mb-4">
-            <button class="btn btn-primary" onclick="window.history.back()" aria-label="Volver atrás">Volver atrás</button>
+        <div class="container">
+            <div class="back-btn-container">
+                <button class="btn btn-primary">Volver atrás</button>
+            </div>
         </div>
 
-        <!-- Formulario de Comprobación -->
-        <div class="form-container">
-            <h2>Editar datos</h2>
+        <div class="container ">
+            <!-- Formulario de Comprobación -->
+            <div class="form-container">
+                <h2>Editar datos</h2>
 
-            <form id="verifyForm">
+                <form id="verifyForm">
+                    <div class="mb-3">
+                        <label for="nombreDestinos" class="form-label">Nombre del destino:</label>
+                        <input type="text" class="form-control" id="nombreDestinos" name="nombreDestinos"
+                            placeholder="Ingrese el nombre del destino" aria-label="Nombre del destino" required>
+                    </div>
+
+                    <button type="button" class="btn btn-primary">Comprobar</button>
+
+                </form>
+
+                <br>
+
+                <p>Una vez comprobados los datos, se mostrará el formulario completo para realizar las modificaciones.
+                </p>
+
+            </div>
+
+            <!-- Formulario Completo -->
+            <form style="display: none;" class="mt-4">
                 <div class="mb-3">
-                    <label for="nombreDestinos" class="form-label">Nombre del destino:</label>
-                    <input type="text" class="form-control" id="nombreDestinos" name="nombreDestinos" 
-                        placeholder="Ingrese el nombre del destino" aria-label="Nombre del destino" required>
+                    <label for="nombreDestino" class="form-label">Nombre del destino:</label>
+                    <input type="text" class="form-control" id="nombreDestino" name="nombreDestino"
+                        placeholder="Ingrese el nombre actualizado del destino"
+                        aria-label="Nombre actualizado del destino" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Comprobar</button>
+                <div class="mb-3">
+                    <label for="ubicacion" class="form-label">Ubicación (país/ciudad):</label>
+                    <input type="text" class="form-control" id="ubicacion" name="ubicacion"
+                        placeholder="Ingrese la ubicación (país/ciudad)" aria-label="Ubicación del destino" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Subir imagen:</label>
+                    <input type="file" class="form-control" id="image" name="image"
+                        aria-label="Cargar una imagen del destino">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
             </form>
-
-            <br>
-
-            <p>Una vez comprobados los datos, se mostrará el formulario completo para realizar las modificaciones.</p>
-        
         </div>
-
-        <!-- Formulario Completo -->
-        <form style="display: none;" class="mt-4">
-            <div class="mb-3">
-                <label for="nombreDestino" class="form-label">Nombre del destino:</label>
-                <input type="text" class="form-control" id="nombreDestino" name="nombreDestino" 
-                    placeholder="Ingrese el nombre actualizado del destino" aria-label="Nombre actualizado del destino" required>
-            </div>
-            <div class="mb-3">
-                <label for="ubicacion" class="form-label">Ubicación (país/ciudad):</label>
-                <input type="text" class="form-control" id="ubicacion" name="ubicacion" 
-                    placeholder="Ingrese la ubicación (país/ciudad)" aria-label="Ubicación del destino" required>
-            </div>
-            <div class="mb-3">
-                <label for="image" class="form-label">Subir imagen:</label>
-                <input type="file" class="form-control" id="image" name="image" 
-                    aria-label="Cargar una imagen del destino">
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </form>
     </div>
 
     <!-- Pie de página -->
@@ -113,6 +120,7 @@
     <!-- Scripts -->
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="./Destinos.js"></script>
+    <script src="destinoController.js"></script>
 </body>
 
 </html>

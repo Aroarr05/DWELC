@@ -27,7 +27,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="./../index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="./../destino/listarDestinos.html">Destinos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./listaUsuarios.html">Usuario</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./../usuario/listaUsuarios.html">Usuario</a></li>
                 </ul>
             </div>
         </div>
@@ -39,7 +39,7 @@
 
         <div class="container">
             <div class="back-btn-container">
-                <button class="btn btn-primary" onclick="window.history.back()">Volver atrás</button>
+                <button class="btn btn-primary">Volver atrás</button>
             </div>
         </div>
 
@@ -52,8 +52,8 @@
                     <!-- Correo electrónico -->
                     <div class="mb-3">
                         <label for="email1" class="form-label">Correo electrónico:</label>
-                        <input type="email" class="form-control" id="email1"
-                            placeholder="Ingrese su correo electrónico" value="juan.perez@example.com" required>
+                        <input type="email" class="form-control" id="email1" placeholder="Ingrese su correo electrónico"
+                            value="juan.perez@example.com" required>
                     </div>
 
                     <!-- Contraseña -->
@@ -63,11 +63,12 @@
                             placeholder="Ingrese una nueva contraseña" required>
                     </div>
 
-                    <button type="button" onclick="desplegar()" class="btn btn-primary">Comprobar</button>
+                    <button type="button" class="btn btn-primary">Comprobar</button>
+
                 </form>
 
                 <br>
-                
+
                 <p>Al comprobar los datos y que coincidan, se mostrará el resto del formulario para poder editarlo.</p>
 
                 <!-- Formulario Oculto -->
@@ -75,15 +76,28 @@
                     <!-- Nombre completo -->
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre completo:</label>
-                        <input type="text" class="form-control" id="nombre"
-                            placeholder="Ingrese su nombre completo" value="Juan Pérez" required>
+                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre completo"
+                            value="Juan Pérez" required>
                     </div>
 
                     <!-- Correo electrónico -->
                     <div class="mb-3">
                         <label for="email2" class="form-label">Correo electrónico:</label>
-                        <input type="email" class="form-control" id="email2"
-                            placeholder="Ingrese su correo electrónico" value="juan.perez@example.com" required>
+                        <input type="email" class="form-control" id="email2" placeholder="Ingrese su correo electrónico"
+                            value="juan.perez@example.com" required>
+                    </div>
+
+                    <!-- Campo: Coordenadas -->
+                    <div class="mb-3">
+                        <label for="latitud" class="form-label">Latitud:</label>
+                        <input type="number" step="any" class="form-control" id="latitud" name="latitud"
+                            placeholder="Ingrese la latitud" aria-label="Latitud" required min="-90" max="90">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="longitud" class="form-label">Longitud:</label>
+                        <input type="number" step="any" class="form-control" id="longitud" name="longitud"
+                            placeholder="Ingrese la longitud" aria-label="Longitud" required min="-180" max="180">
                     </div>
 
                     <!-- Contraseña -->
@@ -141,12 +155,9 @@
 
     <!-- Scripts -->
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Función para mostrar el segundo formulario
-        function desplegar() {
-            document.getElementById('editForm').style.display = 'block';
-        }
-    </script>
+    <script src="Usuario.js"></script>
+    <script src="usuarioController.js"></script>
+
 </body>
 
 </html>

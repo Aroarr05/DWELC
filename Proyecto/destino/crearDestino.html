@@ -36,12 +36,14 @@
     <!-- Contenido Principal -->
     <div class="espacio">
         <h1>Crear Destino</h1>
-        <div class="container">
 
-            <div class="mb-4">
-                <button class="btn btn-primary" onclick="window.history.back()" aria-label="Volver atrás">Volver atrás</button>
+        <div class="container">
+            <div class="back-btn-container">
+                <button class="btn btn-primary">Volver atrás</button>
             </div>
-    
+        </div>
+
+        <div class="container">
             <!-- Formulario -->
             <div class="form-container">
                 <h2>Formulario:</h2>
@@ -49,31 +51,44 @@
                     <!-- Campo: Nombre del Destino -->
                     <div class="mb-3">
                         <label for="nombreDestino" class="form-label">Nombre del destino:</label>
-                        <input type="text" class="form-control" id="nombreDestino" name="nombreDestino" 
+                        <input type="text" class="form-control" id="nombreDestino" name="nombreDestino"
                             placeholder="Ingrese el nombre del destino" aria-label="Nombre del destino" required>
                     </div>
-    
+
                     <!-- Campo: Ubicación -->
                     <div class="mb-3">
                         <label for="ubicacion" class="form-label">Ubicación (país/ciudad):</label>
-                        <input type="text" class="form-control" id="ubicacion" name="ubicacion" 
+                        <input type="text" class="form-control" id="ubicacion" name="ubicacion"
                             placeholder="Ingrese el país y ciudad" aria-label="Ubicación del destino" required>
                     </div>
-    
+
+                    <!-- Campo: Coordenadas -->
+                    <div class="mb-3">
+                        <label for="latitud" class="form-label">Latitud:</label>
+                        <input type="number" step="any" class="form-control" id="latitud" name="latitud"
+                            placeholder="Ingrese la latitud" aria-label="Latitud" required min="-90" max="90">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="longitud" class="form-label">Longitud:</label>
+                        <input type="number" step="any" class="form-control" id="longitud" name="longitud"
+                            placeholder="Ingrese la longitud" aria-label="Longitud" required min="-180" max="180">
+                    </div>
+
                     <!-- Campo: Cargar Imagen -->
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Subir imagen:</label>
-                        <input type="file" class="form-control" id="imagen" name="imagen" 
+                        <input type="file" class="form-control" id="imagen" name="imagen"
                             aria-label="Cargar imagen del destino" accept="image/*" required>
                     </div>
-    
+
                     <!-- Botón Enviar -->
                     <button type="submit" class="btn btn-primary" aria-label="Enviar formulario">Enviar</button>
                 </form>
             </div>
         </div>
     </div>
-        <!-- Botón Volver Atrás -->
+    <!-- Botón Volver Atrás -->
 
     <!-- Pie de página -->
     <footer class="bg-dark text-white py-5 mt-5">
@@ -108,6 +123,7 @@
     <!-- Scripts -->
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script src="Destinos.js"></script>
+    <script src="destinoController.js"></script>
 </body>
 
 </html>

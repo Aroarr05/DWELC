@@ -44,30 +44,30 @@
         <!-- Sección de Búsqueda -->
         <div class="bg-white py-3">
             <div class="container">
-                <form class="row g-3 align-items-center" action="#" method="get">
+                <form class="row g-3 align-items-center">
                     <!-- Campo: Destino -->
-                    <div class="col-md-3">
-                        <label for="inputDestino" class="form-label">Busca destino</label>
-                        <input type="text" class="form-control" id="inputDestino" name="destino"
-                            placeholder="Nombre del destino" aria-label="Buscar destino">
+                    <div class="col-md-10">
+                        <label for="inputUsuario" class="form-label">¿Qué destino quieres buscar?</label>
+                        <input type="text" class="form-control" id="inputUsuario" placeholder="Destino">
                     </div>
+                
                     <!-- Botón de búsqueda -->
-                    <div class="col-md-2 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100" aria-label="Buscar">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary" style="width: 150px;">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
                 </form>
+                
             </div>
         </div>
-
-        <br>
-
-        <h4 class="display-4 text-white">¿Dónde nos vamos?</h4>
-
     </div>
 
-    <div class="espacio"></div>
+    <div class="espacio">
+        <div class="container my-5">
+            <div class="row" id="destinos-container"></div>
+        </div>
+    </div>
 
     <!-- Pie de Página -->
     <footer class="bg-dark text-white py-5">
@@ -101,6 +101,8 @@
 
     <!-- Scripts -->
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./../assets/destinos.js"></script>
+    <script src="./destinoController.js"></script>
     <script src="./Destinos.js"></script>
 </body>
 

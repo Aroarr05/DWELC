@@ -66,6 +66,21 @@ h2 {
 .form-check-label {
     font-weight: normal;
 }
+/*--------BUSCAR USUARIO-------------*/
+
+.row.g-3.align-items-center .col-md-2 {
+    display: flex;
+    align-items: flex-end; 
+    padding: 0;
+}
+
+.row.g-3.align-items-center .btn-primary {
+    padding: 5px 10px; 
+    margin-top: 31px;
+    border-radius: 8px; 
+    height: auto; 
+    width: auto; 
+}
 
 /*---------------Buscador--------------*/
 
@@ -147,4 +162,64 @@ form select:focus {
     .btn-warning {
         font-size: 1.2rem;
     }
+}
+
+/*-------Registro------*/
+
+.form-check-input {
+    width: 20px; 
+    height: 20px;
+    margin-top: 0;
+    margin-right: 10px; 
+    border: 2px solid #007bff; 
+    border-radius: 0; 
+    cursor: pointer; 
+}
+
+.form-check-label {
+    font-size: 1rem; 
+    color: #4a4a4a; 
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+.form-check-input:checked {
+    background-color: #007bff; 
+    border-color: #0056b3; 
+}
+/*----Tabla----*/
+.table {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    padding: 20px;
+
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+.table tbody tr {
+    background-color: #007bff;
+    color: rgb(0, 0, 0);
+}
+
+.table thead {
+    background-color: #0056b3;
+    color: rgb(0, 0, 0);
+}
+
+.table th {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #007bff;
+}
+
+.table td {
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+}
+
+.table-responsive {
+    overflow-x: auto;
 }

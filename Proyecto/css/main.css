@@ -1,11 +1,10 @@
-/* General */
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
 }
 
-/* Logo */
-.logo{
+.logo {
     width: 60px;
 }
 
@@ -78,8 +77,7 @@ body {
     }
 }
 
-/*--------------DESTINOS-------------------*/
-
+/*--------------------DESTINOS---------------------*/
 
 .destino .card-img-top {
     transition: transform 0.3s ease;
@@ -89,7 +87,7 @@ body {
     transform: scale(1.05);
 }
 
-/*--------------PIE-DE-PAGINA----------------*/
+/*--------------------FOOTER---------------------*/
 
 footer {
     background-color: #343a40;
@@ -107,11 +105,11 @@ footer a {
 }
 
 footer a:hover {
-    color: #0d6efd; /* Azul de Bootstrap */
+    color: #0d6efd;
 }
 
 footer .form-control {
-    background-color: #495057; /* Fondo oscuro para inputs */
+    background-color: #495057;
     border: none;
     color: #ffffff;
 }
