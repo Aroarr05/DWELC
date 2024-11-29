@@ -25,7 +25,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="./destino/listarDestinos.html">Destinos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="./cliente/listaClientes.html">Usuario</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./usuario/listaUsuarios.html">Usuario</a></li>
                 </ul>
             </div>
         </div>
@@ -33,54 +33,6 @@
 
     <!-- Banner Principal -->
     <div class="bg-light text-center py-5 banner" style="background-image: url('./assets/imagenes/img-index/Banner/avion.jpg');">
-        <div class="bg-white py-3">
-            <div class="container">
-                <form class="row g-3 align-items-center">
-                    <!-- Campo: De -->
-                    <div class="col-md-2">
-                        <label for="inputDe" class="form-label">De</label>
-                        <input type="text" class="form-control" id="inputDe" placeholder="BCN Barcelona">
-                    </div>
-
-                    <!-- Campo: A -->
-                    <div class="col-md-2">
-                        <label for="inputA" class="form-label">A</label>
-                        <input type="text" class="form-control" id="inputA" placeholder="Ciudad, país o aeropuerto">
-                    </div>
-
-                    <!-- Campo: Ida -->
-                    <div class="col-md-2">
-                        <label for="inputIda" class="form-label">Ida</label>
-                        <input type="date" class="form-control" id="inputIda">
-                    </div>
-
-                    <!-- Campo: Vuelta -->
-                    <div class="col-md-2">
-                        <label for="inputVuelta" class="form-label">Vuelta</label>
-                        <input type="date" class="form-control" id="inputVuelta">
-                    </div>
-
-                    <!-- Campo: Pasajeros -->
-                    <div class="col-md-3">
-                        <label for="inputPasajeros" class="form-label">Pasajeros</label>
-                        <select class="form-select" id="inputPasajeros">
-                            <option selected>1 Adulto, 0 Niños, 0 Bebés</option>
-                            <option>2 Adultos, 0 Niños, 0 Bebés</option>
-                            <option>1 Adulto, 1 Niño, 0 Bebés</option>
-                            <option>Personalizado...</option>
-                        </select>
-                    </div>
-
-                    <!-- Botón de búsqueda -->
-                    <div class="col-md-1 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary w-100">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <br>
         <h1 class="display-4">¡Explora el mundo con nosotros!</h1>
         <p class="lead">Destinos increíbles, experiencias inolvidables.</p>
         <a href="./destino/listarDestinos.html" class="btn btn-primary btn-lg">Ver Destinos</a>
@@ -96,8 +48,8 @@
                     <img src="./assets/imagenes/img-index/Destinos/argentina.jpg" class="card-img-top" alt="Argentina">
                     <div class="card-body">
                         <h5 class="card-title">Argentina</h5>
-                        <p class="card-text">Disfruta de arenas blancas y aguas cristalinas.Desde $799.</p>
-                        <a href="./destino/listarDestinos.html" class="btn reserva">Reservar</a>
+                        <p class="card-text">Descubre paisajes imponentes como la Patagonia y las Cataratas del Iguazú, junto a la vibrante cultura de Buenos Aires.</p>
+                        <a href="./destino/listarDestinos.html" class="btn btn-primary">Destino</a>
                     </div>
                 </div>
             </div>
@@ -107,8 +59,8 @@
                     <img src="./assets/imagenes/img-index/Destinos/caribe.jpg" class="card-img-top" alt="Caribe">
                     <div class="card-body">
                         <h5 class="card-title">Caribe</h5>
-                        <p class="card-text">Explora la ciudad del amor. Tours guiados y experiencias culturales.</p>
-                        <a href="./destino/listarDestinos.html" class="btn reserva">Reservar</a>
+                        <p class="card-text">Relájate en playas paradisíacas de aguas turquesas, disfruta de su cultura vibrante y saborea ritmos tropicales únicos. Un verdadero escape al paraíso.</p>
+                        <a href="./destino/listarDestinos.html" class="btn btn-primary">Destino</a>
                     </div>
                 </div>
             </div>
@@ -118,8 +70,8 @@
                     <img src="./assets/imagenes/img-index/Destinos/tokio.jpg" class="card-img-top" alt="Tokio">
                     <div class="card-body">
                         <h5 class="card-title">Tokio</h5>
-                        <p class="card-text">Esquí, paisajes espectaculares y aventuras inolvidables.</p>
-                        <a href="./destino/listarDestinos.html" class="btn reserva">Reservar</a>
+                        <p class="card-text">Explora la fascinante mezcla de tradición y modernidad con templos históricos, tecnología avanzada y una gastronomía inigualable.</p>
+                        <a href="./destino/listarDestinos.html" class="btn btn-primary">Destino</a>
                     </div>
                 </div>
             </div>
@@ -153,27 +105,25 @@
     <!-- Mosaico de Imágenes en Movimiento -->
     <section id="mosaico" class="container py-5">
         <h2 class="text-center mb-4">Mosaico de Imágenes</h2>
-        <div id="mosaico">
-            <div class="mosaico-container">
-                <div class="mosaico-items">
-                    <div class="mosaico-item">
-                        <img src="./assets/imagenes/img-index/Mosaico/Corea.jpg" alt="Imagen 1">
-                    </div>
-                    <div class="mosaico-item">
-                        <img src="./assets/imagenes/img-index/Mosaico/Firlandia.jpg" alt="Imagen 2">
-                    </div>
-                    <div class="mosaico-item">
-                        <img src="./assets/imagenes/img-index/Mosaico/Londres.jpg" alt="Imagen 3">
-                    </div>
-                    <div class="mosaico-item">
-                        <img src="./assets/imagenes/img-index/Mosaico/Malta.jpg" alt="Imagen 4">
-                    </div>
-                    <div class="mosaico-item">
-                        <img src="./assets/imagenes/img-index/Mosaico/New-York.jpg" alt="Imagen 5">
-                    </div>
-                    <div class="mosaico-item">
-                        <img src="./assets/imagenes/img-index/Mosaico/Santander.jpg" alt="Imagen 6">
-                    </div>
+        <div class="mosaico-container">
+            <div class="mosaico-items">
+                <div class="mosaico-item">
+                    <img src="./assets/imagenes/img-index/Mosaico/Corea.jpg" alt="Imagen 1">
+                </div>
+                <div class="mosaico-item">
+                    <img src="./assets/imagenes/img-index/Mosaico/Firlandia.jpg" alt="Imagen 2">
+                </div>
+                <div class="mosaico-item">
+                    <img src="./assets/imagenes/img-index/Mosaico/Londres.jpg" alt="Imagen 3">
+                </div>
+                <div class="mosaico-item">
+                    <img src="./assets/imagenes/img-index/Mosaico/Malta.jpg" alt="Imagen 4">
+                </div>
+                <div class="mosaico-item">
+                    <img src="./assets/imagenes/img-index/Mosaico/New-York.jpg" alt="Imagen 5">
+                </div>
+                <div class="mosaico-item">
+                    <img src="./assets/imagenes/img-index/Mosaico/Santander.jpg" alt="Imagen 6">
                 </div>
             </div>
         </div>
@@ -183,34 +133,14 @@
     <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <!-- Formulario de Contacto -->
-                <div class="col-md-6 mb-4">
-                    <h4>Contáctanos</h4>
-                    <form>
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Tu nombre">
-                        </div>
-                        <div class="mb-3">
-                            <label for="correo" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="correo" placeholder="Tu correo electrónico">
-                        </div>
-                        <div class="mb-3">
-                            <label for="mensaje" class="form-label">Mensaje</label>
-                            <textarea class="form-control" id="mensaje" rows="3" placeholder="Tu mensaje"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
-                </div>
-
                 <!-- Redes Sociales -->
                 <div class="col-md-6 text-center text-md-start">
                     <h4>Síguenos</h4>
                     <p>Conéctate con nosotros a través de nuestras redes sociales:</p>
                     <div>
-                        <a href="https://www.facebook.com/login/?locale=es_ES" class="text-white me-3"><i class="bi bi-facebook fs-3"></i></a>
-                        <a href="https://x.com/?lang=es" class="text-white me-3"><i class="bi bi-twitter fs-3"></i></a>
-                        <a href="https://www.instagram.com/" class="text-white me-3"><i class="bi bi-instagram fs-3"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-3"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-3"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-3"></i></a>
                     </div>
                 </div>
             </div>
