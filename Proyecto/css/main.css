@@ -17,8 +17,8 @@ body {
     padding: 100px 0;
 }
 
-/*------------------------------------------*/
-/* Mosaico de Imágenes en Movimiento */
+/*--------------------MOSAICO---------------------*/
+
 #mosaico {
     padding: 50px 0;
 }
@@ -53,12 +53,10 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* Efecto al pasar el ratón por encima de las imágenes */
 .mosaico-item:hover img {
     transform: scale(1.05);
 }
 
-/* Animación de desplazamiento de las imágenes */
 @keyframes mosaico-mover {
     0% {
         transform: translateX(0);
@@ -68,7 +66,6 @@ body {
     }
 }
 
-/* Media Queries para pantallas más pequeñas */
 @media (max-width: 768px) {
     .mosaico-item {
         width: 250px;
