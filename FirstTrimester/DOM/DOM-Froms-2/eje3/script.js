@@ -16,8 +16,8 @@ Use a button to display all the indicated data when pressed.
 
 //DATOS DE LAS COMUNIDADES,PROVINCIAS Y LOCALIDAD
 document.addEventListener("DOMContentLoaded", () => {
-    const comunidadSelect = document.querySelector("#Comunidad-select");
-    const provinciaSelect = document.querySelector("#provincia-select");
+    const comunidadSelect = document.querySelector("#comunidades-select");
+    const provinciaSelect = document.querySelector("#municipio-select");
     const localidadSelect = document.querySelector("#localidad-select");
 
     // Cargar comunidades
