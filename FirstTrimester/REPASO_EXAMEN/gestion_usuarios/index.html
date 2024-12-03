@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestión de Usuarios</h1>
+    <form id="userForm">
+        <label>
+            Nombre:
+            <input type="text" id="name" placeholder="Nombre" />
+        </label>
+        <label>
+            Edad:
+            <input type="number" id="age" placeholder="Edad" />
+        </label>
+        <label>
+            Correo Electrónico:
+            <input type="email" id="email" placeholder="Correo Electrónico" />
+        </label>
+        <button type="button" id="addUser">Agregar Usuario</button>
+        <button type="button" id="updateUser">Actualizar Usuario</button>
+    </form>
+    <p class="error" id="error"></p>
+    <h2>Lista de Usuarios</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Correo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Usuarios se añadirán dinámicamente -->
+        </tbody>
+    </table>
+    <h2>Búsqueda</h2>
+    <label>
+        Buscar por Nombre:
+        <input type="text" id="search" placeholder="Nombre" />
+    </label>
+    <button type="button" id="searchUser">Buscar</button>
+    <div id="searchResults"></div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
