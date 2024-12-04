@@ -1,0 +1,127 @@
+
+<!--Autor:Aroa Rivas Rios-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroa Rivas Rios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        h1 {
+            color: rgb(142, 90, 191);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>ADVANCED SEARCH</h1>
+        <p>(in all select fields)</p>
+
+        <form class="form-group">
+            <div class="form-group">
+                <label for="name">Text:</label>
+                <input type="text" id="name" name="name" class="form-control mb-2" placeholder="Nombre">
+                <div class="form-check">
+                    <input type="checkbox" id="title" name="title" class="form-check-input">
+                    <label for="title" class="form-check-label">Title</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="director" name="director" class="form-check-input">
+                    <label for="director" class="form-check-label">Director</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="actors" name="actors" class="form-check-input">
+                    <label for="actors" class="form-check-label">Actors</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="country-select">Country:</label>
+                <select class="form-control" id="country-select" name="country-select">
+                    <option value="">All countries</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="genders">Gender:</label>
+                <div class="form-check">
+                    <input type="checkbox" id="genders" name="genders" class="form-check-input">
+                    <label for="genders" class="form-check-label">All genders</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="action" name="action" class="form-check-input genre-checkbox">
+                    <label for="action" class="form-check-label">Action</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="adventure" name="adventure" class="form-check-input genre-checkbox">
+                    <label for="adventure" class="form-check-label">Adventure</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="sci-fi" name="sci-fi" class="form-check-input genre-checkbox">
+                    <label for="sci-fi" class="form-check-label">Sci-Fi</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="thriller" name="thriller" class="form-check-input genre-checkbox">
+                    <label for="thriller" class="form-check-label">Thriller</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="comedy" name="comedy" class="form-check-input genre-checkbox">
+                    <label for="comedy" class="form-check-label">Comedy</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="drama" name="drama" class="form-check-input genre-checkbox">
+                    <label for="drama" class="form-check-label">Drama</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="fantasy" name="fantasy" class="form-check-input genre-checkbox">
+                    <label for="fantasy" class="form-check-label">Fantasy</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="horror" name="horror" class="form-check-input genre-checkbox">
+                    <label for="horror" class="form-check-label">Horror</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="history" name="history" class="form-check-input genre-checkbox">
+                    <label for="history" class="form-check-label">History</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="biography" name="biography" class="form-check-input genre-checkbox">
+                    <label for="biography" class="form-check-label">Biography</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="from-select">Year: from:</label>
+                <select class="form-control" id="from-select" name="from-select">
+                    <option value="">----</option>
+                </select>
+                <label for="to-select" class="mt-2">to:</label>
+                <select class="form-control" id="to-select" name="to-select">
+                    <option value="">----</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="button" id="search-button" class="btn btn-primary">Find</button>
+            </div>
+
+            <div>
+                <p id="result-message"></p>
+            </div>
+            <div id="movies-container" class="row">
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./arr.js"></script>
+    <script src="./filtrospelis.js"></script>
+    <script src="./pelisList.js"></script>
+</body>
+
+</html>
