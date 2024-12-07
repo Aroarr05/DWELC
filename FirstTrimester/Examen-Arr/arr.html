@@ -1,5 +1,4 @@
-
-<!--Autor:Aroa Rivas Rios-->
+<!-- Autor: Aroa Rivas Rios -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,12 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
         h1 {
-            color: rgb(142, 90, 191);
+            color: #8e5abf;
+        }
+        .selected-card {
+            background-color: #f0f8ff;
+            border: 2px solid #8e5abf;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -21,7 +25,7 @@
         <h1>ADVANCED SEARCH</h1>
         <p>(in all select fields)</p>
 
-        <form class="form-group">
+        <form class="form-group" action="javascript:void(0);">
             <div class="form-group">
                 <label for="name">Text:</label>
                 <input type="text" id="name" name="name" class="form-control mb-2" placeholder="Nombre">
@@ -112,8 +116,8 @@
             <div>
                 <p id="result-message"></p>
             </div>
-            <div id="movies-container" class="row">
-            </div>
+            <div id="movies-container" class="row"></div>
+
         </form>
     </div>
 
