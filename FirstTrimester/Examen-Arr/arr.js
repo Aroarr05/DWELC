@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     genreCheckboxes.forEach(checkbox => {
         checkbox.addEventListener("change", () => {
             if (genreCheckboxes.every(cb => !cb.checked)) {
-                allGenresCheckbox.checked = false;  // Desmarcar "All genres" si ninguno está seleccionado
+                allGenresCheckbox.checked = false;  
             } else if (genreCheckboxes.every(cb => cb.checked)) {
-                allGenresCheckbox.checked = true;  // Marcar "All genres" si todos están seleccionados
+                allGenresCheckbox.checked = true;  
             }
         });
     });
@@ -53,37 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Evento de búsqueda
     document.querySelector("#search-button").addEventListener("click", () => {
         const selectedGenres = genreCheckboxes.filter(cb => cb.checked).map(cb => cb.id);
-        searchMovies(selectedGenres);  // Llamada a la función que realiza la búsqueda
+        searchMovies(selectedGenres);  
     });
-
-    // Función que maneja el evento de "Detalles"
-    function addDetailsButtonEvent() {
-        const detailsButtons = document.querySelectorAll(".details-btn");
-        detailsButtons.forEach(button => {
-            button.addEventListener("click", (e) => {
-                const movieID = e.target.getAttribute("data-id");
-
-                // Buscar la película con el ID seleccionado
-                selectedMovie = pelis.find(movie => movie.imdbID === movieID);
-                
-                if (selectedMovie) {
-                    // Mostrar la información de la película en el modal
-                    document.querySelector("#moviePoster").src = selectedMovie.Poster || 'default-poster.png';
-                    document.querySelector("#movieTitle").textContent = selectedMovie.Title || "N/A";
-                    document.querySelector("#movieYear").textContent = selectedMovie.Year || "N/A";
-                    document.querySelector("#movieDirector").textContent = selectedMovie.Director || "N/A";
-                    document.querySelector("#movieActors").textContent = selectedMovie.Actors || "N/A";
-                    document.querySelector("#movieGenres").textContent = selectedMovie.Genre || "N/A";
-                    document.querySelector("#moviePlot").textContent = selectedMovie.Plot || "No description available.";
-
-                    // Mostrar el modal de Bootstrap
-                    $("#movieModal").modal("show");
-                } else {
-                    console.error("Movie not found with ID:", movieID);  // Si no se encuentra la película
-                }
-            });
-        });
-    }
 
     // Función para realizar la búsqueda de películas
     function searchMovies(selectedGenres) {
@@ -111,18 +82,18 @@ document.addEventListener("DOMContentLoaded", () => {
             return matchesName && matchesGenres && matchesYear;
         });
 
-        displayMovies(filteredMovies);  // Llamada a la función para mostrar las películas filtradas
+        displayMovies(filteredMovies);  
     }
 
     function displayMovies(movies) {
         const resultMessage = document.querySelector("#result-message");
         const moviesContainer = document.querySelector("#movies-container");
-    
-        moviesContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas películas
+        
+        moviesContainer.innerHTML = '';  
         if (movies.length === 0) {
-            resultMessage.textContent = 'No movies found.';  // Mensaje si no hay películas
+            resultMessage.textContent = 'No movies found.';  
         } else {
-            resultMessage.textContent = `${movies.length} movie(s) found.`;  // Mensaje con el número de películas encontradas
+            resultMessage.textContent = `${movies.length} movie(s) found.`;  
             
             // Crear y agregar las tarjetas de las películas
             movies.forEach(movie => {
@@ -130,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 movieCard.classList.add('col-md-4', 'mb-4');
                 movieCard.innerHTML = `
                     <div class="card">
-                        <img src="${movie.Poster}" class="card-img-top" alt="${movie.Title}">
+                        <img src="${movie.Images && movie.Images.length > 0 ? movie.Images[0] : movie.Poster}" class="card-img-top" alt="${movie.Title}">
                         <div class="card-body">
                             <h5 class="card-title">${movie.Title}</h5>
                             <div class="genres">
@@ -142,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>
                 `;
-    
+            
                 // Agregar el evento de detalles a la tarjeta
                 const detailsButton = movieCard.querySelector(".details-btn");
                 detailsButton.addEventListener("click", function () {
@@ -158,20 +129,24 @@ document.addEventListener("DOMContentLoaded", () => {
                             <pre> ${JSON.stringify(selectedMovie, null, 2)}</pre>
                             <div id="update-history"></div>
                         `;
-    
+            
                         // Agregar o quitar el contenido adicional en el card
                         const cerrarButtom = preDiv.querySelector(".cerrar");
                         cerrarButtom.addEventListener("click", function () {
                             movieCard.removeChild(preDiv);
                         });
-    
+            
                         movieCard.appendChild(preDiv);
                     }
-                });
     
+                    // Cambiar el color de la tarjeta
+                    movieCard.classList.toggle('selected-card'); // Cambia el color de la tarjeta
+                });
+            
                 // Añadir la tarjeta al contenedor
                 moviesContainer.appendChild(movieCard);
             });
         }
     }
+    
 });
