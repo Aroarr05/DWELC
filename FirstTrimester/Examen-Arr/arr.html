@@ -23,7 +23,7 @@
 <body>
     <div class="container mt-4">
         <h1>ADVANCED SEARCH</h1>
-        <p>(in all select fields)</p>
+        <p>In all select fields</p>
 
         <form class="form-group" action="javascript:void(0);">
             <div class="form-group">
@@ -56,50 +56,11 @@
                     <input type="checkbox" id="genders" name="genders" class="form-check-input">
                     <label for="genders" class="form-check-label">All genders</label>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" id="action" name="action" class="form-check-input genre-checkbox">
-                    <label for="action" class="form-check-label">Action</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="adventure" name="adventure" class="form-check-input genre-checkbox">
-                    <label for="adventure" class="form-check-label">Adventure</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="sci-fi" name="sci-fi" class="form-check-input genre-checkbox">
-                    <label for="sci-fi" class="form-check-label">Sci-Fi</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="thriller" name="thriller" class="form-check-input genre-checkbox">
-                    <label for="thriller" class="form-check-label">Thriller</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="comedy" name="comedy" class="form-check-input genre-checkbox">
-                    <label for="comedy" class="form-check-label">Comedy</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="drama" name="drama" class="form-check-input genre-checkbox">
-                    <label for="drama" class="form-check-label">Drama</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="fantasy" name="fantasy" class="form-check-input genre-checkbox">
-                    <label for="fantasy" class="form-check-label">Fantasy</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="horror" name="horror" class="form-check-input genre-checkbox">
-                    <label for="horror" class="form-check-label">Horror</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="history" name="history" class="form-check-input genre-checkbox">
-                    <label for="history" class="form-check-label">History</label>
-                </div>
-                <div class="form-check">
-                    <input type="checkbox" id="biography" name="biography" class="form-check-input genre-checkbox">
-                    <label for="biography" class="form-check-label">Biography</label>
-                </div>
+                <div id="genders-container"></div>
             </div>
-
+            
             <div class="form-group">
-                <label for="from-select">Year: from:</label>
+                <label for="from-select">Year from:</label>
                 <select class="form-control" id="from-select" name="from-select">
                     <option value="">----</option>
                 </select>
