@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercico de Cookies</title>
+</head>
+<body>
+    <div id="content">
+        <h1>INTRODUCE EL NOMBRE DEL USUARIO:</h1>
+        <form id="name-form">
+            <label for="username">Nombre</label>
+            <input type="text" id="username">
+            <button type="submit">Ingresar</button>
+        </form>
+        <div id="logged-in" style="display: none;">
+            <p>Hola, <span id="user-name"></span>!</p>
+            <textarea id="conmment-area" placeholder="Escribe un comentario..."></textarea>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
