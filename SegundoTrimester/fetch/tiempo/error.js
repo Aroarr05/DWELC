@@ -9,8 +9,20 @@ document.querySelector('.boton').addEventListener('click', async() => {
     //+
      await fetch(url)
         .then((response) => {
-            console.log("response", response.ok, response.status,response);
-            return response.json();
+            console.log(response);
+            if (!response.ok){
+                if(response.status===404){
+                    throw new Error('Error 404: Not Found');
+                }else if(response.status === 403){
+                    throw new Error('Error 403: Forbidden');
+                }else{
+                    throw new Error(`HTTP error! Status ${response.status}`);
+                }
+            }
+            return response.json().catch((e)=>{
+                throw new Error("Error al convertir a JSON:" + e.message)
+            })
+            
         })
         .then(async(data) => {
              console.log(data);

@@ -9,6 +9,7 @@ document.querySelector('#boton').addEventListener('click', async () => {
         return;
     }
 
+    // await fetch (url) -> asi es merjor hacer las promesas menos lioso
     try {
         // Fetch datos del usuario principal
         const response = await fetch(url);
