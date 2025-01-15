@@ -1,0 +1,20 @@
+<h1>Exercice 10</h1>
+<h2>*ngIf</h2>
+<h3>Structural directive</h3>
+
+<button (click)="incTemp(1)">+</button>&nbsp;
+<button (click)="incTemp(-1)">-</button>&nbsp;
+<button (click)="incTemp(10)">+10</button>&nbsp;
+<button (click)="incTemp(-10)">-10</button>
+
+<h4>Temperatura: {{ temperature }}</h4>
+
+  <ng-container *ngIf="temperature > 40">
+    How cold!
+    <img width="50" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYchVc3LAiZlHhMx_apctHMbzp9utNAX834DSKVIN9VxZngLx0A" alt="">
+  </ng-container>
+
+  <ng-container *ngIf="temperature < 10">
+    How hot it is!
+    <img width="50" src="https://i.pinimg.com/236x/59/5a/74/595a74309b3209a6a8340ba31b2b0fcd--ideas-frozen-fiesta-frozen.jpg" alt="">
+  </ng-container>

@@ -1,0 +1,16 @@
+<h1>Exercice 8</h1>
+<h2>*ngFor</h2>
+<h3>Structural directive</h3>
+<h4>Numbers:</h4>
+<p *ngFor="let n of numbers">
+  {{ n }}
+</p>
+Insert number:
+<input [(ngModel)]="num"  (keyup.enter)="insNumber()" type="text">
+<br><br>
+<h4>Fruits:</h4>
+<p *ngFor="let f of fruits">
+  {{ f }}
+</p>
+Insert fruit:
+<input [(ngModel)]="fruit"  (keyup.enter)="insFruit()" type="text">
