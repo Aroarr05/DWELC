@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ex03',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './ex03.component.html',
   styleUrl: './ex03.component.css'
 })

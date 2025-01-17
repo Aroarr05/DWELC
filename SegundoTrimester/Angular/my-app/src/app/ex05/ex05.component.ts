@@ -13,7 +13,7 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './ex05.component.css'
 })
 export class Ex05Component {
-  word: string = "init...";
+  word: string = "init..."; 
 
   constructor() { }
 

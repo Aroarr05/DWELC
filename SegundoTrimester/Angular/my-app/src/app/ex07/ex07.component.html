@@ -2,6 +2,7 @@
 <h2>*ngFor</h2>
 <h3>Structural directive</h3>
 <b>Numbers:</b>
+
 <p *ngFor="let n of numbers">
   {{ n }}
 </p>
@@ -10,4 +11,7 @@
 <p *ngFor="let f of fruits">
   {{ f }}
 </p>
+
+<input type="text" [(ngModel)]="fruitsName" (input)="updateFruitName()" placeholder="Escribe una fruta...">
+<p>Fruta: {{ fruitsName }}</p>
 

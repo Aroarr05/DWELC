@@ -32,4 +32,8 @@ export class Ex06Component {
   converToFahrenheit() {
     this.fahrenheit = this.celcius * 9 / 5 + 32;
   }
+
+  // isVaidNumber(value:any):boolean{
+  //   return typeof value === 'number' && !isNaN(value);
+  // }
 }
