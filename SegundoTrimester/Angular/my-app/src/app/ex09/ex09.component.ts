@@ -22,7 +22,7 @@ export class Ex09Component {
     this.sortEmployees(this.sortCriterion);  
   }
 
- 
+
   sortEmployees(criterion: 'name' | 'position' | 'salary'): void {
     this.sortCriterion = criterion;  
     this.employees.sort((a, b) => {
