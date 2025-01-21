@@ -5,6 +5,8 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
 import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
+//import { HttpClientModule } from '@angular/common/http';
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, ProductListComponent,TopBarComponent, ProductAlertsComponent,CartComponent, ShippingComponent],
@@ -12,5 +14,5 @@ import { ShippingComponent } from './shipping/shipping.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'mi-tienda';
+  title = 'my-store';
 }

@@ -2,16 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CartService } from '../cart.service';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-shipping',
   imports: [CommonModule],
   templateUrl: './shipping.component.html',
-  styleUrl: './shipping.component.css'
+  styleUrls: ['./shipping.component.css']
 })
-export class ShippingComponent {
-  constructor(private cartService: CartService) { }
+export class ShippingComponent implements OnInit {
   shippingCosts!: Observable<{ type: string, price: number }[]>;
+
+  constructor(private cartService: CartService) { }
+
   ngOnInit(): void {
-    this.shippingCosts =  this.cartService.getShippingPrices();
+    this.shippingCosts = this.cartService.getShippingPrices();
   }
 }
