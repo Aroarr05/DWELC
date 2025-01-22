@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../products';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf} from '@angular/common';
 @Component({
   selector: 'app-product-alerts',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIf],
   templateUrl: './product-alerts.component.html',
   styleUrl: './product-alerts.component.css'
 })
