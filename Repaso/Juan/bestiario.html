@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="https://via.placeholder.com/1" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+    <form action="">
+        <h3>Busqueda de Bestiariario:</h3>
+        <fieldset class="m-3 border">
+            <label for="">Habitat:</label>
+            <fieldset class="m-3 border checkboxes"></fieldset>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre">
+            </div>
+            <fieldset class="border m-2">
+                <label for="rango" class="form-label">Rango de Años:</label>
+                <div class="position-relative">
+                    <input type="range" id="rangeMin" class="form-range"  value="0">
+                    <input type="range" id="rangeMax" class="form-range" value="100">
+                    <div id="rangeTrack" class="position-absolute w-100"
+                        style="height: 5px; background: lightgray; top: 50%; transform: translateY(-50%); z-index: -1;">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <span id="minValue"></span>
+                    <span id="maxValue"></span>
+                </div>
+            </fieldset>
+            <button class="btn btn-primary buscar">Buscar</button>
+        </fieldset>
+    </form>
+    <div class="resultados">
+        <!-- lo vamos a poner por tabla esta vez -->
+        <table class="table table-bordered">
+            <thead>
+                <tr id="titulos">
+                    <th>#</th>
+                    <th id="nombre">Nombre</th>
+                    <th id="habitat">Hábitat</th>
+                    <th id="anioDescubrimiento">Año de Descubrimiento</th>
+                    <th>Autolectura</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody id="tabla">
+                <!-- Las filas se generarán dinámicamente aquí -->
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="bestiario.js"></script>
+<script src="cookies.js"></script>
+
+</html>

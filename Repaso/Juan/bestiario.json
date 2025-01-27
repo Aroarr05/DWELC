@@ -1,0 +1,138 @@
+[
+    {
+        "nombre": "Dragón Rojo",
+        "habitat": "Montañas",
+        "descripcion": "Criatura legendaria de gran tamaño que escupe fuego.",
+        "anioDescubrimiento": 1200,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/dragon_rojo.jpg"
+    },
+    {
+        "nombre": "Unicornio",
+        "habitat": "Bosques",
+        "descripcion": "Caballo mágico con un cuerno en la frente que simboliza pureza.",
+        "anioDescubrimiento": 1500,
+        "peligrosidad": "Baja",
+        "img": "./assets/img/unicornio.jpg"
+    },
+    {
+        "nombre": "Grifo",
+        "habitat": "Montañas",
+        "descripcion": "Mítica criatura mitad águila y mitad león.",
+        "anioDescubrimiento": 1400,
+        "peligrosidad": "Media",
+        "img": "./assets/img/grifo.jpg"
+    },
+    {
+        "nombre": "Fénix",
+        "habitat": "Desiertos",
+        "descripcion": "Ave mágica que renace de sus cenizas.",
+        "anioDescubrimiento": 1000,
+        "peligrosidad": "Media",
+        "img": "./assets/img/fenix.jpg"
+    },
+    {
+        "nombre": "Basilisco",
+        "habitat": "Cuevas",
+        "descripcion": "Serpiente gigante que puede petrificar con la mirada.",
+        "anioDescubrimiento": 1100,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/basilisco.jpg"
+    },
+    {
+        "nombre": "Quimera",
+        "habitat": "Llanuras",
+        "descripcion": "Criatura con cabeza de león, cuerpo de cabra y cola de serpiente.",
+        "anioDescubrimiento": 1300,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/quimera.jpg"
+    },
+    {
+        "nombre": "Hombre Lobo",
+        "habitat": "Bosques",
+        "descripcion": "Humano que se transforma en lobo bajo la luz de la luna llena.",
+        "anioDescubrimiento": 1600,
+        "peligrosidad": "Media",
+        "img": "./assets/img/hombre_lobo.jpg"
+    },
+    {
+        "nombre": "Súcubo",
+        "habitat": "Regiones subterráneas",
+        "descripcion": "Demonio que seduce a los humanos en sus sueños.",
+        "anioDescubrimiento": 900,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/sucubo.jpg"
+    },
+    {
+        "nombre": "Naga",
+        "habitat": "Pantanos",
+        "descripcion": "Ser mitad humano y mitad serpiente, venerado en algunas culturas.",
+        "anioDescubrimiento": 800,
+        "peligrosidad": "Media",
+        "img": "./assets/img/naga.jpg"
+    },
+    {
+        "nombre": "Kraken",
+        "habitat": "Océanos profundos",
+        "descripcion": "Gigantesca criatura marina que ataca barcos.",
+        "anioDescubrimiento": 700,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/kraken.jpg"
+    },
+    {
+        "nombre": "Hada",
+        "habitat": "Bosques encantados",
+        "descripcion": "Pequeña criatura alada que usa magia para proteger la naturaleza.",
+        "anioDescubrimiento": 1200,
+        "peligrosidad": "Baja",
+        "img": "./assets/img/hada.jpg"
+    },
+    {
+        "nombre": "Yeti",
+        "habitat": "Montañas nevadas",
+        "descripcion": "Criatura legendaria parecida a un gran simio que vive en el frío extremo.",
+        "anioDescubrimiento": 1800,
+        "peligrosidad": "Media",
+        "img": "./assets/img/yeti.jpg"
+    },
+    {
+        "nombre": "Mantícora",
+        "habitat": "Desiertos",
+        "descripcion": "Ser con cuerpo de león, alas de murciélago y cola con aguijón venenoso.",
+        "anioDescubrimiento": 1500,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/manticora.jpg"
+    },
+    {
+        "nombre": "Esfinge",
+        "habitat": "Desiertos",
+        "descripcion": "Criatura con cuerpo de león y cabeza humana que plantea acertijos.",
+        "anioDescubrimiento": 500,
+        "peligrosidad": "Media",
+        "img": "./assets/img/esfinge.jpg"
+    },
+    {
+        "nombre": "Elemental de Fuego",
+        "habitat": "Volcanes",
+        "descripcion": "Ser compuesto de llamas que puede controlar el fuego.",
+        "anioDescubrimiento": 1300,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/elemental_fuego.jpg"
+    },
+    {
+        "nombre": "Gorgona",
+        "habitat": "Cuevas",
+        "descripcion": "Criatura que puede petrificar con su mirada, similar al Basilisco.",
+        "anioDescubrimiento": 1100,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/gorgona.jpg"
+    },
+    {
+        "nombre": "Dragón de Hielo",
+        "habitat": "Glaciares",
+        "descripcion": "Dragón que exhala un aliento congelante en lugar de fuego.",
+        "anioDescubrimiento": 1000,
+        "peligrosidad": "Alta",
+        "img": "./assets/img/dragon_hielo.jpg"
+    }
+]

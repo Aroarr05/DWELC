@@ -4,4 +4,3 @@ const servicios = [
     { id: 3, nombre: "Marketing Digital", precio: 400, descripcion: "Estrategias de marketing para redes sociales.", disponible: false },
     { id: 4, nombre: "Consultoría IT", precio: 600, descripcion: "Asesoramiento en tecnología e infraestructuras.", disponible: true },
 ];
-
