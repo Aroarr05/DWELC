@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People Table</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">People Information</h2>
+        
+        <!-- Table to display people -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Alive</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="peopleTableBody"></tbody>
+        </table>
+
+        <!-- Form for updating/adding a person -->
+        <form id="personForm" class="form-inline mt-4">
+            <div class="form-group mb-2">
+                <label for="nameInput" class="mr-2">Name</label>
+                <input type="text" id="nameInput" class="form-control" placeholder="Enter name">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="surnameInput" class="mr-2">Surname</label>
+                <input type="text" id="surnameInput" class="form-control" placeholder="Enter surname">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="ageInput" class="mr-2">Age</label>
+                <input type="number" id="ageInput" class="form-control" placeholder="Enter age">
+            </div>
+            <div class="form-check mx-sm-3 mb-2">
+                <input type="checkbox" id="aliveInput" class="form-check-input">
+                <label for="aliveInput" class="form-check-label">Alive</label>
+            </div>
+            <button type="button" id="updateBtn" class="btn btn-primary mb-2 ml-3">Update / Add</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

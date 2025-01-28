@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platos</title>
+    <link rel="shortcut icon" href="https://via.placeholder.com/1" type="image/x-icon">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+    <h1 class="bienvenida"></h1>
+    <h2 class="cookie"></h2>
+    <form action="" class="container filtro">
+        <fieldset class="border m-2">
+            <p>Filtros de Busqueda:</p>
+            <div>
+                <label for="min">Precio: Precio mínimo:</label>
+                <input type="number" name="min" id="min">
+                <label for="max">Precio maximo</label>
+                <input type="number" name="max" id="max">
+            </div>
+            <label for="ingrediente">Contiene: </label>
+            <input type="text" class="ingrediente" placeholder="Ingrediente">
+            <br>
+            <button class="btn btn-primary filtrar">Filtrar</button>
+        </fieldset>
+    </form>
+    <div class="resultados"></div>
+    <div class="container mt-3">
+        <h3>Carrito</h3>
+        <div class="carrito"></div>
+    </div>
+</body>
+
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script src="cookies.js"></script>
+<script src="platos.js"></script>
+
+</html>

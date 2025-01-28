@@ -1,0 +1,142 @@
+[
+    {
+      "nombre": "Iron-Man",
+      "poder": "Armadura de alta tecnología",
+      "equipo": "Avengers",
+      "anioAparicion": 1963,
+      "img": ["./assets/img/i1.jpg", "./assets/img/i2.jpg", "./assets/img/i3.jpg", "./assets/img/i4.jpg" ]
+    },
+    {
+      "nombre": "Spider-Man",
+      "poder": "Sentido arácnido y trepar paredes",
+      "equipo": "Avengers",
+      "anioAparicion": 1962,
+      "img": ["./assets/img/s1.jpg", "./assets/img/s2.jpg", "./assets/img/s3.jpg", "./assets/img/s4.jpg" ]
+    },
+    {
+      "nombre": "Thor",
+      "poder": "Dios del Trueno",
+      "equipo": "Avengers",
+      "anioAparicion": 1962,
+      "img": ["./assets/img/t1.jpg", "./assets/img/t2.jpg", "./assets/img/t3.jpg", "./assets/img/t4.jpg" ]
+    },
+    {
+      "nombre": "Wonder-Woman",
+      "poder": "Fuerza sobrehumana",
+      "equipo": "Justice League",
+      "anioAparicion": 1941,
+      "img": ["./assets/img/w1.jpg", "./assets/img/w2.jpg", "./assets/img/w3.jpg", "./assets/img/w4.jpg" ]
+    },
+    {
+      "nombre": "Batman",
+      "poder": "Habilidades de detective y gadgets",
+      "equipo": "Justice League",
+      "anioAparicion": 1939,
+      "img": ["./assets/img/b1.jpg", "./assets/img/b2.jpg", "./assets/img/b3.jpg", "./assets/img/b4.jpg" ]
+    },
+    {
+      "nombre": "Superman",
+      "poder": "Superfuerza, vuelo y visión láser",
+      "equipo": "Justice League",
+      "anioAparicion": 1938,
+      "img": ["./assets/img/sp1.jpg", "./assets/img/sp2.jpg", "./assets/img/sp3.jpg", "./assets/img/sp4.jpg" ]
+    },
+    {
+      "nombre": "Black-Widow",
+      "poder": "Espionaje y combate cuerpo a cuerpo",
+      "equipo": "Avengers",
+      "anioAparicion": 1964,
+      "img": ["./assets/img/bw1.jpg", "./assets/img/bw2.jpg", "./assets/img/bw3.jpg", "./assets/img/bw4.jpg" ]
+    },
+    {
+      "nombre": "Captain-America",
+      "poder": "Superfuerza y escudo indestructible",
+      "equipo": "Avengers",
+      "anioAparicion": 1941,
+      "img": ["./assets/img/c1.jpg", "./assets/img/c2.jpg", "./assets/img/c3.jpg", "./assets/img/c4.jpg" ]
+    },
+    {
+      "nombre": "Flash",
+      "poder": "Supervelocidad",
+      "equipo": "Justice League",
+      "anioAparicion": 1940,
+      "img": ["./assets/img/f1.jpg", "./assets/img/f2.jpg", "./assets/img/f3.jpg", "./assets/img/f4.jpg" ]
+    },
+    {
+      "nombre": "Green-Lantern",
+      "poder": "Anillo de poder",
+      "equipo": "Justice League",
+      "anioAparicion": 1940,
+      "img": ["./assets/img/g1.jpg", "./assets/img/g2.jpg", "./assets/img/g3.jpg", "./assets/img/g4.jpg" ]
+    },
+    {
+      "nombre": "Black-Panther",
+      "poder": "Habilidades de combate y traje de vibranium",
+      "equipo": "Avengers",
+      "anioAparicion": 1966,
+      "img": ["./assets/img/bp1.jpg", "./assets/img/bp2.jpg", "./assets/img/bp3.jpg", "./assets/img/bp4.jpg" ]
+    },
+    {
+      "nombre": "Doctor-Strange",
+      "poder": "Magia y manipulación del tiempo",
+      "equipo": "Avengers",
+      "anioAparicion": 1963,
+      "img": ["./assets/img/ds1.jpg", "./assets/img/ds2.jpg", "./assets/img/ds3.jpg", "./assets/img/ds4.jpg" ]
+    },
+    {
+      "nombre": "Hawkeye",
+      "poder": "Precisión y tiro con arco",
+      "equipo": "Avengers",
+      "anioAparicion": 1964,
+      "img": ["./assets/img/he1.jpg", "./assets/img/he2.jpg", "./assets/img/he3.jpg", "./assets/img/he4.jpg" ]
+    },
+    {
+      "nombre": "Aquaman",
+      "poder": "Control sobre la vida marina",
+      "equipo": "Justice League",
+      "anioAparicion": 1941,
+      "img": ["./assets/img/a1.jpg", "./assets/img/a2.jpg", "./assets/img/a3.jpg", "./assets/img/a4.jpg" ]
+    },
+    {
+      "nombre": "Scarlet-Witch",
+      "poder": "Manipulación de la realidad y magia",
+      "equipo": "Avengers",
+      "anioAparicion": 1964,
+      "img": ["./assets/img/sc1.jpg", "./assets/img/sc2.jpg", "./assets/img/sc3.jpg", "./assets/img/sc4.jpg" ]
+    },
+    {
+      "nombre": "Vision",
+      "poder": "Inteligencia artificial avanzada y manipulación de densidad",
+      "equipo": "Avengers",
+      "anioAparicion": 1968,
+      "img": ["./assets/img/v1.jpg", "./assets/img/v2.jpg", "./assets/img/v3.jpg", "./assets/img/v4.jpg" ]
+    },
+    {
+      "nombre": "Cyborg",
+      "poder": "Cuerpo cibernético avanzado",
+      "equipo": "Justice League",
+      "anioAparicion": 1980,
+      "img": ["./assets/img/cb1.jpg", "./assets/img/cb2.jpg", "./assets/img/cb3.jpg", "./assets/img/cb4.jpg" ]
+    },
+    {
+      "nombre": "Ant-Man",
+      "poder": "Cambio de tamaño y comunicación con insectos",
+      "equipo": "Avengers",
+      "anioAparicion": 1962,
+      "img": ["./assets/img/an1.jpg", "./assets/img/an2.jpg", "./assets/img/an3.jpg", "./assets/img/an4.jpg" ]
+    },
+    {
+      "nombre": "Wolverine",
+      "poder": "Regeneración y garras de adamantium",
+      "equipo": "X-Men",
+      "anioAparicion": 1974,
+      "img": ["./assets/img/wv1.jpg", "./assets/img/wv2.jpg", "./assets/img/wv3.jpg", "./assets/img/wv4.jpg" ]
+    },
+    {
+      "nombre": "Storm",
+      "poder": "Control del clima",
+      "equipo": "X-Men",
+      "anioAparicion": 1975,
+      "img": ["./assets/img/st1.jpg", "./assets/img/st2.jpg", "./assets/img/st3.jpg", "./assets/img/st4.jpg" ]
+    }
+]

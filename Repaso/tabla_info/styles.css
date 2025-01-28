@@ -1,0 +1,68 @@
+/* Center the content in the container */
+.container {
+    max-width: 800px;
+}
+
+/* Add spacing around the table */
+.table {
+    margin-top: 20px;
+}
+
+/* Style the delete button with pink */
+.delete-btn {
+    color: white;
+    background-color: #ff5c8d;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #ff3370;
+}
+
+/* Highlight the selected row in light pink */
+.table tbody tr.selected-row {
+    background-color: #ffe6f2 !important;
+}
+
+/* Style the form controls */
+.form-inline .form-group,
+.form-inline .form-check {
+    margin-right: 15px;
+}
+
+/* Style the update/add button with blue and add some padding */
+#updateBtn {
+    background-color: #7cbcff;
+    border-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+#updateBtn:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Form labels and input styling */
+.form-inline label {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styling table header with pink and white contrast */
+.table thead th {
+    background-color: #ff5c8d;
+    color: white;
+    text-align: center;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    text-align: center;
+}

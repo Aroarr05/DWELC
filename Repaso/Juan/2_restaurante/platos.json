@@ -1,0 +1,142 @@
+[
+    {
+      "nombre": "Ensalada César",
+      "ingredientes": "lechuga, pollo, queso parmesano, crutones, salsa césar",
+      "precio": 12.5,
+      "disponible": false,
+      "img": "./assets/img/cesar.jpg"
+    },
+    {
+      "nombre": "Pizza Margarita",
+      "ingredientes": "masa, tomate, queso mozzarella, albahaca",
+      "precio": 10.0,
+      "disponible": true,
+      "img": "./assets/img/margarita.jpg"
+    },
+    {
+      "nombre": "Paella Valenciana",
+      "ingredientes": "arroz, pollo, conejo, judías verdes, garrofón",
+      "precio": 15.0,
+      "disponible": false,
+      "img": "./assets/img/paella.jpg"
+    },
+    {
+      "nombre": "Taco al Pastor",
+      "ingredientes": "tortilla, carne de cerdo, piña, cilantro, cebolla",
+      "precio": 8.5,
+      "disponible": true,
+      "img": "./assets/img/taco.jpg"
+    },
+    {
+      "nombre": "Sushi Roll",
+      "ingredientes": "arroz, alga nori, salmón, aguacate, queso crema",
+      "precio": 13.0,
+      "disponible": true,
+      "img": "./assets/img/sushi.jpg"
+    },
+    {
+      "nombre": "Hamburguesa Clásica",
+      "ingredientes": "pan de hamburguesa, carne de res, lechuga, tomate, queso cheddar, salsa especial",
+      "precio": 9.5,
+      "disponible": true,
+      "img": "./assets/img/hamburguesa.jpg"
+    },
+    {
+      "nombre": "Raviolis de Espinaca y Ricotta",
+      "ingredientes": "pasta rellena de espinaca y ricotta, salsa de tomate, queso parmesano",
+      "precio": 14.0,
+      "disponible": true,
+      "img": "./assets/img/raviolis.jpg"
+    },
+    {
+      "nombre": "Ceviche de Camarón",
+      "ingredientes": "camarón, jugo de limón, cilantro, cebolla morada, chile, aguacate",
+      "precio": 11.0,
+      "disponible": true,
+      "img": "./assets/img/ceviche.jpg"
+    },
+    {
+      "nombre": "Ramen Tradicional",
+      "ingredientes": "caldo de cerdo, fideos ramen, huevo cocido, cerdo chashu, cebollín",
+      "precio": 12.0,
+      "disponible": true,
+      "img": "./assets/img/ramen.jpg"
+    },
+    {
+      "nombre": "Falafel con Hummus",
+      "ingredientes": "garbanzos, ajo, perejil, especias, hummus, pan pita",
+      "precio": 8.0,
+      "disponible": true,
+      "img": "./assets/img/falafel.jpg"
+    },
+    {
+      "nombre": "Churrasco Argentino",
+      "ingredientes": "bife de chorizo, chimichurri, papas fritas",
+      "precio": 18.0,
+      "disponible": false,
+      "img": "./assets/img/churrasco.jpg"
+    },
+    {
+      "nombre": "Pollo Teriyaki",
+      "ingredientes": "pollo, salsa teriyaki, arroz jazmín, brócoli",
+      "precio": 13.5,
+      "disponible": true,
+      "img": "./assets/img/teriyaki.jpg"
+    },
+    {
+      "nombre": "Crema de Calabaza",
+      "ingredientes": "calabaza, crema, cebolla, nuez moscada",
+      "precio": 7.5,
+      "disponible": true,
+      "img": "./assets/img/crema_calabaza.jpg"
+    },
+    {
+      "nombre": "Tarta de Queso",
+      "ingredientes": "queso crema, galleta, azúcar, huevo, mermelada de fresa",
+      "precio": 6.0,
+      "disponible": true,
+      "img": "./assets/img/tarta_queso.jpg"
+    },
+    {
+      "nombre": "Brownie con Helado",
+      "ingredientes": "chocolate, mantequilla, harina, azúcar, helado de vainilla",
+      "precio": 6.5,
+      "disponible": true,
+      "img": "./assets/img/brownie.jpg"
+    },
+    {
+      "nombre": "Helado Artesanal",
+      "ingredientes": "leche, crema, azúcar, vainilla natural",
+      "precio": 4.5,
+      "disponible": true,
+      "img": "./assets/img/helado.jpg"
+    },
+    {
+      "nombre": "Tacos de Pescado",
+      "ingredientes": "tortilla, pescado rebozado, col, salsa de chipotle",
+      "precio": 9.0,
+      "disponible": true,
+      "img": "./assets/img/tacos_pescado.jpg"
+    },
+    {
+      "nombre": "Pad Thai",
+      "ingredientes": "fideos de arroz, camarones, tofu, salsa de tamarindo, cacahuates",
+      "precio": 12.5,
+      "disponible": false,
+      "img": "./assets/img/pad_thai.jpg"
+    },
+    {
+      "nombre": "Sopa de Tortilla",
+      "ingredientes": "caldo de pollo, tortilla frita, aguacate, queso fresco, chile pasilla",
+      "precio": 8.0,
+      "disponible": true,
+      "img": "./assets/img/sopa_tortilla.jpg"
+    },
+    {
+      "nombre": "Lasagna Boloñesa",
+      "ingredientes": "pasta, carne molida, tomate, queso mozzarella, bechamel",
+      "precio": 14.5,
+      "disponible": true,
+      "img": "./assets/img/lasagna.jpg"
+    }
+  ]
