@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroa Rivas Rios</title>
+    <link rel="stylesheet" href="arr.css">
+</head>
+<body>
+    <form id="formulario">
+
+        <div class="form-group">
+            <label for="titulo">Titulo:</label>
+            <input type="text" id="titulo" name="titulo">
+            <div class="error" id="error-titulo"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha">
+            <div class="error" id="error-fecha"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Prioridad:</label>
+            <label><input type="radio" name="prioridad" value="baja">Baja</label>
+            <label><input type="radio" name="prioridad" value="media">Media</label>
+            <label><input type="radio" name="prioridad" value="alta">Alta</label>
+            <div class="error" id="error-prioridad"></div>
+        </div>
+
+        <button type="submit" id="boton-enviar">Añadir Tarea</button>
+
+    </form>
+
+    <h2>Todas las tareas</h2>
+
+    <table id="tabla-datos" border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Fecha Vencimiento</th>
+                <th>Prioridad</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+    
+        <tbody></tbody>
+
+    </table>
+    <br>
+    <button id="consola">Consola</button>
+    <div id="info"></div>
+
+    <script src="./arr.js"></script>
+</body>
+</html>
