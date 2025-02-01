@@ -4,6 +4,7 @@ import { Event } from '../models/event.model';
 @Injectable({
   providedIn: 'root',
 })
+
 export class LoggerService {
   private events: Event[] = [];
 
@@ -13,16 +14,17 @@ export class LoggerService {
     this.events.push(event);
   }
 
-
   getEvents(category?: 'log' | 'warm' | 'error'): Event[] {
     return category ? this.events.filter(event => event.category === category) : this.events;
   }
 
   getEventsCount(): { log: number; warm: number; error: number } {
-    const counts = { log: 0, warm: 0, error: 0 };
-    this.events.forEach(event => {
-      counts[event.category]++;
-    });
-    return counts;
+    return this.events.reduce(
+      (counts, event) => {
+        counts[event.category]++;
+        return counts;
+      },
+      { log: 0, warm: 0, error: 0 }
+    );
   }
 }

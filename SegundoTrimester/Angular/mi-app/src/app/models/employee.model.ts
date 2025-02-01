@@ -1,10 +1,5 @@
-export class Employee{
+export interface Employee {
     id: number;
     name: string;
-
-    constructor(id: number, name: string){
-        this.id = id;
-        this.name = name;
-    }
-
-}
+  }
+  

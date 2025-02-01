@@ -1,23 +1,47 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { EventService } from '../../services/event.service';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';  
+import { CommonModule } from '@angular/common';  
 import { LoggerService } from '../../services/logger.service';
-import { CommonModule } from '@angular/common';
+import { Event } from '../../models/event.model';
 import { Employee } from '../../models/employee.model';
+import { Client } from '../../models/client.model';
 
 @Component({
   selector: 'app-event-form',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  standalone: true,  
+  imports: [CommonModule, FormsModule],  
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent {
+  employees: Employee[] = [
+    { id: 1, name: 'Aroa' },
+    { id: 2, name: 'Zahira' },
+  ];
+  clients: Client[] = [
+    { id: 1, name: 'Juan', email: 'juan@gmail.com' },
+    { id: 2, name: 'Samuel', email: 'samuel@gmail.com' },
+  ];
 
-  employees: Employee[] =[
-    new Employee(1,'John Doe'),
-    new Employee(2,'Jane Shith'),
-  ] ;
+  event: Partial<Event> = {}; 
 
+  constructor(private loggerService: LoggerService) {}
 
+  onSubmit(): void {
+    if (this.event.employee && this.event.client && this.event.title && this.event.description && this.event.category) {
+      const newEvent: Event = {
+        id: Date.now(),
+        employee: this.event.employee,
+        client: this.event.client,
+        title: this.event.title,
+        description: this.event.description,
+        category: this.event.category,
+        date: new Date(),
+        createdDate: new Date(),
+      };
+
+      this.loggerService.addEvent(newEvent);
+      this.event = {}; 
+    }
+  }
 }
