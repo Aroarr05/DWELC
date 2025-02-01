@@ -1,0 +1,13 @@
+<div>
+    <h2>Events</h2>
+    <button (click)="onFilterCategory('log')">Log</button>
+    <button (click)="onFilterCategory('warm')">Warm</button>
+    <button (click)="onFilterCategory('error')">Error</button>
+    <ul>
+      <li *ngFor="let event of events">
+        {{ event.title }} ({{ event.category }}) - {{ event.date | date:'short' }}
+      </li>
+    </ul>
+    <p>Total events: Log: {{ eventsCount.log }}, Warm: {{ eventsCount.warm }}, Error: {{ eventsCount.error }}</p>
+  </div>
+  
