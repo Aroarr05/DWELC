@@ -29,6 +29,10 @@ export class EventFormComponent {
 
   constructor(private loggerService: LoggerService) {}
 
+  //usa el requeid y new form control
+  //html [formGroup] que lo pille de json
+  //en el listado que se puedan ver los usuarios select con app-employee con un control
+
   onSubmit(): void {
     if (this.event && this.event.date && this.event.employee && this.event.client && this.event.title && this.event.description && this.event.category) {
       const newEvent: Event = {
