@@ -1,6 +1,15 @@
 <div class="container">
   <h2>Register Event</h2>
   <form (ngSubmit)="onSubmit()">
+
+    <label for="client">Fecha:</label>
+    <div class="row">
+      <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
+        <input type="text" [(ngModel)]="event.date" name="date" placeholder="Datepicker" class="form-control" bsDatepicker
+          [bsConfig]="{ isAnimated: true }">
+      </div>
+    </div>
+
     <label for="employee">Employee</label>
     <select id="employee" [(ngModel)]="event.employee" name="employee" required>
       <option *ngFor="let employee of employees" [value]="employee.name">{{ employee.name }}</option>

@@ -5,14 +5,16 @@ import { LoggerService } from '../../services/logger.service';
 import { Event } from '../../models/event.model';
 import { Employee } from '../../models/employee.model';
 import { Client } from '../../models/client.model';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-event-form',
   standalone: true,  
-  imports: [CommonModule, FormsModule],  
+  imports: [CommonModule, FormsModule, BsDatepickerModule],  
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.css']
 })
+
 export class EventFormComponent {
   employees: Employee[] = [
     { id: 1, name: 'Aroa' },
@@ -23,12 +25,16 @@ export class EventFormComponent {
     { id: 2, name: 'Samuel', email: 'samuel@gmail.com' },
   ];
 
-  event: Partial<Event> = {}; 
+  event: Partial<Event> = { date: null}; 
 
   constructor(private loggerService: LoggerService) {}
 
+  //usa el requeid y new form control
+  //html [formGroup] que lo pille de json
+  //en el listado que se puedan ver los usuarios select con app-employee con un control
+
   onSubmit(): void {
-    if (this.event.employee && this.event.client && this.event.title && this.event.description && this.event.category) {
+    if (this.event && this.event.date && this.event.employee && this.event.client && this.event.title && this.event.description && this.event.category) {
       const newEvent: Event = {
         id: Date.now(),
         employee: this.event.employee,
@@ -36,12 +42,12 @@ export class EventFormComponent {
         title: this.event.title,
         description: this.event.description,
         category: this.event.category,
-        date: new Date(),
+        date: new Date(this.event.date || ''),
         createdDate: new Date(),
       };
 
       this.loggerService.addEvent(newEvent);
-      this.event = {}; 
+      this.event = {date:null}; 
     }
   }
 }
