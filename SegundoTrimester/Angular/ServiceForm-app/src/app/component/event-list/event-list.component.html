@@ -1,1 +1,9 @@
-<p>event-list works!</p>
+<button (click)="filterEvents('log')">Show Logs</button>
+<button (click)="filterEvents('warn')">Show Warnings</button>
+<button (click)="filterEvents('error')">Show Errors</button>
+
+<ul>
+    <li *ngFor="let event of filteredEvents">
+        {{ event.title }} - {{ event.classification }} - {{ event.date | date }} - {{ event.employee.name }}
+    </li>
+</ul>

@@ -1,1 +1,30 @@
-<p>event-form works!</p>
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Title</label>
+      <input id="title" formControlName="title" />
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <input id="description" formControlName="description" />
+    </div>
+    <div>
+      <label for="classification">Classification</label>
+      <select id="classification" formControlName="classification">
+        <option value="log">Log</option>
+        <option value="warn">Warn</option>
+        <option value="error">Error</option>
+      </select>
+    </div>
+    <div>
+      <label for="client">Client</label>
+      <select id="client" formControlName="client">
+        <option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</option>
+      </select>
+    </div>
+    <div>
+      <label for="date">Date</label>
+      <input id="date" type="date" formControlName="date" />
+    </div>
+    <button type="submit" [disabled]="eventForm.invalid">Register Event</button>
+  </form>
+  

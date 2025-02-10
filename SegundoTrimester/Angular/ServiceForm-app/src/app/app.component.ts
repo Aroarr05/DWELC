@@ -1,11 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';  
+import { ReactiveFormsModule } from '@angular/forms'; 
+import { NavbarComponent } from './component/navbar/navbar.component'; 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true, 
+  imports: [
+    CommonModule,    
+    ReactiveFormsModule, 
+    RouterOutlet,       
+    NavbarComponent    
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'ServiceForm-app';

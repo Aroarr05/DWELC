@@ -1,10 +1,14 @@
+import { Client } from "./client.model";
+import { Employee } from "./employee.model";
+
 export interface Event {
     id: number;
-    employee: string;
-    client: string;
+    employee: Employee;  
+    client: Client;      
     date: Date;
     title: string;
     description: string;
-    category: 'log' | 'warm' | 'error';
+    classification: 'log' | 'warm' | 'error';
     createdDate: Date;
 }
+

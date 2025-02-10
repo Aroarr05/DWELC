@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from '../../services/employee.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  selectedEmployeeName: string = '';
 
+  constructor(private employeeService: EmployeeService) { }
+
+  ngOnInit(): void {
+    const selectedEmployee = this.employeeService.getSelectedEmployee();
+    this.selectedEmployeeName = selectedEmployee ? selectedEmployee.name : 'No employee selected';
+  }
 }
