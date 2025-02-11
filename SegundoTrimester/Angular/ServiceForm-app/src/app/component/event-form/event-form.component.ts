@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoggerService } from '../../services/logger.service';
 import { EmployeeService } from '../../services/employee.service';
-import { ClientService } from '../../services/client.service';
+import { ClientService } from '../../services/event.service';
 import { Employee } from '../../model/employee.model';
 import { Client } from '../../model/client.model';
 import { Event } from '../../model/event.model';

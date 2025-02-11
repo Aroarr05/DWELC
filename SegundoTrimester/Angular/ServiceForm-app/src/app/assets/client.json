@@ -1,7 +1,0 @@
-[
-    { "id": 1, "nombre": "Empresa A", "email": "contacto@empresaA.com", "telefono": "555-1234" },
-    { "id": 2, "nombre": "Empresa B", "email": "contacto@empresaB.com", "telefono": "555-5678" },
-    { "id": 3, "nombre": "Empresa C", "email": "contacto@empresaC.com", "telefono": "555-9876" },
-    { "id": 4, "nombre": "Empresa D", "email": "contacto@empresaD.com", "telefono": "555-4321" },
-    { "id": 5, "nombre": "Empresa E", "email": "contacto@empresaE.com", "telefono": "555-8765" }
-]
