@@ -1,14 +1,13 @@
-import { Client } from "./client.model";
 import { Employee } from "./employee.model";
 
-export interface Event {
+export interface EventM {
     id: number;
-    employee: Employee;  
-    client: Client;      
-    date: Date;
+    employee: Employee;  // Relationship with the employee
     title: string;
+    client: string;
+    date: Date;
     description: string;
-    classification: 'log' | 'warm' | 'error';
-    createdDate: Date;
-}
-
+    classification: 'log' | 'warn' | 'error';  // Event type
+    creationDate: Date;  // Creation date of the event
+  }
+  

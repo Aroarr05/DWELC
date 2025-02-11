@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { Event } from '../models/event.model';
 
 @Injectable({
@@ -27,4 +27,4 @@ export class LoggerService {
       { log: 0, warm: 0, error: 0 }
     );
   }
-}
+}*/

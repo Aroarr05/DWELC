@@ -1,49 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggerService } from '../../services/logger.service';
-import { Event } from '../../model/event.model';
+import { EventService } from '../../services/event.service';
+import { EventM } from '../../model/event.model';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-event-list',
+  imports:[ReactiveFormsModule, CommonModule],
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
-  events: Event[] = [];
-  filteredEvents: Event[] = [];
-  selectedClassification: 'log' | 'warn' | 'error' | null = null; 
+  events: EventM[] = [];
+  selectedClassification: 'log' | 'warn' | 'error' = 'log';
 
-  constructor(private loggerService: LoggerService) {}
+  // Define the form group
+  filterForm: FormGroup = new FormGroup({
+    classification: new FormControl(this.selectedClassification)
+  });
 
-  ngOnInit(): void {
-    this.loadEvents(); 
+  constructor(private eventService: EventService) { }
+
+  ngOnInit() {
+    // Initialize the reactive form
+    this.filterForm = new FormGroup({
+      classification: new FormControl(this.selectedClassification)
+    });
+
+    // Subscribe to form changes
+    this.filterForm.get('classification')?.valueChanges.subscribe(value => {
+      this.onClassificationChange(value);
+    });
+
+    // Load events initially
+    this.getEvents();
   }
 
-  
-  loadEvents(classification?: 'log' | 'warn' | 'error'): void {
-
-    this.events = this.loggerService.getEvents();
-
-
-    if (classification) {
-      this.filteredEvents = this.loggerService.filterEvents(classification);
-      this.selectedClassification = classification; 
-    } else {
-      this.filteredEvents = [...this.events];
-    }
+  getEvents() {
+    this.events = this.eventService.filterEvents(this.selectedClassification);
   }
 
-
-  filterEvents(classification: 'log' | 'warn' | 'error'): void {
-   
-    if (this.selectedClassification === classification) {
-      return;
-    }
-
-    this.loadEvents(classification);
+  onClassificationChange(classification: 'log' | 'warn' | 'error') {
+    this.selectedClassification = classification;
+    this.getEvents();
   }
 
-  resetFilter(): void {
-    this.selectedClassification = null;
-    this.loadEvents(); 
+  // Count the number of events based on classification
+  getEventCount(classification: 'log' | 'warn' | 'error'): number {
+    return this.events.filter(event => event.classification === classification).length;
   }
 }

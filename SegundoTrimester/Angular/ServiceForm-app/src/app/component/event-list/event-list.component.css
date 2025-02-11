@@ -1,0 +1,118 @@
+/* Estilos generales para la página y el contenedor de la lista de eventos */
+.event-list-container {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  margin: 50px auto;
+}
+
+h2 {
+  text-align: center;
+  font-family: Arial;
+  font-size: 28px;
+  color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+/* Contenedor del filtro */
+.filter-container {
+  margin-bottom: 20px;
+}
+
+.filter-container label {
+  font-size: 14px;
+  color: #b0b0b0;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.filter-container select {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  width: 200px;
+  transition: all 0.3s ease;
+}
+
+.filter-container select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilos de la tabla */
+.event-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.event-table th,
+.event-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.event-table th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.event-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo de las filas */
+.event-table td {
+  color: #555;
+}
+
+/* Estilo del resumen de eventos */
+.event-summary {
+  margin-top: 30px;
+  font-size: 16px;
+  color: #333;
+}
+
+.event-summary p {
+  margin: 5px 0;
+}
+
+/* Estilo general de los elementos de la página */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #eaeaea;
+  margin: 0;
+  padding: 0;
+}
+
+/* Personalización de los botones */
+button {
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Si deseas agregar un borde a los contenedores de las tablas o filtros */
+.event-table, .filter-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Si quieres que las tablas tengan bordes redondeados */
+.event-table {
+  border-radius: 8px;
+  overflow: hidden;
+}

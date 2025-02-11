@@ -1,10 +1,20 @@
-<nav>
-    <div>
-      <strong>Selected Employee: </strong>{{ selectedEmployeeName }}
+<nav class="navbar">
+  <div class="navbar-container">
+    <span class="navbar-title">Event</span>
+
+    <div class="nav-links">
+      <a routerLink="/form" routerLinkActive="active" class="nav-link">Form</a>
+
+      <a routerLink="/list" routerLinkActive="active" class="nav-link">Event List</a>
+
+      <div class="employee-selector">
+        <span>Selected Employee: {{ selectedEmployeeName }}</span>
+        
+        <label for="employee-select" class="employee-label"></label>
+        <select id="employee-select" [formControl]="employeeControl" class="employee-select">
+          <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</option>
+        </select>
+      </div>
     </div>
-    <ul>
-      <li><a routerLink="/">Register Event</a></li>
-      <li><a routerLink="/events">Event List</a></li>
-    </ul>
-  </nav>
-  
+  </div>
+</nav>

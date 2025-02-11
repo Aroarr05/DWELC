@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
-import {Event} from '../model/event.model';
+import { EventService } from './event.service';  
+import { EventM } from '../model/event.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoggerService {
 
-  private eventsKey= 'events';
+  constructor(private eventService: EventService) {}
 
-  constructor() { }
 
-  getEvents(): Event[]{
-    const events = localStorage.getItem(this.eventsKey);
-    return events ? JSON.parse(events):[];
+  addEvent(event:EventM) {
+    this.eventService.addEvent(event);  
   }
 
-  addEvent(event: Event): void{
-    const events = this.getEvents();
-    events.push(event);
-    localStorage.setItem(this.eventsKey, JSON.stringify(events));
+
+  filterEvents(classification: 'log' | 'warn' | 'error') {
+    return this.eventService.filterEvents(classification);  
   }
 
-  filterEvents(classification: 'log' | 'warn' | 'error'): Event[] {
-    const events = this.getEvents();
-    return events.filter(event => event.classification === classification);
+
+  getEvents() {
+    return this.eventService.getEvents();  
   }
 }

@@ -1,9 +1,47 @@
-<button (click)="filterEvents('log')">Show Logs</button>
-<button (click)="filterEvents('warn')">Show Warnings</button>
-<button (click)="filterEvents('error')">Show Errors</button>
+<div class="event-list-container">
+    <h2>Event List</h2>
 
-<ul>
-    <li *ngFor="let event of filteredEvents">
-        {{ event.title }} - {{ event.classification }} - {{ event.date | date }} - {{ event.employee.name }}
-    </li>
-</ul>
+    <div class="filter-container">
+      <label for="classification">Filter by Classification</label>
+      <select id="classification" [formControl]="filterForm.get('classification')?.value" class="form-control">
+        <option value="log">Log</option>
+        <option value="warn">Warning</option>
+        <option value="error">Error</option>
+        <option value="all">All</option>
+      </select>
+    </div>
+
+    <div class="event-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Title</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Classification</th>
+            <th>Creation Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{ event.employee.name }}</td>
+            <td>{{ event.title }}</td>
+            <td>{{ event.client }}</td>
+            <td>{{ event.date | date }}</td>
+            <td>{{ event.description }}</td>
+            <td>{{ event.classification }}</td>
+            <td>{{ event.creationDate | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="event-summary">
+      <p>Total Events: {{ events.length }}</p>
+      <p>Log Events: {{ getEventCount('log') }}</p>
+      <p>Warning Events: {{ getEventCount('warn') }}</p>
+      <p>Error Events: {{ getEventCount('error') }}</p>
+    </div>
+</div>

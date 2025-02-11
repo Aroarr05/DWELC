@@ -1,29 +1,52 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../model/employee.model';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Employee } from '../model/employee.model'; 
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class EmployeeService {
+  private employeesSubject: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
+  private selectedEmployeeSubject: BehaviorSubject<Employee | null> = new BehaviorSubject<Employee | null>(null);
 
-  private employeesUrl = 'assts/employee.json';
-
-  constructor(private http: HttpClient){}
-
-  getEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(this.employeesUrl);
-  }
-  
-  getSelectedEmployee(): Employee | null{
-    const selected = localStorage.getItem('selectedEmployee');
-    return selected ? JSON.parse(selected): null;
-  }
-  
-  setSelectedEmployee(employee:Employee): void{
-    localStorage.setItem('selectedEmployee', JSON.stringify(employee));
+  constructor() {
+    this.loadEmployees();
   }
 
+  loadEmployees(): void {
+    if (typeof localStorage !== 'undefined') {
+      const savedEmployees = localStorage.getItem('employees');
+      if (savedEmployees) {
+        this.employeesSubject.next(JSON.parse(savedEmployees));
+      } else {
+        const defaultEmployees: Employee[] = [
+          { id: 1, name: 'Juan' },
+          { id: 2, name: 'Ana' },
+          { id: 3, name: 'Carlos' }
+        ];
+        localStorage.setItem('employees', JSON.stringify(defaultEmployees));
+        this.employeesSubject.next(defaultEmployees);
+      }
+    }
+  }
+
+  getEmployees(): Observable<Employee[]> {
+    return this.employeesSubject.asObservable();
+  }
+
+  selectEmployee(id: number): void {
+    const employee = this.employeesSubject.value.find(emp => emp.id === id);
+    if (employee) {
+      localStorage.setItem('selectedEmployee', JSON.stringify(employee));
+      this.selectedEmployeeSubject.next(employee);
+    }
+  }
+
+  getSelectedEmployee(): Observable<Employee | null> {
+    const savedEmployee = localStorage.getItem('selectedEmployee');
+    if (savedEmployee) {
+      this.selectedEmployeeSubject.next(JSON.parse(savedEmployee));
+    }
+    return this.selectedEmployeeSubject.asObservable();
+  }
 }
