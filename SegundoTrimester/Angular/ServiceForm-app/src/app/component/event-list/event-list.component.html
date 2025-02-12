@@ -3,7 +3,7 @@
 
     <div class="filter-container">
       <label for="classification">Filter by Classification</label>
-      <select id="classification" [formControl]="filterForm.get('classification')?.value" class="form-control">
+      <select id="classification" class="form-control" (change)="onFilterChange($event)">
         <option value="log">Log</option>
         <option value="warn">Warning</option>
         <option value="error">Error</option>

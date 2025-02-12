@@ -20,6 +20,7 @@ export class EventFormComponent {
     { id: 1, name: 'Aroa' },
     { id: 2, name: 'Zahira' },
   ];
+  
   clients: Client[] = [
     { id: 1, name: 'Juan', email: 'juan@gmail.com' },
     { id: 2, name: 'Samuel', email: 'samuel@gmail.com' },

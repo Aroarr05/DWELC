@@ -1,43 +1,82 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LoggerService } from '../../services/logger.service'; 
 import { EmployeeService } from '../../services/employee.service'; 
 import { Employee } from '../../model/employee.model'; 
 import { EventM } from '../../model/event.model';
 import { CommonModule } from '@angular/common';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';// se le añade para la fecha
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-event-form',
-  imports:[ReactiveFormsModule, CommonModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule,BsDatepickerModule],
   templateUrl: './event-form.component.html',
   styleUrls: ['./event-form.component.css']
 })
 export class EventFormComponent implements OnInit {
+
+  bsConfig = {
+    dateInputFormat: 'DD-MM-YYYY',
+    isAnimated: true,
+    containerClass: 'theme-dark-blue',
+    adaptivePosition: true
+  };
+  
   employees: Employee[] = [];
   eventForm: FormGroup;
 
+  //Añadimos el datepicker para la fecha
+  //npm install ngx-bootstrap --save
+
+  //Intalar json 
+  //npm install -g json-server
+  //Ejecutar el json
+  //json-server --watch (employee.json) Nombre del archivo
+
+  //instalar bootstrap
+  //npm install bootstrap jquery @popperjs/core
+  //añadir en el angular.json los estilos y scripts
+
   constructor(
-    private loggerService: LoggerService,
-    private employeeService: EmployeeService
+    private fb: FormBuilder,
+    private employeeService: EmployeeService,
+    private eventService: EventService
   ) {
-    this.eventForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      client: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      classification: new FormControl('log', [Validators.required])
+    this.eventForm = this.fb.group({
+      title: ['', Validators.required],
+      client: ['', Validators.required],
+      date: ['', [Validators.required, this.dateValidator]],
+      description: ['', Validators.required],
+      classification: ['log', Validators.required],
+      employee: ['', Validators.required]  
     });
   }
 
   ngOnInit() {
-    this.employees = this.employeeService.getEmployees();
+    this.employeeService.getEmployees().subscribe(employees => {
+      this.employees = employees;
+    });
+
+    this.employeeService.getSelectedEmployee().subscribe(selectedEmployee => {
+      if (selectedEmployee) {
+        this.eventForm.patchValue({ employee: selectedEmployee.id });
+      }
+    });
   }
 
   onSubmit() {
     if (this.eventForm.valid) {
+      const selectedEmployee = this.employees.find(emp => emp.id === this.eventForm.value.employee);
+      if (!selectedEmployee) {
+        console.error('No hay empleado seleccionado');
+        return;
+      }
+
       const event: EventM = {
-        id: new Date().getTime(),  // Generate a unique ID using the timestamp
-        employee: this.employeeService.getSelectedEmployee()!,  // Get the selected employee
+        id: new Date().getTime(),  
+        employee: selectedEmployee,  
         title: this.eventForm.value.title,
         client: this.eventForm.value.client,
         date: this.eventForm.value.date,
@@ -46,9 +85,22 @@ export class EventFormComponent implements OnInit {
         creationDate: new Date()
       };
       
-      // Call LoggerService to add the event
-      this.loggerService.addEvent(event);
-      this.eventForm.reset();  // Reset the form
+      this.eventService.addEvent(event);
+      this.eventForm.reset();
     }
+  }
+
+  
+  dateValidator(control: any) {
+    if (!control.value) {
+      return { required: true };
+    }
+
+    const selectedDate = new Date(control.value);
+    const today = new Date();
+    const lastMonth = new Date();
+    lastMonth.setMonth(today.getMonth() - 1);
+
+    return selectedDate >= lastMonth && selectedDate <= today ? null : { invalidDate: true };
   }
 }

@@ -3,37 +3,45 @@ import { EmployeeService } from '../../services/employee.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Employee } from '../../model/employee.model';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  selectedEmployeeName: string | null = null;
-  employees: { id: number, name: string }[] = [];
+  
+  selectedEmployeeName: string = 'No employee selected';
+  employees: Employee[] = [];
   employeeControl: FormControl = new FormControl();
 
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.employees = this.employeeService.getEmployees();
-    const selectedEmployee = this.employeeService.getSelectedEmployee();
-    this.selectedEmployeeName = selectedEmployee?.name || 'No employee selected';
-    if (selectedEmployee) {
-      this.employeeControl.setValue(selectedEmployee.id); 
-    }
+    // Suscribirse a la lista de empleados
+    this.employeeService.getEmployees().subscribe(employees => {
+      this.employees = employees;
+    });
 
+    // Suscribirse al empleado seleccionado
+    this.employeeService.getSelectedEmployee().subscribe(selectedEmployee => {
+      if (selectedEmployee) {
+        this.selectedEmployeeName = selectedEmployee.name;
+        this.employeeControl.setValue(selectedEmployee.id);
+      } else {
+        this.selectedEmployeeName = 'No employee selected';
+      }
+    });
+
+    // Escuchar cambios en el control del formulario y actualizar el servicio
     this.employeeControl.valueChanges.subscribe(employeeId => {
       const selectedEmployee = this.employees.find(emp => emp.id === employeeId);
-      this.selectedEmployeeName = selectedEmployee ? selectedEmployee.name : 'No employee selected';
+      if (selectedEmployee) {
+        this.employeeService.selectEmployee(employeeId);
+      }
     });
-  }
-
-  selectEmployee(employeeId: number): void {
-    this.employeeService.selectEmployee(employeeId);
-    this.selectedEmployeeName = this.employeeService.getSelectedEmployee()?.name || 'No employee selected';
-    this.employeeControl.setValue(employeeId); 
   }
 }

@@ -3,9 +3,9 @@
     <span class="navbar-title">Event</span>
 
     <div class="nav-links">
-      <a routerLink="/form" routerLinkActive="active" class="nav-link">Form</a>
+      <a [routerLink]="['/form']" routerLinkActive="active" class="nav-link">Form</a>
 
-      <a routerLink="/list" routerLinkActive="active" class="nav-link">Event List</a>
+      <a [routerLink]="['/list']" routerLinkActive="active" class="nav-link">Event List</a>
 
       <div class="employee-selector">
         <span>Selected Employee: {{ selectedEmployeeName }}</span>

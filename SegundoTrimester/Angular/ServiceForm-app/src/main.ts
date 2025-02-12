@@ -1,6 +1,18 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+//import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//se le añade para la fecha
+import { importProvidersFrom } from '@angular/core';// se le añade para la fecha
+import { provideRouter } from '@angular/router';
+import { routes } from './app/app.routes';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(AppComponent,{
+  providers: [
+    importProvidersFrom(
+      BrowserAnimationsModule,
+      BsDatepickerModule
+    ),
+    provideRouter(routes)
+  ]
+}).catch((err) => console.error(err));

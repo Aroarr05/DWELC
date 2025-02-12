@@ -14,12 +14,13 @@ export class EventService {
 
   // Load events from localStorage
   loadEvents() {
-    const savedEvents = localStorage.getItem('events');
-    if (savedEvents) {
-      this.events = JSON.parse(savedEvents);
+    if(typeof localStorage !== 'undefined'){
+      const savedEvents = localStorage.getItem('events');
+      if (savedEvents) {
+        this.events = JSON.parse(savedEvents);
+      }
     }
-  }
-
+    }
   // Add a new event
   addEvent(event: EventM) {
     this.events.push(event);
@@ -31,8 +32,11 @@ export class EventService {
     localStorage.setItem('events', JSON.stringify(this.events));
   }
 
-  // Filter events by classification
-  filterEvents(classification: 'log' | 'warn' | 'error'): EventM[] {
+  // Filtrar eventos por clasificación, ahora aceptando "all"
+  filterEvents(classification: 'log' | 'warn' | 'error' | 'all'): EventM[] {
+    if (classification === 'all') {
+      return this.events;  // Si es "all", mostrar todos los eventos
+    }
     return this.events.filter(event => event.classification === classification);
   }
 
@@ -40,4 +44,5 @@ export class EventService {
   getEvents(): EventM[] {
     return this.events;
   }
+  
 }

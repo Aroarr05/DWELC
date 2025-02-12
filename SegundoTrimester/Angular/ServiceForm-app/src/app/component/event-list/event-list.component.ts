@@ -11,8 +11,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit {
+
   events: EventM[] = [];
-  selectedClassification: 'log' | 'warn' | 'error' = 'log';
+  selectedClassification: 'log' | 'warn' | 'error' | 'all' = 'all';  // Agregar 'all' como opción
 
   // Define the form group
   filterForm: FormGroup = new FormGroup({
@@ -22,31 +23,23 @@ export class EventListComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
-    // Initialize the reactive form
-    this.filterForm = new FormGroup({
-      classification: new FormControl(this.selectedClassification)
-    });
-
-    // Subscribe to form changes
-    this.filterForm.get('classification')?.valueChanges.subscribe(value => {
-      this.onClassificationChange(value);
-    });
-
-    // Load events initially
-    this.getEvents();
+    this.eventService.loadEvents();
+    this.events = this.eventService.getEvents();
   }
 
-  getEvents() {
-    this.events = this.eventService.filterEvents(this.selectedClassification);
-  }
+  onFilterChange(event: Event){
+    const selectedClassification = (event.target as HTMLSelectElement).value;
+    if (selectedClassification === 'all'){
+      this.events = this.eventService.getEvents();
+    }else{
+      this.events = this.eventService.getEvents().filter(e => e.classification === selectedClassification);
 
-  onClassificationChange(classification: 'log' | 'warn' | 'error') {
-    this.selectedClassification = classification;
-    this.getEvents();
+      this.getEventCount(selectedClassification);
+    }
   }
 
   // Count the number of events based on classification
-  getEventCount(classification: 'log' | 'warn' | 'error'): number {
+  getEventCount(classification: string): number {
     return this.events.filter(event => event.classification === classification).length;
   }
 }

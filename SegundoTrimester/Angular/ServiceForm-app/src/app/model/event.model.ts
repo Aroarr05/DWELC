@@ -7,7 +7,7 @@ export interface EventM {
     client: string;
     date: Date;
     description: string;
-    classification: 'log' | 'warn' | 'error';  // Event type
+    classification: 'log' | 'warn' | 'error' | 'all';  // Event type
     creationDate: Date;  // Creation date of the event
   }
   

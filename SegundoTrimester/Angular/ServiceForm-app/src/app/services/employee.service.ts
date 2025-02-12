@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Employee } from '../model/employee.model'; 
+import { Employee } from '../model/employee.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
+
   private employeesSubject: BehaviorSubject<Employee[]> = new BehaviorSubject<Employee[]>([]);
   private selectedEmployeeSubject: BehaviorSubject<Employee | null> = new BehaviorSubject<Employee | null>(null);
 
@@ -43,10 +44,13 @@ export class EmployeeService {
   }
 
   getSelectedEmployee(): Observable<Employee | null> {
-    const savedEmployee = localStorage.getItem('selectedEmployee');
-    if (savedEmployee) {
-      this.selectedEmployeeSubject.next(JSON.parse(savedEmployee));
+    if (typeof localStorage !== 'undefined') {
+      const savedEmployee = localStorage.getItem('selectedEmployee');
+      if (savedEmployee) {
+        this.selectedEmployeeSubject.next(JSON.parse(savedEmployee));
+      }
     }
     return this.selectedEmployeeSubject.asObservable();
   }
+  
 }
