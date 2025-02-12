@@ -1,5 +1,4 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-//import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//se le añade para la fecha

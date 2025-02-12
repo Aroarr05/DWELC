@@ -1,5 +1,5 @@
 
-/* Estilos generales para la página y el formulario */
+
 .event-form-container {
   background-color: #f9f9f9;
   padding: 30px;
@@ -17,7 +17,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* Estilo de las etiquetas */
 label {
   font-weight: bold;
   font-size: 14px;
@@ -26,7 +25,6 @@ label {
   display: block;
 }
 
-/* Estilo de los inputs y selects */
 .form-control {
   width: 100%;
   padding: 10px;
@@ -44,14 +42,12 @@ label {
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Mensajes de error */
 .error-message {
   color: #e74c3c;
   font-size: 12px;
   margin-top: 5px;
 }
 
-/* Botón de envío */
 button {
   width: 100%;
   padding: 12px;
@@ -73,7 +69,6 @@ button:hover:not(:disabled) {
   box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
 }
 
-/* Estilos para el contenedor de los selectores de opciones */
 select.form-control {
   height: 40px;
   -webkit-appearance: none;
@@ -82,7 +77,6 @@ select.form-control {
   padding: 8px 10px;
 }
 
-/* Flecha para el selector de opciones */
 select.form-control::-ms-expand {
   display: none;
 }

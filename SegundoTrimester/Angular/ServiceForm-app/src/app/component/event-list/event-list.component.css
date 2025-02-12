@@ -1,118 +1,108 @@
-/* Estilos generales para la página y el contenedor de la lista de eventos */
-.event-list-container {
-  background-color: #f9f9f9;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 1100px;
-  margin: 50px auto;
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fb;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 h2 {
-  text-align: center;
-  font-family: Arial;
-  font-size: 28px;
-  color: #cfcfcf;
+  font-size: 2rem;
   margin-bottom: 20px;
+  color: #2c3e50;
 }
 
-/* Contenedor del filtro */
+.event-list-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .filter-container {
   margin-bottom: 20px;
 }
 
-.filter-container label {
-  font-size: 14px;
-  color: #b0b0b0;
+.filter-label {
+  font-size: 1.1rem;
   margin-right: 10px;
-  font-weight: bold;
 }
 
-.filter-container select {
+.form-control {
   padding: 10px;
-  font-size: 14px;
-  border-radius: 5px;
   border: 1px solid #ddd;
-  background-color: #fff;
+  border-radius: 4px;
   width: 200px;
-  transition: all 0.3s ease;
 }
 
-.filter-container select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.form-control:focus {
+  border-color: #3498db;
+  outline: none;
 }
 
-/* Estilos de la tabla */
+/* Event Table */
 .event-table table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
-.event-table th,
-.event-table td {
+.event-table th, .event-table td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
 .event-table th {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+}
+
+.event-table td {
+  background-color: #f9f9f9;
 }
 
 .event-table tr:hover {
-  background-color: #f1f1f1;
+  background-color: #ecf0f1;
 }
 
-/* Estilo de las filas */
-.event-table td {
-  color: #555;
-}
-
-/* Estilo del resumen de eventos */
 .event-summary {
-  margin-top: 30px;
-  font-size: 16px;
-  color: #333;
+  padding: 15px;
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .event-summary p {
+  font-size: 1rem;
   margin: 5px 0;
 }
 
-/* Estilo general de los elementos de la página */
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #eaeaea;
-  margin: 0;
-  padding: 0;
-}
+@media (max-width: 768px) {
+  .event-list-container {
+    padding: 15px;
+  }
 
-/* Personalización de los botones */
-button {
-  padding: 12px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-button:hover {
-  background-color: #218838;
-}
+  .form-control {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 
-/* Si deseas agregar un borde a los contenedores de las tablas o filtros */
-.event-table, .filter-container {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
+  .event-table table {
+    font-size: 14px;
+  }
 
-/* Si quieres que las tablas tengan bordes redondeados */
-.event-table {
-  border-radius: 8px;
-  overflow: hidden;
+  .event-summary {
+    padding: 10px;
+  }
 }

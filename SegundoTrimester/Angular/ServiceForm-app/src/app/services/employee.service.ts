@@ -14,21 +14,14 @@ export class EmployeeService {
     this.loadEmployees();
   }
 
-  loadEmployees(): void {
-    if (typeof localStorage !== 'undefined') {
-      const savedEmployees = localStorage.getItem('employees');
-      if (savedEmployees) {
-        this.employeesSubject.next(JSON.parse(savedEmployees));
-      } else {
-        const defaultEmployees: Employee[] = [
-          { id: 1, name: 'Juan' },
-          { id: 2, name: 'Ana' },
-          { id: 3, name: 'Carlos' }
-        ];
-        localStorage.setItem('employees', JSON.stringify(defaultEmployees));
-        this.employeesSubject.next(defaultEmployees);
-      }
-    }
+  private loadEmployees() {
+    const apiUrl = 'http://localhost:3000/employee';
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => { this.employeesSubject.next(data);
+      })
+      .catch(error=> console.error('Error al cargar los empleados:', error));
   }
 
   getEmployees(): Observable<Employee[]> {
@@ -52,5 +45,5 @@ export class EmployeeService {
     }
     return this.selectedEmployeeSubject.asObservable();
   }
-  
+
 }

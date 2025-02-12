@@ -1,7 +1,16 @@
 <div class="event-form-container">
   <h2>Register Event</h2>
-
+  
+  
   <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    
+    <div class="form-group">
+      <label for="employee">Employee</label>
+      <div>
+        <p>{{empleado?.name}}</p>
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="title">Title</label>
       <input id="title" formControlName="title" type="text" class="form-control" />
@@ -44,12 +53,6 @@
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="employee">Employee</label>
-      <select id="employee" formControlName="employee" class="form-control">
-        <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.name }}</option>
-      </select>
-    </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">Submit</button>
   </form>

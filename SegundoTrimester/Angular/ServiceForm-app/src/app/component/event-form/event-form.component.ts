@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { LoggerService } from '../../services/logger.service'; 
 import { EmployeeService } from '../../services/employee.service'; 
 import { Employee } from '../../model/employee.model'; 
 import { EventM } from '../../model/event.model';
@@ -24,6 +23,7 @@ export class EventFormComponent implements OnInit {
     adaptivePosition: true
   };
   
+  empleado: Employee|null=null;
   employees: Employee[] = [];
   eventForm: FormGroup;
 
@@ -50,18 +50,20 @@ export class EventFormComponent implements OnInit {
       date: ['', [Validators.required, this.dateValidator]],
       description: ['', Validators.required],
       classification: ['log', Validators.required],
-      employee: ['', Validators.required]  
+      employee: [null]  
     });
   }
 
   ngOnInit() {
+
     this.employeeService.getEmployees().subscribe(employees => {
       this.employees = employees;
     });
 
-    this.employeeService.getSelectedEmployee().subscribe(selectedEmployee => {
-      if (selectedEmployee) {
-        this.eventForm.patchValue({ employee: selectedEmployee.id });
+    this.employeeService.getSelectedEmployee().subscribe(empleado => {
+      if (empleado) {
+        this.empleado = empleado;
+        this.eventForm.patchValue({employee: empleado.id});
       }
     });
   }

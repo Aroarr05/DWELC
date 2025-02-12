@@ -38,7 +38,6 @@ export class EventListComponent implements OnInit {
     }
   }
 
-  // Count the number of events based on classification
   getEventCount(classification: string): number {
     return this.events.filter(event => event.classification === classification).length;
   }

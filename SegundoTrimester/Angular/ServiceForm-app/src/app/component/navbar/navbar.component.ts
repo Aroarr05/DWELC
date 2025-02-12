@@ -14,33 +14,32 @@ import { Employee } from '../../model/employee.model';
 })
 export class NavbarComponent implements OnInit {
   
-  selectedEmployeeName: string = 'No employee selected';
   employees: Employee[] = [];
-  employeeControl: FormControl = new FormControl();
+  selectedEmployeeName: string = 'No employee selected';  
+  employeeControl = new FormControl<number | null>(null); 
 
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    // Suscribirse a la lista de empleados
+
     this.employeeService.getEmployees().subscribe(employees => {
       this.employees = employees;
     });
 
-    // Suscribirse al empleado seleccionado
     this.employeeService.getSelectedEmployee().subscribe(selectedEmployee => {
       if (selectedEmployee) {
-        this.selectedEmployeeName = selectedEmployee.name;
-        this.employeeControl.setValue(selectedEmployee.id);
+        this.selectedEmployeeName = selectedEmployee.name || selectedEmployee.name;  
+        this.employeeControl.setValue(selectedEmployee.id, { emitEvent: false });  
       } else {
         this.selectedEmployeeName = 'No employee selected';
       }
     });
 
-    // Escuchar cambios en el control del formulario y actualizar el servicio
     this.employeeControl.valueChanges.subscribe(employeeId => {
-      const selectedEmployee = this.employees.find(emp => emp.id === employeeId);
+      const selectedId = Number(employeeId);
+      const selectedEmployee = this.employees.find(emp => emp.id === selectedId);
       if (selectedEmployee) {
-        this.employeeService.selectEmployee(employeeId);
+        this.employeeService.selectEmployee(selectedId);
       }
     });
   }
