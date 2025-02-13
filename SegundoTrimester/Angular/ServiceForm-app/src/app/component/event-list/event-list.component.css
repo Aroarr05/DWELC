@@ -106,3 +106,16 @@ h2 {
     padding: 10px;
   }
 }
+
+.log-class {
+  background-color: lightgreen !important;  
+}
+
+.warn-class {
+  background-color: yellow !important;     
+}
+
+.error-class {
+  background-color: lightcoral !important; 
+}
+

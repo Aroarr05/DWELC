@@ -31,7 +31,11 @@
             <td>{{ event.client }}</td>
             <td>{{ event.date | date }}</td>
             <td>{{ event.description }}</td>
-            <td>{{ event.classification }}</td>
+            <td [ngClass]="{
+              'log-class': event.classification === 'log', 
+              'warn-class': event.classification === 'warn', 
+              'error-class': event.classification === 'error'
+            }">{{ event.classification }}</td>
             <td>{{ event.creationDate | date }}</td>
           </tr>
         </tbody>

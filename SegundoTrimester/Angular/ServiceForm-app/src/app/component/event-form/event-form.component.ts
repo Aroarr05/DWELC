@@ -92,7 +92,6 @@ export class EventFormComponent implements OnInit {
     }
   }
 
-  
   dateValidator(control: any) {
     if (!control.value) {
       return { required: true };

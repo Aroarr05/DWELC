@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { EventM } from '../model/event.model';  
+import { EventM } from '../model/event.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class EventService {
 
   private events: EventM[] = [];
@@ -13,7 +14,7 @@ export class EventService {
   }
 
   loadEvents() {
-    if(typeof localStorage !== 'undefined'){
+    if (typeof localStorage !== 'undefined') {
       const savedEvents = localStorage.getItem('events');
       if (savedEvents) {
         this.events = JSON.parse(savedEvents);
@@ -32,7 +33,7 @@ export class EventService {
 
   filterEvents(classification: 'log' | 'warn' | 'error' | 'all'): EventM[] {
     if (classification === 'all') {
-      return this.events;  
+      return this.events;
     }
     return this.events.filter(event => event.classification === classification);
   }

@@ -36,11 +36,9 @@ export class NavbarComponent implements OnInit {
     });
 
     this.employeeControl.valueChanges.subscribe(employeeId => {
+      console.log('Empleado seleccionado:', employeeId);
       const selectedId = Number(employeeId);
-      const selectedEmployee = this.employees.find(emp => emp.id === selectedId);
-      if (selectedEmployee) {
-        this.employeeService.selectEmployee(selectedId);
-      }
+      this.employeeService.selectEmployee(selectedId);
     });
   }
 }
