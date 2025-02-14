@@ -8,16 +8,20 @@ import { EventM } from '../model/event.model';
 
 export class LoggerService {
 
+  //Logger necesita el ecentoService
   constructor(private eventService: EventService) { }
 
+  //Agregamos un nuevo evento
   addEvent(event: EventM) {
     this.eventService.addEvent(event);
   }
 
+  // filtramos segun la clasificación
   filterEvents(classification: 'log' | 'warn' | 'error') {
     return this.eventService.filterEvents(classification);
   }
 
+  //obtenemos todo los ecentos registrados 
   getEvents() {
     return this.eventService.getEvents();
   }

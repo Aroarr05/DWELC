@@ -53,13 +53,15 @@
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="employee">Employee</label>
-      <div>
-        <p>{{empleado?.name}}</p>
-      </div>
-    </div>
-
     <button type="submit" class="btn btn-primary" [disabled]="eventForm.invalid">Submit</button>
   </form>
 </div>
+
+<!-- 
+*ngIf="eventForm.get('title')?.invalid && eventForm.get('title')?.touched"
+
+*ngIF -> se usa para agregar o quitar elementos del DOM 
+.invalid -> indica si el valor del campo es inválido
+.touched -> indica si el campo ha sido tocado por el usuario
+
+-->
