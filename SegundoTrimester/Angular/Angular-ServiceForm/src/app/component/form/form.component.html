@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center">
+    <form class="w-50 bg-light border border-2 rounded-3 py-4 px-5" [formGroup]="eventForm" (ngSubmit)="submit()">
+        <!-- <p>{{ eventForm.value | json }}</p> -->
+        
+        <label class="mb-2 fw-semibold" for="asunto">Asunto</label>
+        <input class="form-control mb-4" type="text" name="asunto" id="asunto"
+        placeholder="Breve resumen de la incidencia" formControlName="asunto">
+        <div *ngIf="eventForm.get('asunto')?.invalid && (eventForm.get('asunto')?.dirty || eventForm.get('asunto')?.touched)" class="text-danger">
+            <p *ngIf="eventForm.get('asunto')?.errors?.['required']">El asunto es obligatorio</p>
+            <p *ngIf="eventForm.get('asunto')?.errors?.['minlength']">El asunto no puede tener menos de 5 caracteres</p>
+        </div>
+
+        <label class="mb-2 fw-semibold" for="descripcion">Descripción</label>
+        <textarea class="form-control mb-4" name="descripcion" id="descripcion"
+        placeholder="Descripción detallada" formControlName="descripcion"></textarea>
+        <div *ngIf="eventForm.get('descripcion')?.invalid && (eventForm.get('descripcion')?.dirty || eventForm.get('descripcion')?.touched)" class="text-danger">
+            <p *ngIf="eventForm.get('descripcion')?.errors?.['required']">La descripción es obligatoria</p>
+            <p *ngIf="eventForm.get('descripcion')?.errors?.['minlength']">La descripción no puede tener menos de 10 caracteres</p>
+        </div>
+
+        <label class="mb-2 fw-semibold" for="cliente">Cliente</label>
+        <input class="form-control mb-4" type="text" name="cliente" id="cliente" placeholder="Nombre del cliente" formControlName="cliente">
+        <div *ngIf="eventForm.get('cliente')?.invalid && (eventForm.get('cliente')?.dirty || eventForm.get('cliente')?.touched)" class="text-danger">
+            <p *ngIf="eventForm.get('cliente')?.errors?.['required']">El nombre del cliente es obligatorio</p>
+            <p *ngIf="eventForm.get('cliente')?.errors?.['minlength']">El nombre del cliente no puede tener menos de 3 caracteres</p>
+        </div>
+
+        <label class="mb-2 fw-semibold" for="fecha">Fecha</label>
+        <input class="form-control mb-4" type="date" name="fecha" id="fecha" formControlName="fecha" placeholder="Datepicker">
+        <div *ngIf="eventForm.get('fecha')?.invalid && (eventForm.get('fecha')?.dirty || eventForm.get('fecha')?.touched)" class="text-danger">
+            <p *ngIf="eventForm.get('fecha')?.errors?.['required']">La fecha es obligatoria</p>
+            <p *ngIf="eventForm.get('fecha')?.errors?.['fechaPosterior']">La fecha no puede ser posterior a hoy</p>
+            <p *ngIf="eventForm.get('fecha')?.errors?.['fechaAnterior']">La fecha debe estar dentro del último mes</p>
+        </div>
+
+        <label class="mb-2 fw-semibold" for="categoria">Categoría</label>
+        <div class="d-flex flex-column flex-lg-row justify-content-around mb-5">
+            <div class="d-flex btn btn-primary mb-3 mb-lg-0">
+                <input class="btn btn-success my-auto me-2" type="radio" name="categoria" id="log" value="log" formControlName="categoria">
+                <label class="my-auto" for="log">Log</label>
+            </div>
+            <div class="d-flex btn btn-warning mb-3 mb-lg-0">
+                <input class="btn btn-success my-auto me-2" type="radio" name="categoria" id="warn" value="warn" formControlName="categoria">
+                <label class="my-auto" for="warn">Warning</label>
+            </div>
+            <div class="d-flex btn btn-danger">
+                <input class="btn btn-success my-auto me-2" type="radio" name="categoria" id="error" value="error" formControlName="categoria">
+                <label class="my-auto" for="error">Error</label>
+            </div>
+        </div>
+        <p *ngIf="eventForm.get('categoria')?.invalid && (eventForm.get('categoria')?.dirty || eventForm.get('categoria')?.touched)" class="text-danger">
+            La categoría es obligatoria
+        </p>
+        
+        <div class="d-flex"><button class="btn btn-primary mx-auto" type="submit" [disabled]="!eventForm.valid">Enviar</button></div>
+    </form>
+</div>

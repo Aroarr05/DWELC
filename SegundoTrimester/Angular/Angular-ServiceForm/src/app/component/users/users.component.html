@@ -1,0 +1,12 @@
+<div class="text-center">
+    <p>Escoge un usuario antes de continuar</p>
+    <div class="w-25 mx-auto">
+        <form [formGroup]="userForm" (ngSubmit)="submit()" *ngIf="listEmpleados.length !== 0">
+            <select class="form-control" name="user" id="user" formControlName="username">
+                <option *ngFor="let empleado of listEmpleados" value="{{empleado.nombre}}">{{empleado.nombre}}</option>
+            </select>
+            <button class="btn btn-primary mt-5" type="submit" [disabled]="!userForm.valid">Confirmar</button>
+        </form>
+    </div>
+    <p class="mt-3 text-danger fw-semibold" *ngIf="listEmpleados.length === 0">El servidor de usuarios no está operativo</p>
+</div>

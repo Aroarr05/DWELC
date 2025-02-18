@@ -1,0 +1,106 @@
+{
+  "eventos": [
+    {
+      "id": "1",
+      "asunto": "Incidencia 1",
+      "descripcion": "No se ha liado mucho",
+      "cliente": "Sam",
+      "empleado": "Samuel",
+      "fecha": "2025-02-07",
+      "categoria": "log",
+      "horaCreacion": "12/2/2025, 19:38:25"
+    },
+    {
+      "id": "2",
+      "asunto": "Incidencia 2",
+      "descripcion": "Hay que intentar solucionarlo ya",
+      "cliente": "Sam",
+      "empleado": "Samuel",
+      "fecha": "2025-02-07",
+      "categoria": "warn",
+      "horaCreacion": "12/2/2025, 19:38:25"
+    },
+    {
+      "id": "3",
+      "asunto": "Incidencia 3",
+      "descripcion": "La madre del cordero, la que se ha liado",
+      "cliente": "Sam",
+      "empleado": "Samuel",
+      "fecha": "2025-02-07",
+      "categoria": "error",
+      "horaCreacion": "12/2/2025, 19:38:25"
+    },
+    {
+      "id": "4",
+      "asunto": "Incidencia 4",
+      "descripcion": "Incidencia 4",
+      "cliente": "Sam",
+      "empleado": "Samuel",
+      "fecha": "2025-02-07",
+      "categoria": "error",
+      "horaCreacion": "12/2/2025, 19:38:25"
+    },
+    {
+      "id": "6",
+      "asunto": "Incidencia 6",
+      "descripcion": "Incidencia 6",
+      "fecha": "2025-02-13",
+      "cliente": "Nuria",
+      "empleado": "Samuel",
+      "categoria": "log",
+      "horaCreacion": "18/2/2025, 14:22:45"
+    },
+    {
+      "id": "7",
+      "asunto": "Incidencia 7",
+      "descripcion": "Incidencia 7",
+      "fecha": "2025-02-12",
+      "cliente": "Nuria",
+      "empleado": "Samuel",
+      "categoria": "error",
+      "horaCreacion": "18/2/2025, 17:26:38"
+    }
+  ],
+  "empleados": [
+    {
+      "id": "1",
+      "nombre": "Samuel"
+    },
+    {
+      "id": "2",
+      "nombre": "Shanshui"
+    },
+    {
+      "id": "3",
+      "nombre": "Juan"
+    },
+    {
+      "id": "4",
+      "nombre": "David"
+    },
+    {
+      "id": "5",
+      "nombre": "Zahira"
+    },
+    {
+      "id": "6",
+      "nombre": "Aroa"
+    },
+    {
+      "id": "7",
+      "nombre": "Alejandro"
+    },
+    {
+      "id": "8",
+      "nombre": "Enzo"
+    },
+    {
+      "id": "9",
+      "nombre": "Andrés"
+    },
+    {
+      "id": "10",
+      "nombre": "Julián"
+    }
+  ]
+}
