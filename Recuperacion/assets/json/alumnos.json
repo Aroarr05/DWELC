@@ -1,0 +1,10 @@
+{
+    "alumnos": [
+        {
+            "nombre": "Aroa",
+            "apellido": "Rivas",
+            "fechaNacimiento": "04/06/2003",
+            "curso": "2daw"
+        }
+    ]
+}
