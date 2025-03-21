@@ -1,10 +1,24 @@
 {
     "alumnos": [
-        {
-            "nombre": "Aroa",
-            "apellido": "Rivas",
-            "fechaNacimiento": "04/06/2003",
-            "curso": "2daw"
-        }
+        {"nombre": "Aroa", "apellido": "Rivas", "fechaNacimiento": "04/06/2003", "curso": "2daw"},
+        {"nombre": "Carlos", "apellido": "", "fechaNacimiento": "12/09/2002", "curso": "1daw"},
+        {"nombre": "", "apellido": "Martínez", "fechaNacimiento": "23/11/2004", "curso": "2daw"},
+        {"nombre": "Laura", "apellido": "González", "fechaNacimiento": "", "curso": "1daw"},
+        {"nombre": "Javier", "apellido": "López", "fechaNacimiento": "15/07/2001", "curso": ""},
+        {"nombre": "María", "apellido": "", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "", "apellido": "Fernández", "fechaNacimiento": "30/03/2003", "curso": "1daw"},
+        {"nombre": "Adrián", "apellido": "Pérez", "fechaNacimiento": "08/05/2002", "curso": ""},
+        {"nombre": "Beatriz", "apellido": "Sánchez", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "", "apellido": "Hernández", "fechaNacimiento": "19/08/2003", "curso": "1daw"},
+        {"nombre": "David", "apellido": "", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "Eva", "apellido": "Ruiz", "fechaNacimiento": "06/12/2004", "curso": ""},
+        {"nombre": "", "apellido": "Ortega", "fechaNacimiento": "10/02/2001", "curso": "1daw"},
+        {"nombre": "Hugo", "apellido": "Díaz", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "Irene", "apellido": "", "fechaNacimiento": "27/04/2002", "curso": "1daw"},
+        {"nombre": "", "apellido": "Navarro", "fechaNacimiento": "31/10/2003", "curso": "2daw"},
+        {"nombre": "Jorge", "apellido": "Vega", "fechaNacimiento": "", "curso": ""},
+        {"nombre": "Lucía", "apellido": "Torres", "fechaNacimiento": "03/07/2004", "curso": "1daw"},
+        {"nombre": "Manuel", "apellido": "", "fechaNacimiento": "14/09/2002", "curso": "2daw"},
+        {"nombre": "", "apellido": "Mendoza", "fechaNacimiento": "21/11/2001", "curso": "1daw"}
     ]
 }

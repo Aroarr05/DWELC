@@ -1,16 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumnos</title>
+    <style>
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+       
+        input, select {
+            width: 15%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Alumnos</h1>
+
     <form>
-        <div class="contenedor">
-            
+        <div class="container">
+            <div class="form-group">
+                <label for="nombre-select">Nombre:</label>
+                <select id="nombre-select" name="nombre-select"></select>
+                <label for="nombre-input1">Nombre:</label>
+                <input type="text" id="nombre-input1" name="nombre-input1">
+                <label for="nombre-input2">Nombre:</label>
+                <input type="text" id="nombre-input2" name="nombre-input2">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido1-select">1º Apellido:</label>
+                <select id="apellido1-select" name="apellido1-select"></select>
+                <label for="apellido1-input1">1º Apellido:</label>
+                <input type="text" id="apellido1-input1" name="apellido1-input1">
+                <label for="apellido1-input2">1º Apellido:</label>
+                <input type="text" id="apellido1-input2" name="apellido1-input2">
+            </div>
+
+            <div class="form-group">
+                <label for="apellido2-select">2º Apellido:</label>
+                <select id="apellido2-select" name="apellido2-select"></select>
+                <label for="apellido2-input1">2º Apellido:</label>
+                <input type="text" id="apellido2-input1" name="apellido2-input1">
+                <label for="apellido2-input2">2º Apellido:</label>
+                <input type="text" id="apellido2-input2" name="apellido2-input2">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaNacimiento-select">Fecha de nacimiento:</label>
+                <select id="fechaNacimiento-select" name="fechaNacimiento-select"></select>
+                <label for="fechaNacimiento-input1">Fecha de nacimiento:</label>
+                <input type="date" id="fechaNacimiento-input1" name="fechaNacimiento-input1">
+                <label for="fechaNacimiento-input2">Fecha de nacimiento:</label>
+                <input type="date" id="fechaNacimiento-input2" name="fechaNacimiento-input2">
+            </div>
+
+            <div class="form-group">
+                <label for="curso-select">Curso:</label>
+                <select id="curso-select" name="curso-select"></select>
+                <label for="curso-input1">Curso:</label>
+                <input type="text" id="curso-input1" name="curso-input1">
+                <label for="curso-input2">Curso:</label>
+                <input type="text" id="curso-input2" name="curso-input2">
+            </div>
         </div>
     </form>
+
+    <script src="./alumnos.js"></script>
 </body>
 </html>
