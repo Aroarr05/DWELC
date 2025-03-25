@@ -4,64 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumnos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .filter-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        select, input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        select {
-            min-width: 150px;
-        }
-        button {
-            padding: 10px 15px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .disabled {
-            background-color: #f5f5f5;
-            color: #999;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -71,22 +13,22 @@
             <div class="filter-group">
                 <label>Nombre:</label>
                 <select id="nombre-select"></select>
-                <input type="text" id="nombre-input1" placeholder="Valor 1">
-                <input type="text" id="nombre-input2" placeholder="Valor 2" disabled>
+                <input type="text" id="nombre-input1">
+                <input type="text" id="nombre-input2" disabled>
             </div>
             
             <div class="filter-group">
                 <label>1º Apellido:</label>
                 <select id="apellido1-select"></select>
-                <input type="text" id="apellido1-input1" placeholder="Valor 1">
-                <input type="text" id="apellido1-input2" placeholder="Valor 2" disabled>
+                <input type="text" id="apellido1-input1">
+                <input type="text" id="apellido1-input2" disabled>
             </div>
             
             <div class="filter-group">
                 <label>2º Apellido:</label>
                 <select id="apellido2-select"></select>
-                <input type="text" id="apellido2-input1" placeholder="Valor 1">
-                <input type="text" id="apellido2-input2" placeholder="Valor 2" disabled>
+                <input type="text" id="apellido2-input1">
+                <input type="text" id="apellido2-input2" disabled>
             </div>
             
             <div class="filter-group">
@@ -99,8 +41,8 @@
             <div class="filter-group">
                 <label>Curso:</label>
                 <select id="curso-select"></select>
-                <input type="text" id="curso-input1" placeholder="Valor 1">
-                <input type="text" id="curso-input2" placeholder="Valor 2" disabled>
+                <input type="text" id="curso-input1">
+                <input type="text" id="curso-input2" disabled>
             </div>
             
             <div class="filter-group">

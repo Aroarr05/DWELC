@@ -223,7 +223,7 @@ function mostrarDatos(data) {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
         cell.colSpan = 5;
-        cell.textContent = "No se encontraron alumnos que coincidan con los criterios de búsqueda";
+        cell.textContent = "No se encontraron alumnos que coincidan con la búsqueda";
         cell.style.textAlign = "center";
         row.appendChild(cell);
         tbody.appendChild(row);
