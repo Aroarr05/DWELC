@@ -5,85 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumnos</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
         .container {
-            max-width: 900px;
-            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .form-group {
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-bottom: 15px;
+            align-items: center;
         }
-       
-        input, select {
-            width: 15%;
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        select, input {
             padding: 8px;
-            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        select {
+            min-width: 150px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .disabled {
+            background-color: #f5f5f5;
+            color: #999;
         }
     </style>
 </head>
 <body>
-    <h1>Alumnos</h1>
-
-    <form>
-        <div class="container">
-            <div class="form-group">
-                <label for="nombre-select">Nombre:</label>
-                <select id="nombre-select" name="nombre-select"></select>
-                <label for="nombre-input1">Nombre:</label>
-                <input type="text" id="nombre-input1" name="nombre-input1">
-                <label for="nombre-input2">Nombre:</label>
-                <input type="text" id="nombre-input2" name="nombre-input2">
+    <div class="container">
+        <h1>Alumnos</h1>
+        
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>Nombre:</label>
+                <select id="nombre-select"></select>
+                <input type="text" id="nombre-input1" placeholder="Valor 1">
+                <input type="text" id="nombre-input2" placeholder="Valor 2" disabled>
             </div>
-
-            <div class="form-group">
-                <label for="apellido1-select">1º Apellido:</label>
-                <select id="apellido1-select" name="apellido1-select"></select>
-                <label for="apellido1-input1">1º Apellido:</label>
-                <input type="text" id="apellido1-input1" name="apellido1-input1">
-                <label for="apellido1-input2">1º Apellido:</label>
-                <input type="text" id="apellido1-input2" name="apellido1-input2">
+            
+            <div class="filter-group">
+                <label>1º Apellido:</label>
+                <select id="apellido1-select"></select>
+                <input type="text" id="apellido1-input1" placeholder="Valor 1">
+                <input type="text" id="apellido1-input2" placeholder="Valor 2" disabled>
             </div>
-
-            <div class="form-group">
-                <label for="apellido2-select">2º Apellido:</label>
-                <select id="apellido2-select" name="apellido2-select"></select>
-                <label for="apellido2-input1">2º Apellido:</label>
-                <input type="text" id="apellido2-input1" name="apellido2-input1">
-                <label for="apellido2-input2">2º Apellido:</label>
-                <input type="text" id="apellido2-input2" name="apellido2-input2">
+            
+            <div class="filter-group">
+                <label>2º Apellido:</label>
+                <select id="apellido2-select"></select>
+                <input type="text" id="apellido2-input1" placeholder="Valor 1">
+                <input type="text" id="apellido2-input2" placeholder="Valor 2" disabled>
             </div>
-
-            <div class="form-group">
-                <label for="fechaNacimiento-select">Fecha de nacimiento:</label>
-                <select id="fechaNacimiento-select" name="fechaNacimiento-select"></select>
-                <label for="fechaNacimiento-input1">Fecha de nacimiento:</label>
-                <input type="date" id="fechaNacimiento-input1" name="fechaNacimiento-input1">
-                <label for="fechaNacimiento-input2">Fecha de nacimiento:</label>
-                <input type="date" id="fechaNacimiento-input2" name="fechaNacimiento-input2">
+            
+            <div class="filter-group">
+                <label>Fecha Nac.:</label>
+                <select id="fechaNacimiento-select"></select>
+                <input type="date" id="fechaNacimiento-input1">
+                <input type="date" id="fechaNacimiento-input2" disabled>
             </div>
-
-            <div class="form-group">
-                <label for="curso-select">Curso:</label>
-                <select id="curso-select" name="curso-select"></select>
-                <label for="curso-input1">Curso:</label>
-                <input type="text" id="curso-input1" name="curso-input1">
-                <label for="curso-input2">Curso:</label>
-                <input type="text" id="curso-input2" name="curso-input2">
+            
+            <div class="filter-group">
+                <label>Curso:</label>
+                <select id="curso-select"></select>
+                <input type="text" id="curso-input1" placeholder="Valor 1">
+                <input type="text" id="curso-input2" placeholder="Valor 2" disabled>
             </div>
-
-            <div class="form-group">
-                <label for="ordenar-select">Ordenar por:</label>
-                <select id="ordenar-select" name="ordenar-select"></select>
+            
+            <div class="filter-group">
+                <label>Ordenar por:</label>
+                <select id="ordenar-select"></select>
             </div>
-
-            <button type="button" id="filtrar-btn">Filtrar</button>
+            
+            <button type="button" id="filtrar-btn">Filtrar y Ordenar</button>
         </div>
-    </form>
-
-    
-    <h2>Datos de los Alumnos</h2>
-    <table id="alumnos-list" class="table"></table>
-    <br>
-    <div id="total"></div>
+        
+        <h2>Datos de los Alumnos</h2>
+        <table id="alumnos-list">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>1º Apellido</th>
+                    <th>2º Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Curso</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="total"></div>
+    </div>
 
     <script src="./alumnos.js"></script>
 </body>

@@ -2,11 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("../../assets/json/alumnos.json")
         .then(response => response.json())
         .then(data => {
+            window.alumnosData = data.alumnos;
+            
             cargarSelects();
             selectFecha();
             selectOrdenar();
-            manejarFiltros(data);
-            mostrarDatos(data);
+            manejarFiltros();
+            actualizarInputs(); 
+            
+            mostrarDatos({ alumnos: window.alumnosData });
         })
         .catch(error => console.error("Error al cargar el Json", error));
 });
@@ -16,10 +20,10 @@ function cargarSelects() {
     const selects = document.querySelectorAll("#nombre-select, #apellido1-select, #apellido2-select, #curso-select");
 
     selects.forEach(select => {
-        select.innerHTML = ""; // Limpiar select antes de añadir opciones
+        select.innerHTML = ""; 
         opciones.forEach(opcion => {
             let opc = document.createElement("option");
-            opc.value = opcion.toLowerCase().replace(/ /g, "_");
+            opc.value = opcion.toLowerCase().replace(" ", "_");
             opc.textContent = opcion;
             select.appendChild(opc);
         });
@@ -33,119 +37,209 @@ function selectFecha() {
     fechaSelect.innerHTML = "";
     opciones.forEach(option => {
         const opc = document.createElement("option");
-        opc.value = option.toLowerCase().replace(/ /g, "_");
+        opc.value = option.toLowerCase().replace(" ", "_");
         opc.textContent = option;
         fechaSelect.appendChild(opc);
     });
 }
 
 function selectOrdenar() {
-    const opciones = ["Ascendente", "Descendente", "Nombre", "Apellido", "Curso", "Fecha de Nacimiento"];
+    const opciones = ["Ninguno", "Nombre (A-Z)", "Nombre (Z-A)", "Apellido (A-Z)", "Apellido (Z-A)", "Curso (A-Z)", "Curso (Z-A)", "Fecha (Antiguas)", "Fecha (Recientes)"];
     const ordenarSelect = document.querySelector("#ordenar-select");
 
     ordenarSelect.innerHTML = "";
     opciones.forEach(option => {
         const opc = document.createElement("option");
-        opc.value = option.toLowerCase().replace(/ /g, "_");
+        opc.value = option.toLowerCase().replace(/ /g, "_").replace(/[()]/g, "");
         opc.textContent = option;
         ordenarSelect.appendChild(opc);
     });
 }
 
-function manejarFiltros(data) {
+function manejarFiltros() {
     document.querySelectorAll("select").forEach(select => {
-        select.addEventListener("change", () => actualizarInputs(select));
+        select.addEventListener("change", () => actualizarInputs());
     });
 
-    document.querySelector("#filtrar-btn").addEventListener("click", () => filtrarDatos(data));
+    document.querySelector("#filtrar-btn").addEventListener("click", () => {
+        const filtered = filtrarDatos(window.alumnosData);
+        const ordered = ordenarDatos(filtered);
+        mostrarDatos({ alumnos: ordered });
+    });
 }
 
-function actualizarInputs(select) {
-    const parent = select.parentElement;
-    const inputs = parent.querySelectorAll("input");
-
-    if (select.value === "está_vacío" || select.value === "está_relleno") {
-        inputs.forEach(input => input.disabled = true);
-    } else if (select.value === "comprendido_entre") {
-        inputs.forEach(input => input.disabled = false);
-    } else {
-        inputs[0].disabled = false;
-        if (inputs[1]) inputs[1].disabled = true;
-    }
+function actualizarInputs() {
+    const filterGroups = document.querySelectorAll(".filter-group");
+    
+    filterGroups.forEach(group => {
+        const select = group.querySelector("select");
+        const inputs = group.querySelectorAll("input");
+        const selectValue = select.value;
+        
+        inputs.forEach(input => {
+            input.disabled = false;
+            input.classList.remove("disabled");
+            input.value = "";
+        });
+        
+        if (selectValue === "está_vacío" || selectValue === "está_relleno") {
+            inputs.forEach(input => {
+                input.disabled = true;
+                input.classList.add("disabled");
+            });
+        } else if (selectValue === "comprendido_entre") {
+            inputs[0].disabled = false;
+            inputs[1].disabled = false;
+            inputs[0].classList.remove("disabled");
+            inputs[1].classList.remove("disabled");
+        } else {
+            inputs[0].disabled = false;
+            inputs[0].classList.remove("disabled");
+            if (inputs[1]) {
+                inputs[1].disabled = true;
+                inputs[1].classList.add("disabled");
+            }
+        }
+    });
 }
 
 function filtrarDatos(data) {
-    let alumnosFiltrados = data.alumnos.filter(alumno => {
+    return data.filter(alumno => {
         return filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1", "#nombre-input2") &&
             filtrarCampo(alumno.apellido1, "#apellido1-select", "#apellido1-input1", "#apellido1-input2") &&
             filtrarCampo(alumno.apellido2, "#apellido2-select", "#apellido2-input1", "#apellido2-input2") &&
             filtrarFecha(alumno.fechaNacimiento, "#fechaNacimiento-select", "#fechaNacimiento-input1", "#fechaNacimiento-input2") &&
             filtrarCampo(alumno.curso, "#curso-select", "#curso-input1", "#curso-input2");
     });
-    mostrarDatos({ alumnos: alumnosFiltrados });
 }
 
 function filtrarCampo(valor, selectId, input1Id, input2Id) {
     const selectValue = document.querySelector(selectId).value;
     const input1 = document.querySelector(input1Id).value.trim().toLowerCase();
     const input2 = document.querySelector(input2Id) ? document.querySelector(input2Id).value.trim().toLowerCase() : "";
-
-    valor = valor ? valor.toLowerCase() : "";
-
+    
+    const valorStr = (valor !== null && valor !== undefined) ? valor.toString().toLowerCase() : "";
+    
     switch (selectValue) {
-        case "comenzar_por": return valor.startsWith(input1);
-        case "terminar_en": return valor.endsWith(input1);
-        case "contiene": return valor.includes(input1);
-        case "igual_a": return valor === input1;
-        case "está_vacío": return valor === "";
-        case "está_relleno": return valor !== "";
-        default: return true;
+        case "comenzar_por": 
+            return valorStr.startsWith(input1);
+        case "terminar_en": 
+            return valorStr.endsWith(input1);
+        case "contiene": 
+            return valorStr.includes(input1);
+        case "igual_a": 
+            return valorStr === input1;
+        case "está_vacío": 
+            return valorStr === "";
+        case "está_relleno": 
+            return valorStr !== "";
+        default: 
+            return true;
     }
 }
 
 function filtrarFecha(valor, selectId, input1Id, input2Id) {
     const selectValue = document.querySelector(selectId).value;
-    const fecha1 = document.querySelector(input1Id).value;
-    const fecha2 = document.querySelector(input2Id) ? document.querySelector(input2Id).value : "";
-
-    if (!valor) return selectValue === "está_vacío";
-    if (selectValue === "está_relleno") return valor !== "";
-    if (!fecha1) return true;
-
-    const dateValor = new Date(valor.split("/").reverse().join("-"));
-    const date1 = new Date(fecha1);
-    const date2 = fecha2 ? new Date(fecha2) : null;
-
-    switch (selectValue) {
-        case "igual_a": return dateValor.getTime() === date1.getTime();
-        case "posterior_a": return dateValor > date1;
-        case "anterior_a": return dateValor < date1;
-        case "comprendido_entre": return date2 ? dateValor >= date1 && dateValor <= date2 : false;
-        default: return true;
+    const input1 = document.querySelector(input1Id).value;
+    const input2 = document.querySelector(input2Id) ? document.querySelector(input2Id).value : "";
+    
+    if (!valor) {
+        return selectValue === "está_vacío";
+    }
+    
+    if (selectValue === "está_relleno") {
+        return valor !== "";
+    }
+    
+    if (!input1 && selectValue !== "está_vacío" && selectValue !== "está_relleno") {
+        return true;
+    }
+    
+    try {
+        const [day, month, year] = valor.split('/');
+        const dateValor = new Date(`${year}-${month}-${day}`);
+        const date1 = new Date(input1);
+        const date2 = input2 ? new Date(input2) : null;
+        
+        if (isNaN(dateValor.getTime())) return false;
+        
+        switch (selectValue) {
+            case "igual_a":
+                return dateValor.toDateString() === date1.toDateString();
+            case "posterior_a":
+                return dateValor > date1;
+            case "anterior_a":
+                return dateValor < date1;
+            case "comprendido_entre":
+                if (!date2 || isNaN(date2.getTime())) return false;
+                return dateValor >= date1 && dateValor <= date2;
+            default:
+                return true;
+        }
+    } catch (e) {
+        console.error("Error al procesar fechas:", e);
+        return false;
     }
 }
 
-function mostrarDatos(data) {
-    const table = document.querySelector("#alumnos-list");
-    table.innerHTML = "";
-    const headerRow = document.createElement("tr");
-    ["Nombre", "1º Apellido", "2º Apellido", "Fecha de Nacimiento", "Curso"].forEach(headerText => {
-        const th = document.createElement("th");
-        th.textContent = headerText;
-        headerRow.appendChild(th);
+function ordenarDatos(data) {
+    const ordenarValue = document.querySelector("#ordenar-select").value;
+    
+    if (!ordenarValue || ordenarValue === "ninguno") return [...data];
+    
+    return [...data].sort((a, b) => {
+        switch (ordenarValue) {
+            case "nombre_a-z":
+                return (a.nombre || "").localeCompare(b.nombre || "");
+            case "nombre_z-a":
+                return (b.nombre || "").localeCompare(a.nombre || "");
+            case "apellido_a-z":
+                return (a.apellido1 || "").localeCompare(b.apellido1 || "") || 
+                       (a.apellido2 || "").localeCompare(b.apellido2 || "");
+            case "apellido_z-a":
+                return (b.apellido1 || "").localeCompare(a.apellido1 || "") || 
+                       (b.apellido2 || "").localeCompare(a.apellido2 || "");
+            case "curso_a-z":
+                return (a.curso || "").localeCompare(b.curso || "");
+            case "curso_z-a":
+                return (b.curso || "").localeCompare(a.curso || "");
+            case "fecha_antiguas":
+                return new Date(a.fechaNacimiento?.split('/').reverse().join('-') || 0) - 
+                       new Date(b.fechaNacimiento?.split('/').reverse().join('-') || 0);
+            case "fecha_recientes":
+                return new Date(b.fechaNacimiento?.split('/').reverse().join('-') || 0) - 
+                       new Date(a.fechaNacimiento?.split('/').reverse().join('-') || 0);
+            default:
+                return 0;
+        }
     });
-    table.appendChild(headerRow);
+}
 
-    data.alumnos.forEach(alumno => {
+function mostrarDatos(data) {
+    const tbody = document.querySelector("#alumnos-list tbody");
+    tbody.innerHTML = "";
+    
+    if (data.alumnos.length === 0) {
         const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${alumno.nombre || "-"}</td>
-            <td>${alumno.apellido1 || "-"}</td>
-            <td>${alumno.apellido2 || "-"}</td>
-            <td>${alumno.fechaNacimiento || "-"}</td>
-            <td>${alumno.curso || "-"}</td>
-        `;
-        table.appendChild(row);
-    });
+        const cell = document.createElement("td");
+        cell.colSpan = 5;
+        cell.textContent = "No se encontraron alumnos que coincidan con los criterios de búsqueda";
+        cell.style.textAlign = "center";
+        row.appendChild(cell);
+        tbody.appendChild(row);
+    } else {
+        data.alumnos.forEach(alumno => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${alumno.nombre || "-"}</td>
+                <td>${alumno.apellido1 || "-"}</td>
+                <td>${alumno.apellido2 || "-"}</td>
+                <td>${alumno.fechaNacimiento || "-"}</td>
+                <td>${alumno.curso || "-"}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+    
     document.querySelector("#total").textContent = `Total de alumnos: ${data.alumnos.length}`;
 }
