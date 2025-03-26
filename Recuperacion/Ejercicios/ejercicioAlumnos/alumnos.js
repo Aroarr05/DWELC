@@ -1,16 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    let alumnosData = [];
+    let filteredData = [];
+
     fetch("../../assets/json/alumnos.json")
         .then(response => response.json())
         .then(data => {
-            window.alumnosData = data.alumnos;
+            alumnosData = data.alumnos;
             
             cargarSelects();
             selectFecha();
             selectOrdenar();
-            manejarFiltros();
+            manejarFiltros(alumnosData, filteredData);
             actualizarInputs(); 
             
-            mostrarDatos({ alumnos: window.alumnosData });
+            mostrarDatos({ alumnos: alumnosData });
         })
         .catch(error => console.error("Error al cargar el Json", error));
 });
@@ -56,60 +60,59 @@ function selectOrdenar() {
     });
 }
 
-function manejarFiltros() {
-    document.querySelectorAll("select").forEach(select => {
-        select.addEventListener("change", () => actualizarInputs());
+function manejarFiltros(alumnosData, filteredData) {
+    document.querySelector("#filtrar-btn").addEventListener("click", () => {
+        filteredData = filtrarDatos([...alumnosData]); 
+        mostrarDatos({ alumnos: filteredData });
     });
 
-    document.querySelector("#filtrar-btn").addEventListener("click", () => {
-        const filtered = filtrarDatos(window.alumnosData);
-        const ordered = ordenarDatos(filtered);
+    document.querySelector("#ordenar-btn").addEventListener("click", () => {
+        const dataToOrder = filteredData.length ? filteredData : [...alumnosData];
+        const ordered = ordenarDatos(dataToOrder);
         mostrarDatos({ alumnos: ordered });
     });
 }
 
+
 function actualizarInputs() {
     const filterGroups = document.querySelectorAll(".filter-group");
+    
+    //console.log("filterGroups encontrados:", filterGroups.length); 
     
     filterGroups.forEach(group => {
         const select = group.querySelector("select");
         const inputs = group.querySelectorAll("input");
+
+        //console.log("Select encontrado:", select);
+        //console.log("Inputs encontrados:", inputs.length, inputs);
+
+        //No tengo input en el select de ordenar 
+        if (inputs.length === 0) return;
+
         const selectValue = select.value;
-        
-        inputs.forEach(input => {
-            input.disabled = false;
-            input.classList.remove("disabled");
-            input.value = "";
-        });
-        
+
+
         if (selectValue === "está_vacío" || selectValue === "está_relleno") {
-            inputs.forEach(input => {
-                input.disabled = true;
-                input.classList.add("disabled");
-            });
+            inputs.forEach(input => input.disabled = true);
         } else if (selectValue === "comprendido_entre") {
             inputs[0].disabled = false;
             inputs[1].disabled = false;
-            inputs[0].classList.remove("disabled");
-            inputs[1].classList.remove("disabled");
         } else {
             inputs[0].disabled = false;
-            inputs[0].classList.remove("disabled");
-            if (inputs[1]) {
-                inputs[1].disabled = true;
-                inputs[1].classList.add("disabled");
-            }
+            if (inputs[1]) inputs[1].disabled = true;
         }
     });
 }
 
 function filtrarDatos(data) {
     return data.filter(alumno => {
-        return filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1", "#nombre-input2") &&
+        return (
+            filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1", "#nombre-input2") &&
             filtrarCampo(alumno.apellido1, "#apellido1-select", "#apellido1-input1", "#apellido1-input2") &&
             filtrarCampo(alumno.apellido2, "#apellido2-select", "#apellido2-input1", "#apellido2-input2") &&
             filtrarFecha(alumno.fechaNacimiento, "#fechaNacimiento-select", "#fechaNacimiento-input1", "#fechaNacimiento-input2") &&
-            filtrarCampo(alumno.curso, "#curso-select", "#curso-input1", "#curso-input2");
+            filtrarCampo(alumno.curso, "#curso-select", "#curso-input1", "#curso-input2")
+        );
     });
 }
 
@@ -187,7 +190,7 @@ function ordenarDatos(data) {
     
     if (!ordenarValue || ordenarValue === "ninguno") return [...data];
     
-    return [...data].sort((a, b) => {
+    const resultado = [...data].sort((a, b) => {
         switch (ordenarValue) {
             case "nombre_a-z":
                 return (a.nombre || "").localeCompare(b.nombre || "");
@@ -213,6 +216,8 @@ function ordenarDatos(data) {
                 return 0;
         }
     });
+    //console.log("Datos después de ordenar:", resultado.length, resultado);
+    return resultado;
 }
 
 function mostrarDatos(data) {
