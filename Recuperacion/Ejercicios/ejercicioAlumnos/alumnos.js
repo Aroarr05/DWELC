@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
     let alumnosData = [];
     let filteredData = [];
 
@@ -11,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cargarSelects();
             selectFecha();
             selectOrdenar();
-            manejarFiltros(alumnosData, filteredData);
+            manejarFiltros();
             actualizarInputs(); 
             
             mostrarDatos({ alumnos: alumnosData });
@@ -60,7 +59,11 @@ function selectOrdenar() {
     });
 }
 
-function manejarFiltros(alumnosData, filteredData) {
+function manejarFiltros() {
+    document.querySelectorAll("select").forEach(select => {
+        select.addEventListener("change", () => actualizarInputs());
+    });
+
     document.querySelector("#filtrar-btn").addEventListener("click", () => {
         filteredData = filtrarDatos([...alumnosData]); 
         mostrarDatos({ alumnos: filteredData });
