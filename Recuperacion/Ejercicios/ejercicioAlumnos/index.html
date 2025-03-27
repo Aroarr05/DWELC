@@ -1,16 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/estilos.css">
     <title>Alumnos</title>
 </head>
 <body>
-    <h1>Alumnos</h1>
-    <form>
-        <div class="contenedor">
+    <div class="container">
+        <h1>Alumnos</h1>
+        
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>Nombre:</label>
+                <select id="nombre-select"></select>
+                <input type="text" id="nombre-input1">
+                <input type="text" id="nombre-input2" disabled>
+            </div>
+            
+            <div class="filter-group">
+                <label>1º Apellido:</label>
+                <select id="apellido1-select"></select>
+                <input type="text" id="apellido1-input1">
+                <input type="text" id="apellido1-input2" disabled>
+            </div>
+            
+            <div class="filter-group">
+                <label>2º Apellido:</label>
+                <select id="apellido2-select"></select>
+                <input type="text" id="apellido2-input1">
+                <input type="text" id="apellido2-input2" disabled>
+            </div>
+            
+            <div class="filter-group">
+                <label>Fecha Nac.:</label>
+                <select id="fechaNacimiento-select"></select>
+                <input type="date" id="fechaNacimiento-input1">
+                <input type="date" id="fechaNacimiento-input2" disabled>
+            </div>
+            
+            <div class="filter-group">
+                <label>Curso:</label>
+                <select id="curso-select"></select>
+                <input type="text" id="curso-input1">
+                <input type="text" id="curso-input2" disabled>
+            </div>
+
+            
+            <div class="filter-group">
+                <label>Ordenar por:</label>
+                <select id="ordenar-select"></select>
+            </div>
+            
+            <button type="button" id="ordenar-btn">Ordenar</button>
+            <button type="button" id="filtrar-btn">Filtrar</button>
             
         </div>
-    </form>
+        
+        <h2>Datos de los Alumnos</h2>
+        <table id="alumnos-list">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>1º Apellido</th>
+                    <th>2º Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Curso</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="total"></div>
+    </div>
+
+    <script src="./alumnos.js"></script>
 </body>
 </html>
