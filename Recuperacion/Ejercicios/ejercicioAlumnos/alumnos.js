@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cargarSelects();
             selectFecha();
             selectOrdenar();
-            manejarFiltros();
+            manejarFiltros(alumnosData,filteredData);
             actualizarInputs(); 
             
             mostrarDatos({ alumnos: alumnosData });
@@ -59,7 +59,7 @@ function selectOrdenar() {
     });
 }
 
-function manejarFiltros() {
+function manejarFiltros(alumnosData, filteredData) {
     document.querySelectorAll("select").forEach(select => {
         select.addEventListener("change", () => actualizarInputs());
     });
