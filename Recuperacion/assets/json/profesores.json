@@ -1,0 +1,24 @@
+{
+    "profesores": [
+        {"nombre": "Prof-Aroa", "apellido1": "Rivas", "apellido2": "Gómez", "fechaNacimiento": "04/06/2003", "curso": "2daw"},
+        {"nombre": "Prof-Carlos", "apellido1": "", "apellido2": "", "fechaNacimiento": "12/09/2002", "curso": "1daw"},
+        {"nombre": "", "apellido1": "Martínez", "apellido2": "López", "fechaNacimiento": "23/11/2004", "curso": "2daw"},
+        {"nombre": "Prof-Laura", "apellido1": "González", "apellido2": "Pérez", "fechaNacimiento": "", "curso": "1daw"},
+        {"nombre": "Prof-Javier", "apellido1": "López", "apellido2": "Díaz", "fechaNacimiento": "15/07/2001", "curso": ""},
+        {"nombre": "Prof-María", "apellido1": "", "apellido2": "Sánchez", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "", "apellido1": "Fernández", "apellido2": "Ruiz", "fechaNacimiento": "30/03/2003", "curso": "1daw"},
+        {"nombre": "Prof-Adrián", "apellido1": "Pérez", "apellido2": "Ortega", "fechaNacimiento": "08/05/2002", "curso": ""},
+        {"nombre": "Prof-Beatriz", "apellido1": "Sánchez", "apellido2": "", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "", "apellido1": "Hernández", "apellido2": "", "fechaNacimiento": "19/08/2003", "curso": "1daw"},
+        {"nombre": "Prof-David", "apellido1": "", "apellido2": "Torres", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "Prof-Eva", "apellido1": "Ruiz", "apellido2": "Mendoza", "fechaNacimiento": "06/12/2004", "curso": ""},
+        {"nombre": "", "apellido1": "Ortega", "apellido2": "García", "fechaNacimiento": "10/02/2001", "curso": "1daw"},
+        {"nombre": "Prof-Hugo", "apellido1": "Díaz", "apellido2": "", "fechaNacimiento": "", "curso": "2daw"},
+        {"nombre": "Prof-Irene", "apellido1": "", "apellido2": "Muñoz", "fechaNacimiento": "27/04/2002", "curso": "1daw"},
+        {"nombre": "", "apellido1": "Navarro", "apellido2": "Romero", "fechaNacimiento": "31/10/2003", "curso": "2daw"},
+        {"nombre": "Prof-Jorge", "apellido1": "Vega", "apellido2": "Jiménez", "fechaNacimiento": "", "curso": ""},
+        {"nombre": "Prof-Lucía", "apellido1": "Torres", "apellido2": "Castro", "fechaNacimiento": "03/07/2004", "curso": "1daw"},
+        {"nombre": "Prof-Manuel", "apellido1": "", "apellido2": "", "fechaNacimiento": "14/09/2002", "curso": "2daw"},
+        {"nombre": "", "apellido1": "Mendoza", "apellido2": "", "fechaNacimiento": "21/11/2001", "curso": "1daw"}
+    ]
+}

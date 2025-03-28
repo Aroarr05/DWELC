@@ -1,22 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let alumnosData = [];
+    let ListData = [];
     let filteredData = [];
 
-    fetch("../../assets/json/alumnos.json")
-        .then(response => response.json())
-        .then(data => {
-            alumnosData = data.alumnos;
-            
-            cargarSelects();
-            selectFecha();
-            selectOrdenar();
-            manejarFiltros(alumnosData,filteredData);
-            actualizarInputs(); 
-            
-            mostrarDatos({ alumnos: alumnosData });
-        })
-        .catch(error => console.error("Error al cargar el Json", error));
+    alumnosData = cargarDatosAlu();
+    renderDatos(alumnosData);
+    
+    profesoresData = cargarDatosProf();
+    renderDatos(profesoresData);
+    
+    //cargar los select...
+    cargarSelects();
+    cargarSelectFecha();
+    cargarSelectOrdenar();
+
+    manejarFiltros(ListData,filteredData);
+    //actualizarInputs(); 
+    mostrarDatos(ListData);
+        
 });
+
+function cargarDatosAlu(){
+    urlAlum = "../../assets/json/alumnos.json";
+    ListaAlu = cargarUrl(urlAlum);
+    return ListAlu.alumnos;
+}
+
+function cargarDatosProf(){
+    urlProf = "../../assets/json/profesores.json";
+    ListProf = cargarUrl(urlProf);
+    return ListProf.profesores;
+}
+
+function cargarDatos(datosJson){
+fetch (datosJson)
+    .then(response => response.json())
+    /*.then(data => {
+        ListData = data.alumnos || data.profesores;
+
+        mostrarDatos(ListData);
+    })*/
+    .catch(error => console.error("Error al cargar el Json", error));
+}
 
 function cargarSelects() {
     const opciones = ["Comenzar por", "Terminar en", "Contiene", "Igual a", "Está vacío", "Está relleno"];
@@ -24,16 +48,17 @@ function cargarSelects() {
 
     selects.forEach(select => {
         select.innerHTML = ""; 
-        opciones.forEach(opcion => {
+        opciones.forEach((opcion, i) => {
             let opc = document.createElement("option");
-            opc.value = opcion.toLowerCase().replace(" ", "_");
+            //opc.value = opcion.toLowerCase().replace(" ", "_");
+            opc.value = i;
             opc.textContent = opcion;
             select.appendChild(opc);
         });
     });
 }
 
-function selectFecha() {
+function cargarSelectFecha() {
     const opciones = ["Igual a", "Comprendido entre", "Posterior a", "Anterior a", "Está vacío", "Está relleno"];
     const fechaSelect = document.querySelector("#fechaNacimiento-select");
 
@@ -46,7 +71,7 @@ function selectFecha() {
     });
 }
 
-function selectOrdenar() {
+function cargarSelectOrdenar() {
     const opciones = ["Ninguno", "Nombre (A-Z)", "Nombre (Z-A)", "Apellido (A-Z)", "Apellido (Z-A)", "Curso (A-Z)", "Curso (Z-A)", "Fecha (Antiguas)", "Fecha (Recientes)"];
     const ordenarSelect = document.querySelector("#ordenar-select");
 
@@ -59,18 +84,18 @@ function selectOrdenar() {
     });
 }
 
-function manejarFiltros(alumnosData, filteredData) {
+function manejarFiltros(ListData, filteredData) {
     document.querySelectorAll("select").forEach(select => {
         select.addEventListener("change", () => actualizarInputs());
     });
 
     document.querySelector("#filtrar-btn").addEventListener("click", () => {
-        filteredData = filtrarDatos([...alumnosData]); 
+        filteredData = filtrarDatos([...ListData]); 
         mostrarDatos({ alumnos: filteredData });
     });
 
     document.querySelector("#ordenar-btn").addEventListener("click", () => {
-        const dataToOrder = filteredData.length ? filteredData : [...alumnosData];
+        const dataToOrder = filteredData.length ? filteredData : [...ListData];
         const ordered = ordenarDatos(dataToOrder);
         mostrarDatos({ alumnos: ordered });
     });
@@ -80,16 +105,10 @@ function manejarFiltros(alumnosData, filteredData) {
 function actualizarInputs() {
     const filterGroups = document.querySelectorAll(".filter-group");
     
-    //console.log("filterGroups encontrados:", filterGroups.length); 
-    
     filterGroups.forEach(group => {
         const select = group.querySelector("select");
         const inputs = group.querySelectorAll("input");
 
-        //console.log("Select encontrado:", select);
-        //console.log("Inputs encontrados:", inputs.length, inputs);
-
-        //No tengo input en el select de ordenar 
         if (inputs.length === 0) return;
 
         const selectValue = select.value;
@@ -110,19 +129,18 @@ function actualizarInputs() {
 function filtrarDatos(data) {
     return data.filter(alumno => {
         return (
-            filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1", "#nombre-input2") &&
-            filtrarCampo(alumno.apellido1, "#apellido1-select", "#apellido1-input1", "#apellido1-input2") &&
-            filtrarCampo(alumno.apellido2, "#apellido2-select", "#apellido2-input1", "#apellido2-input2") &&
+            filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1") &&
+            filtrarCampo(alumno.apellido1, "#apellido1-select", "#apellido1-input1") &&
+            filtrarCampo(alumno.apellido2, "#apellido2-select", "#apellido2-input1") &&
             filtrarFecha(alumno.fechaNacimiento, "#fechaNacimiento-select", "#fechaNacimiento-input1", "#fechaNacimiento-input2") &&
-            filtrarCampo(alumno.curso, "#curso-select", "#curso-input1", "#curso-input2")
+            filtrarCampo(alumno.curso, "#curso-select", "#curso-input1")
         );
     });
 }
 
-function filtrarCampo(valor, selectId, input1Id, input2Id) {
+function filtrarCampo(valor, selectId, input1Id) {
     const selectValue = document.querySelector(selectId).value;
     const input1 = document.querySelector(input1Id).value.trim().toLowerCase();
-    const input2 = document.querySelector(input2Id) ? document.querySelector(input2Id).value.trim().toLowerCase() : "";
     
     const valorStr = (valor !== null && valor !== undefined) ? valor.toString().toLowerCase() : "";
     
@@ -227,7 +245,7 @@ function mostrarDatos(data) {
     const tbody = document.querySelector("#alumnos-list tbody");
     tbody.innerHTML = "";
     
-    if (data.alumnos.length === 0) {
+    if (data.length === 0) {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
         cell.colSpan = 5;
@@ -236,7 +254,7 @@ function mostrarDatos(data) {
         row.appendChild(cell);
         tbody.appendChild(row);
     } else {
-        data.alumnos.forEach(alumno => {
+        data.forEach(alumno => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${alumno.nombre || "-"}</td>
@@ -248,6 +266,7 @@ function mostrarDatos(data) {
             tbody.appendChild(row);
         });
     }
-    
-    document.querySelector("#total").textContent = `Total de alumnos: ${data.alumnos.length}`;
+    //tengo que quitar el alumnos 
+    document.querySelector("#total").textContent = `Total de alumnos: ${data.length}`;
 }
+// 

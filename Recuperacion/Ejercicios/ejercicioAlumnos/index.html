@@ -8,28 +8,38 @@
 </head>
 <body>
     <div class="container">
-        <h1>Alumnos</h1>
+        <h1>Alumnos/Profesores</h1>
+
+        <div class="lista-datos">
+            <div>
+                <input type="radio" id="alumnos">
+                <label>Alumno</label>
+            </div>
+            <div>
+                <input type="radio" id="Profesores">
+                <label>Profesores</label>
+            </div>
+        </div>
+        
+        <br>
         
         <div class="filter-section">
             <div class="filter-group">
                 <label>Nombre:</label>
                 <select id="nombre-select"></select>
                 <input type="text" id="nombre-input1">
-                <input type="text" id="nombre-input2" disabled>
             </div>
             
             <div class="filter-group">
                 <label>1º Apellido:</label>
                 <select id="apellido1-select"></select>
                 <input type="text" id="apellido1-input1">
-                <input type="text" id="apellido1-input2" disabled>
             </div>
             
             <div class="filter-group">
                 <label>2º Apellido:</label>
                 <select id="apellido2-select"></select>
                 <input type="text" id="apellido2-input1">
-                <input type="text" id="apellido2-input2" disabled>
             </div>
             
             <div class="filter-group">
@@ -43,7 +53,6 @@
                 <label>Curso:</label>
                 <select id="curso-select"></select>
                 <input type="text" id="curso-input1">
-                <input type="text" id="curso-input2" disabled>
             </div>
 
             
