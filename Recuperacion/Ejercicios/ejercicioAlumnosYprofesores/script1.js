@@ -14,13 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
 function cargarYmostrarDatos(url) {
     fetch(url)
     .then(response => response.json())
-    .then(datos => {
-            const lista = datos.alumnos || datos.profesores || [];
-            mostrarDatos(lista);
-        })
-        .catch(error => console.error("Error al cargar los datos:", error));
+    .then(data=> {
+        const lista = data.alumnos || data.profesores || [];
+        ListData = lista; 
+        filteredData = [];
+        mostrarDatos(lista);
+    })
+    .catch(error => console.error("Error al cargar los datos:", error));
 }
-    
+ 
 function manejarChecked(){
         
     const elegirAlumnos = document.querySelector("#alumnos");
@@ -49,10 +51,11 @@ function cargarSelects() {
 
     selects.forEach(select => {
         select.innerHTML = ""; 
-        opciones.forEach((opcion, i) => {
+        opciones.forEach(opcion => {
+            //opciones.forEach((opcion, i) => {
             let opc = document.createElement("option");
-            //opc.value = opcion.toLowerCase().replace(" ", "_");
-            opc.value = i;
+            opc.value = opcion.toLowerCase().replace(" ", "_");
+            //opc.value = i;
             opc.textContent = opcion;
             select.appendChild(opc);
         });
@@ -91,17 +94,17 @@ function manejarFiltros(ListData, filteredData) {
     });
 
     document.querySelector("#filtrar-btn").addEventListener("click", () => {
-        filteredData = filtrarDatos([...ListData]); 
-        mostrarDatos({ alumnos: filteredData });
+        console.log("Filtrando datos...");
+        filteredData = filtrarDatos([...ListData]);
+        console.log("Datos filtrados: ", filteredData);  
     });
 
     document.querySelector("#ordenar-btn").addEventListener("click", () => {
         const dataToOrder = filteredData.length ? filteredData : [...ListData];
         const ordered = ordenarDatos(dataToOrder);
-        mostrarDatos({ alumnos: ordered });
+        mostrarDatos(ordered); 
     });
 }
-
 
 function actualizarInputs() {
     const filterGroups = document.querySelectorAll(".filter-group");
@@ -127,7 +130,9 @@ function actualizarInputs() {
 }
 
 function filtrarDatos(data) {
+    console.log("Filtrando datos...");
     return data.filter(alumno => {
+        console.log("Filtrando alumno:", alumno);
         return (
             filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1") &&
             filtrarCampo(alumno.apellido1, "#apellido1-select", "#apellido1-input1") &&
@@ -143,6 +148,7 @@ function filtrarCampo(valor, selectId, input1Id) {
     const input1 = document.querySelector(input1Id).value.trim().toLowerCase();
     
     const valorStr = (valor !== null && valor !== undefined) ? valor.toString().toLowerCase() : "";
+    console.log(`Filtrando campo: ${valorStr}, con valor del input: ${input1} y select: ${selectValue}`);
     
     switch (selectValue) {
         case "comenzar_por": 
@@ -249,7 +255,7 @@ function mostrarDatos(data) {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
         cell.colSpan = 5;
-        cell.textContent = "No se encontraron alumnos que coincidan con la búsqueda";
+        cell.textContent = "No se encontraron los datos que coincidan con la búsqueda";
         cell.style.textAlign = "center";
         row.appendChild(cell);
         tbody.appendChild(row);
@@ -266,5 +272,5 @@ function mostrarDatos(data) {
             tbody.appendChild(row);
         });
     }
-    document.querySelector("#total").textContent = `Total de alumnos: ${data.length}`;
+    document.querySelector("#total").textContent = `Total: ${data.length}`;
 }
