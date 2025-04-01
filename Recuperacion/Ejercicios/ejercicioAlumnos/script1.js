@@ -2,44 +2,45 @@ document.addEventListener("DOMContentLoaded", () => {
     let ListData = [];
     let filteredData = [];
 
-    alumnosData = cargarDatosAlu();
-    renderDatos(alumnosData);
-    
-    profesoresData = cargarDatosProf();
-    renderDatos(profesoresData);
-    
     //cargar los select...
     cargarSelects();
     cargarSelectFecha();
     cargarSelectOrdenar();
-
-    manejarFiltros(ListData,filteredData);
-    //actualizarInputs(); 
-    mostrarDatos(ListData);
-        
+    
+    manejarChecked();
+    manejarFiltros(ListData,filteredData);        
 });
 
-function cargarDatosAlu(){
-    urlAlum = "../../assets/json/alumnos.json";
-    ListaAlu = cargarUrl(urlAlum);
-    return ListAlu.alumnos;
-}
-
-function cargarDatosProf(){
-    urlProf = "../../assets/json/profesores.json";
-    ListProf = cargarUrl(urlProf);
-    return ListProf.profesores;
-}
-
-function cargarDatos(datosJson){
-fetch (datosJson)
+function cargarYmostrarDatos(url) {
+    fetch(url)
     .then(response => response.json())
-    /*.then(data => {
-        ListData = data.alumnos || data.profesores;
+    .then(datos => {
+            const lista = datos.alumnos || datos.profesores || [];
+            mostrarDatos(lista);
+        })
+        .catch(error => console.error("Error al cargar los datos:", error));
+}
+    
+function manejarChecked(){
+        
+    const elegirAlumnos = document.querySelector("#alumnos");
+    const elegirProfesores = document.querySelector("#profesores");
+    
+    elegirAlumnos.addEventListener("change", ()=>{
+       if(elegirAlumnos.checked){elegirProfesores.checked = false;
+        cargarYmostrarDatos("../../assets/json/alumnos.json")
+       } 
+    });
 
-        mostrarDatos(ListData);
-    })*/
-    .catch(error => console.error("Error al cargar el Json", error));
+    elegirProfesores.addEventListener("change", () => {
+        if(elegirProfesores.checked){
+            elegirAlumnos.checked = false;
+            cargarYmostrarDatos("../../assets/json/profesores.json")
+        }
+    });
+    
+    elegirAlumnos.checked = true;
+    cargarYmostrarDatos("../../assets/json/alumnos.json");
 }
 
 function cargarSelects() {
@@ -112,7 +113,6 @@ function actualizarInputs() {
         if (inputs.length === 0) return;
 
         const selectValue = select.value;
-
 
         if (selectValue === "está_vacío" || selectValue === "está_relleno") {
             inputs.forEach(input => input.disabled = true);
@@ -266,7 +266,5 @@ function mostrarDatos(data) {
             tbody.appendChild(row);
         });
     }
-    //tengo que quitar el alumnos 
     document.querySelector("#total").textContent = `Total de alumnos: ${data.length}`;
 }
-// 
