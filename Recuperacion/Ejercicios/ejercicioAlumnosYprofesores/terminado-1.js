@@ -241,11 +241,9 @@ function ordenarDatos(data) {
             case "curso_z-a":
                 return (b.curso || "").localeCompare(a.curso || "");
             case "fecha_antiguas":
-                return new Date(a.fechaNacimiento?.split('/').reverse().join('-') || 0) - 
-                       new Date(b.fechaNacimiento?.split('/').reverse().join('-') || 0);
+                return convertirFecha(a.fechaNacimiento) - convertirFecha(b.fechaNacimiento);
             case "fecha_recientes":
-                return new Date(b.fechaNacimiento?.split('/').reverse().join('-') || 0) - 
-                       new Date(a.fechaNacimiento?.split('/').reverse().join('-') || 0);
+                return convertirFecha(a.fechaNacimiento) - convertirFecha(b.fechaNacimiento);
             default:
                 return 0;
         }

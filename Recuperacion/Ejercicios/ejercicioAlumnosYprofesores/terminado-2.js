@@ -2,31 +2,32 @@ let ListData = [];
 let filteredData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    manejarSelectTipo();
     manejarFiltros();
     manejarOrden();
-
+    manejarSelectDatos();
+    
     document.querySelector(".lista-datos select").value = "Alumnos";
     cargarYmostrarDatos("../../assets/json/alumnos.json");
 });
 
-function manejarSelectTipo() {
+
+function cargarYmostrarDatos(url) {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        ListData = data.alumnos || data.profesores || [];
+        filteredData = [];
+        mostrarDatos(ListData);
+    })
+    .catch(error => console.error("Error al cargar datos:", error));
+}
+
+function manejarSelectDatos() {
     const selectTipo = document.querySelector(".lista-datos select");
     selectTipo.addEventListener("change", () => {
         const url = selectTipo.value === "Alumnos" ? "../../assets/json/alumnos.json" : "../../assets/json/profesores.json";
         cargarYmostrarDatos(url);
     });
-}
-
-function cargarYmostrarDatos(url) {
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            ListData = data.alumnos || data.profesores || [];
-            filteredData = [];
-            mostrarDatos(ListData);
-        })
-        .catch(error => console.error("Error al cargar datos:", error));
 }
 
 function manejarFiltros() {
@@ -130,33 +131,60 @@ function filtrarFecha(fecha) {
 }
 
 function ordenarDatos(data) {
-    const ordenarValue = document.querySelector("#ordenar-select").value.toLowerCase().replace(/ /g, "_");
-    if (!ordenarValue || ordenarValue === "ninguno") return [...data];
+    const ordenarValue = document.querySelector("#ordenar-select").value;
+    
+    if (!ordenarValue || ordenarValue === "Ninguno") return [...data];
     
     return [...data].sort((a, b) => {
         switch (ordenarValue) {
-            case "nombre_a-z": return (a.nombre || "").localeCompare(b.nombre || "");
-            case "nombre_z-a": return (b.nombre || "").localeCompare(a.nombre || "");
-            case "apellido_a-z": return (a.apellido1 || "").localeCompare(b.apellido1 || "");
-            case "apellido_z-a": return (b.apellido1 || "").localeCompare(a.apellido1 || "");
-            case "curso_a-z": return (a.curso || "").localeCompare(b.curso || "");
-            case "curso_z-a": return (b.curso || "").localeCompare(a.curso || "");
-            case "fecha_antiguas": return convertirFecha(a.fechaNacimiento) - convertirFecha(b.fechaNacimiento);
-            case "fecha_recientes": return convertirFecha(b.fechaNacimiento) - convertirFecha(a.fechaNacimiento);
-            default: return 0;
+            case "Nombre (A-Z)":
+                return (a.nombre || "").localeCompare(b.nombre || "");
+            case "Nombre (Z-A)":
+                return (b.nombre || "").localeCompare(a.nombre || "");
+            case "Apellido (A-Z)":
+                return (a.apellido1 || "").localeCompare(b.apellido1 || "") || 
+                       (a.apellido2 || "").localeCompare(b.apellido2 || "");
+            case "Apellido (Z-A)":
+                return (b.apellido1 || "").localeCompare(a.apellido1 || "") || 
+                       (b.apellido2 || "").localeCompare(a.apellido2 || "");
+            case "Curso (A-Z)":
+                return (a.curso || "").localeCompare(b.curso || "");
+            case "Curso (Z-A)":
+                return (b.curso || "").localeCompare(a.curso || "");
+            case "Fecha (Antiguas)":
+                return convertirFecha(a.fechaNacimiento) - convertirFecha(b.fechaNacimiento);
+            case "Fecha (Recientes)":
+                return convertirFecha(b.fechaNacimiento) - convertirFecha(a.fechaNacimiento);
+            default:
+                return 0;
         }
     });
 }
 
 function mostrarDatos(data) {
     const tbody = document.querySelector("#alumnos-list tbody");
-    tbody.innerHTML = data.length ? data.map(item => `
-        <tr>
-            <td>${item.nombre || "-"}</td>
-            <td>${item.apellido1 || "-"}</td>
-            <td>${item.apellido2 || "-"}</td>
-            <td>${item.fechaNacimiento || "-"}</td>
-            <td>${item.curso || "-"}</td>
-        </tr>`).join('') : '<tr><td colspan="5" style="text-align:center">No se encontraron datos</td></tr>';
-    document.querySelector("#total").textContent = `Total: ${data.length}`;
+    tbody.innerHTML = "";
+    
+    if (!data || data.length === 0) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 5;
+        cell.textContent = "No se encontraron los datos que coincidan con la búsqueda";
+        cell.style.textAlign = "center";
+        row.appendChild(cell);
+        tbody.appendChild(row);
+    } else {
+        data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.nombre || "-"}</td>
+                <td>${item.apellido1 || "-"}</td>
+                <td>${item.apellido2 || "-"}</td>
+                <td>${item.fechaNacimiento || "-"}</td>
+                <td>${item.curso || "-"}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+    document.querySelector("#total").textContent = `Total: ${data ? data.length : 0}`;
 }
