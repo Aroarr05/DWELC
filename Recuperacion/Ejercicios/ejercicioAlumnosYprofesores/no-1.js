@@ -1,49 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-    let ListData = [];
-    let filteredData = [];
+    const estado = {
+        ListData: [],
+        filteredData: []
+    };
 
-    //cargar los select...
     cargarSelects();
     cargarSelectFecha();
     cargarSelectOrdenar();
     
     manejarChecked();
-    manejarFiltros(ListData,filteredData);        
+    manejarFiltros(estado);
+    
+    document.querySelector("#alumnos").checked = true;
+    cargarYmostrarDatos("../../assets/json/alumnos.json", estado);
 });
-
-function cargarYmostrarDatos(url) {
-    fetch(url)
-    .then(response => response.json())
-    .then(data=> {
-        const lista = data.alumnos || data.profesores || [];
-        ListData = lista; 
-        filteredData = [];
-        mostrarDatos(lista);
-    })
-    .catch(error => console.error("Error al cargar los datos:", error));
-}
- 
-function manejarChecked(){
-        
-    const elegirAlumnos = document.querySelector("#alumnos");
-    const elegirProfesores = document.querySelector("#profesores");
-    
-    elegirAlumnos.addEventListener("change", ()=>{
-       if(elegirAlumnos.checked){elegirProfesores.checked = false;
-        cargarYmostrarDatos("../../assets/json/alumnos.json")
-       } 
-    });
-
-    elegirProfesores.addEventListener("change", () => {
-        if(elegirProfesores.checked){
-            elegirAlumnos.checked = false;
-            cargarYmostrarDatos("../../assets/json/profesores.json")
-        }
-    });
-    
-    elegirAlumnos.checked = true;
-    cargarYmostrarDatos("../../assets/json/alumnos.json");
-}
 
 function cargarSelects() {
     const opciones = ["Comenzar por", "Terminar en", "Contiene", "Igual a", "Está vacío", "Está relleno"];
@@ -88,128 +58,165 @@ function cargarSelectOrdenar() {
     });
 }
 
-function manejarFiltros(ListData, filteredData) {
+function cargarYmostrarDatos(url, estado) {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        estado.ListData = data.alumnos || data.profesores || [];
+        estado.filteredData = [];
+        console.log("Datos cargados:", estado.ListData);
+        mostrarDatos(estado.ListData);
+    })
+    .catch(error => console.error("Error al cargar los datos:", error));
+}
+
+function manejarChecked(estado) {
+    const elegirAlumnos = document.querySelector("#alumnos");
+    const elegirProfesores = document.querySelector("#profesores");
+    
+    elegirAlumnos.addEventListener("change", () => {
+        if(elegirAlumnos.checked) {
+            elegirProfesores.checked = false;
+            cargarYmostrarDatos("../../assets/json/alumnos.json", estado);
+        }
+    });
+
+    elegirProfesores.addEventListener("change", () => {
+        if(elegirProfesores.checked) {
+            elegirAlumnos.checked = false;
+            cargarYmostrarDatos("../../assets/json/profesores.json", estado);
+        }
+    });
+}
+
+function manejarFiltros(estado) {
     document.querySelectorAll("select").forEach(select => {
-        select.addEventListener("change", () => actualizarInputs());
+        select.addEventListener("change", actualizarInputs);
     });
 
     document.querySelector("#filtrar-btn").addEventListener("click", () => {
-        console.log("Filtrando datos...");
-        filteredData = filtrarDatos([...ListData]);
-        console.log("Datos filtrados: ", filteredData);  
+        estado.filteredData = filtrarDatos([...estado.ListData]);
+        console.log("Datos filtrados:", estado.filteredData);
+        mostrarDatos(estado.filteredData);
     });
 
     document.querySelector("#ordenar-btn").addEventListener("click", () => {
-        const dataToOrder = filteredData.length ? filteredData : [...ListData];
+        const dataToOrder = estado.filteredData.length ? [...estado.filteredData] : [...estado.ListData];
         const ordered = ordenarDatos(dataToOrder);
-        mostrarDatos(ordered); 
+        mostrarDatos(ordered);
     });
 }
 
 function actualizarInputs() {
-    const filterGroups = document.querySelectorAll(".filter-group");
-    
-    filterGroups.forEach(group => {
+    document.querySelectorAll(".filter-group").forEach(group => {
         const select = group.querySelector("select");
         const inputs = group.querySelectorAll("input");
 
-        if (inputs.length === 0) return;
+        if (!inputs.length) return;
 
         const selectValue = select.value;
 
         if (selectValue === "está_vacío" || selectValue === "está_relleno") {
-            inputs.forEach(input => input.disabled = true);
+            inputs.forEach(input => {
+                input.value = "";
+                input.disabled = true;
+            });
         } else if (selectValue === "comprendido_entre") {
             inputs[0].disabled = false;
-            inputs[1].disabled = false;
+            if (inputs[1]) inputs[1].disabled = false;
         } else {
             inputs[0].disabled = false;
-            if (inputs[1]) inputs[1].disabled = true;
+            if (inputs[1]) {
+                inputs[1].value = "";
+                inputs[1].disabled = true;
+            }
         }
     });
 }
 
 function filtrarDatos(data) {
-    console.log("Filtrando datos...");
-    return data.filter(alumno => {
-        console.log("Filtrando alumno:", alumno);
-        return (
-            filtrarCampo(alumno.nombre, "#nombre-select", "#nombre-input1") &&
-            filtrarCampo(alumno.apellido1, "#apellido1-select", "#apellido1-input1") &&
-            filtrarCampo(alumno.apellido2, "#apellido2-select", "#apellido2-input1") &&
-            filtrarFecha(alumno.fechaNacimiento, "#fechaNacimiento-select", "#fechaNacimiento-input1", "#fechaNacimiento-input2") &&
-            filtrarCampo(alumno.curso, "#curso-select", "#curso-input1")
-        );
+    return data.filter(item => {
+        const pasaFiltroNombre = filtrarCampo(item.nombre, "nombre");
+        const pasaFiltroApellido1 = filtrarCampo(item.apellido1, "apellido1");
+        const pasaFiltroApellido2 = filtrarCampo(item.apellido2, "apellido2");
+        const pasaFiltroFecha = filtrarFecha(item.fechaNacimiento);
+        const pasaFiltroCurso = filtrarCampo(item.curso, "curso");
+        
+        return pasaFiltroNombre && pasaFiltroApellido1 && pasaFiltroApellido2 && pasaFiltroFecha && pasaFiltroCurso;
     });
 }
 
-function filtrarCampo(valor, selectId, input1Id) {
-    const selectValue = document.querySelector(selectId).value;
-    const input1 = document.querySelector(input1Id).value.trim().toLowerCase();
+function filtrarCampo(valor, campo) {
+    const select = document.querySelector(`#${campo}-select`);
+    const input = document.querySelector(`#${campo}-input1`);
     
-    const valorStr = (valor !== null && valor !== undefined) ? valor.toString().toLowerCase() : "";
-    console.log(`Filtrando campo: ${valorStr}, con valor del input: ${input1} y select: ${selectValue}`);
+    const selectValue = select.value;
+    const inputValue = input ? input.value.trim().toLowerCase() : "";
+    const valorStr = valor ? valor.toString().toLowerCase() : "";
     
-    switch (selectValue) {
-        case "comenzar_por": 
-            return valorStr.startsWith(input1);
-        case "terminar_en": 
-            return valorStr.endsWith(input1);
-        case "contiene": 
-            return valorStr.includes(input1);
-        case "igual_a": 
-            return valorStr === input1;
-        case "está_vacío": 
-            return valorStr === "";
-        case "está_relleno": 
-            return valorStr !== "";
-        default: 
+    switch(selectValue) {
+        case "comenzar_por":
+            return inputValue ? valorStr.startsWith(inputValue) : true;
+        case "terminar_en":
+            return inputValue ? valorStr.endsWith(inputValue) : true;
+        case "contiene":
+            return inputValue ? valorStr.includes(inputValue) : true;
+        case "igual_a":
+            return inputValue ? valorStr === inputValue : true;
+        case "está_vacío":
+            return !valorStr;
+        case "está_relleno":
+            return !!valorStr;
+        default:
             return true;
     }
 }
 
-function filtrarFecha(valor, selectId, input1Id, input2Id) {
-    const selectValue = document.querySelector(selectId).value;
-    const input1 = document.querySelector(input1Id).value;
-    const input2 = document.querySelector(input2Id) ? document.querySelector(input2Id).value : "";
+function filtrarFecha(fecha) {
+    const select = document.querySelector("#fechaNacimiento-select");
+    const input1 = document.querySelector("#fechaNacimiento-input1");
+    const input2 = document.querySelector("#fechaNacimiento-input2");
     
-    if (!valor) {
+    const selectValue = select.value;
+    
+    if (!fecha) {
         return selectValue === "está_vacío";
     }
     
     if (selectValue === "está_relleno") {
-        return valor !== "";
-    }
-    
-    if (!input1 && selectValue !== "está_vacío" && selectValue !== "está_relleno") {
         return true;
     }
     
     try {
-        const [day, month, year] = valor.split('/');
-        const dateValor = new Date(`${year}-${month}-${day}`);
-        const date1 = new Date(input1);
-        const date2 = input2 ? new Date(input2) : null;
+        const fechaItem = convertirFecha(fecha);
+        if (!fechaItem) return false;
         
-        if (isNaN(dateValor.getTime())) return false;
+        const fechaInput1 = input1.value ? new Date(input1.value) : null;
         
-        switch (selectValue) {
+        switch(selectValue) {
             case "igual_a":
-                return dateValor.toDateString() === date1.toDateString();
+                return fechaInput1 ? fechaItem.toDateString() === fechaInput1.toDateString() : true;
             case "posterior_a":
-                return dateValor > date1;
+                return fechaInput1 ? fechaItem > fechaInput1 : true;
             case "anterior_a":
-                return dateValor < date1;
+                return fechaInput1 ? fechaItem < fechaInput1 : true;
             case "comprendido_entre":
-                if (!date2 || isNaN(date2.getTime())) return false;
-                return dateValor >= date1 && dateValor <= date2;
+                const fechaInput2 = input2.value ? new Date(input2.value) : null;
+                return fechaInput1 && fechaInput2 ? 
+                    fechaItem >= fechaInput1 && fechaItem <= fechaInput2 : true;
             default:
                 return true;
         }
-    } catch (e) {
-        console.error("Error al procesar fechas:", e);
+    } catch(e) {
+        console.error("Error filtrando fecha:", e);
         return false;
     }
+}
+
+function convertirFecha(fechaStr) {
+    if (!fechaStr) return null;
+    const [day, month, year] = fechaStr.split('/');
+    return new Date(`${year}-${month}-${day}`);
 }
 
 function ordenarDatos(data) {
@@ -251,7 +258,7 @@ function mostrarDatos(data) {
     const tbody = document.querySelector("#alumnos-list tbody");
     tbody.innerHTML = "";
     
-    if (data.length === 0) {
+    if (!data || data.length === 0) {
         const row = document.createElement("tr");
         const cell = document.createElement("td");
         cell.colSpan = 5;
@@ -260,17 +267,17 @@ function mostrarDatos(data) {
         row.appendChild(cell);
         tbody.appendChild(row);
     } else {
-        data.forEach(alumno => {
+        data.forEach(item => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td>${alumno.nombre || "-"}</td>
-                <td>${alumno.apellido1 || "-"}</td>
-                <td>${alumno.apellido2 || "-"}</td>
-                <td>${alumno.fechaNacimiento || "-"}</td>
-                <td>${alumno.curso || "-"}</td>
+                <td>${item.nombre || "-"}</td>
+                <td>${item.apellido1 || "-"}</td>
+                <td>${item.apellido2 || "-"}</td>
+                <td>${item.fechaNacimiento || "-"}</td>
+                <td>${item.curso || "-"}</td>
             `;
             tbody.appendChild(row);
         });
     }
-    document.querySelector("#total").textContent = `Total: ${data.length}`;
+    document.querySelector("#total").textContent = `Total: ${data ? data.length : 0}`;
 }
