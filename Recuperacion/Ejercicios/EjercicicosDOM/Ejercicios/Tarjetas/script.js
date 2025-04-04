@@ -3,6 +3,8 @@
 
 // una funcion para manejar el evento y que no se repita 
 
+// controlar en el drop no mover las tajetas para atras o para alante ya que no tiene sentido
+
 function createTask(title) {
     //Construyo la tarea a añadir
     let task = document.createElement("div");
@@ -103,4 +105,7 @@ tasks_list.forEach( lista => {
         lista.appendChild(daggedTask);
     })
 
+    // drop donde no s epueda soltar
+    // drop 
+    // drop ultimo con mensaje que diga que si la tarea esta hecha que no se haga no se puede mover
 });
