@@ -5,7 +5,7 @@ function createTask(title) {
 
     let texto = document.createTextNode(title);
     let x = document.createTextNode("X");
-
+ 
     titulo.append(texto);
     close.append(x);
 
@@ -75,3 +75,11 @@ tasksList.forEach((lista) => {
 
     lista.addEventListener("drop", drop);
 });
+
+let tasks = document.querySelectorAll(".task");
+
+    tasks.forEach((task) => {
+        task.draggable = true;
+        task.addEventListener("dragstart", manejarEvento);
+    });
+    
