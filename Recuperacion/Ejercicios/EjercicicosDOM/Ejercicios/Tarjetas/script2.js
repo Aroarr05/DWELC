@@ -52,7 +52,6 @@ function drop(event) {
     if (principalColumn.classList.contains("inprocess") && targetaColumn.classList.contains("done")) {
         targetaColumn.querySelector(".tasks").appendChild(daggedTask);
     }
-
 }
 
 document.querySelector(".btn").addEventListener("click", event => {
@@ -69,17 +68,17 @@ document.querySelector(".btn").addEventListener("click", event => {
 let tasksList = document.querySelectorAll(".tasks");
 
 tasksList.forEach((lista) => {
-    lista.addEventListener("dragover", function (event) {
+    lista.addEventListener("dragover", 
+    function (event) {
         event.preventDefault(); 
     });
-
     lista.addEventListener("drop", drop);
 });
 
 let tasks = document.querySelectorAll(".task");
 
-    tasks.forEach((task) => {
-        task.draggable = true;
-        task.addEventListener("dragstart", manejarEvento);
-    });
+tasks.forEach((task) => {
+    task.draggable = true;
+    task.addEventListener("dragstart", manejarEvento);
+});
     
