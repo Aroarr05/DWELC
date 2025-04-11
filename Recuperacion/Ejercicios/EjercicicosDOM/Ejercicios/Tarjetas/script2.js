@@ -1,3 +1,25 @@
+document.addEventListener("DOMContentLoaded",()=>{
+
+    document.querySelector(".btn").addEventListener("click", manejarTareas);
+
+    let tasksList = document.querySelectorAll(".tasks");
+    
+    tasksList.forEach((lista) => {
+        lista.addEventListener("dragover", 
+        function (event) {
+            event.preventDefault(); 
+        });
+        lista.addEventListener("drop", drop);
+    });
+    
+    let tasks = document.querySelectorAll(".task");
+    
+    tasks.forEach((task) => {
+        task.draggable = true;
+        task.addEventListener("dragstart", manejarEvento);
+    });
+})
+
 function createTask(title) {
     let task = document.createElement("div");
     let titulo = document.createElement("p");
@@ -8,16 +30,16 @@ function createTask(title) {
  
     titulo.append(texto);
     close.append(x);
-
+    
     close.addEventListener("click", deleteTask);
-
+    
     task.classList.add("task");
     task.append(titulo);
     task.append(close);
     task.draggable = true;
-
+    
     task.addEventListener("dragstart", manejarEvento);
-
+    
     return task;
 }
 
@@ -27,6 +49,17 @@ function manejarEvento(event) {
     daggedTask = event.target;
     const taskTitle = event.target.children[0].textContent;
     event.dataTransfer.setData("name", taskTitle);
+}
+
+function manejarTareas (event){
+    let taskName = document.querySelector("input").value;
+
+    if (!taskName) {
+        alert("No hay nada que añadir");
+    } else {
+        addTaskToList(taskName);
+        document.querySelector("input").value = "";
+    }
 }
 
 function deleteTask(event) {
@@ -53,32 +86,3 @@ function drop(event) {
         targetaColumn.querySelector(".tasks").appendChild(daggedTask);
     }
 }
-
-document.querySelector(".btn").addEventListener("click", event => {
-    let taskName = document.querySelector("input").value;
-
-    if (!taskName) {
-        alert("No hay nada que añadir");
-    } else {
-        addTaskToList(taskName);
-        document.querySelector("input").value = "";
-    }
-});
-
-let tasksList = document.querySelectorAll(".tasks");
-
-tasksList.forEach((lista) => {
-    lista.addEventListener("dragover", 
-    function (event) {
-        event.preventDefault(); 
-    });
-    lista.addEventListener("drop", drop);
-});
-
-let tasks = document.querySelectorAll(".task");
-
-tasks.forEach((task) => {
-    task.draggable = true;
-    task.addEventListener("dragstart", manejarEvento);
-});
-    
