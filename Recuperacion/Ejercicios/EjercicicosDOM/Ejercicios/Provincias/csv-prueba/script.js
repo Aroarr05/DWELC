@@ -1,14 +1,17 @@
 let datosCentros = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    cargarDatos("../../../../../assets/json/da_centros.csv");
+document.addEventListener("DOMContentLoaded",  () => {
+    datosCentros = cargarDatos("../../../../../assets/json/da_centros.csv");
+
+    console.log("fffff",datosCentros)
+    mostrarCentros(datosCentros);
 
     const buscarInput = document.querySelector("#buscar-input");
     buscarInput.addEventListener("input", () => {
         const municipio = buscarInput.value;
         if (municipio) {
-            const centrosFiltrados = filtrarPorMunicipio(municipio);
-            mostrarCentros(centrosFiltrados);
+          //  const centrosFiltrados = filtrarPorMunicipio(municipio);
+            mostrarCentros(datosCentros);
         } else {
             mostrarCentros([]);  
         }
@@ -26,12 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function cargarDatos(url) {
-    fetch(url)
+ function cargarDatos(url) {
+     fetch(url)
         .then(response => response.text())  
         .then(data => {
-            datosCentros = procesarCSV(data); 
-            console.log(datosCentros); 
+                return procesarCSV(data) 
         })
         .catch(error => console.error("Error al cargar datos:", error));
 }
@@ -39,7 +41,7 @@ function cargarDatos(url) {
 function procesarCSV(data) {
     // Se divide en filas
     const filas = data.split('\n');  
-    const listaCentros = [];
+    const listaCentrosMin = [];
 
     // Saltar el encabezado
     for (let i = 1; i < filas.length; i++) {
@@ -51,10 +53,11 @@ function procesarCSV(data) {
                 D_ESPECIFICA: columnas[3], 
                 D_MUNICIPIO: columnas[8]  
             };
-            listaCentros.push(centro);  
+            listaCentrosMin.push(centro);  
         }
     }
-    return listaCentros;  
+    console.log(listaCentrosMin);
+    return listaCentrosMin;  
 }
 
 function filtrarPorMunicipio(municipio) {
@@ -75,27 +78,34 @@ document.querySelector("#buscar-btn").addEventListener("click", () => {
     }
 });
 
-
 function mostrarCentros(centros) {
     const centrosSelect = document.querySelector("#centros-select");
+
+    const centrosdiv = document.querySelector("#centros-div");
+     console.log("aqui", centros)
 
     centrosSelect.innerHTML = "";
 
     if (centros.length === 0) {
-        const option = document.createElement("option");
-        option.textContent = "No se encontraron centros";
-        centrosSelect.appendChild(option);
+        //const option = document.createElement("option");
+       // option.textContent = "No se encontraron centros";
+      //  centrosSelect.appendChild(option);
+        console.log("no hay"); 
+
     } else {
         centros.forEach(centro => {
             console.log(centro.D_DENOMINA); 
-            const option = document.createElement("option");
-            option.textContent = centro.D_DENOMINA;  
-            option.value = centro.D_DENOMINA;  
-            centrosSelect.appendChild(option);
+         //   const option = document.createElement("option");
+         //   option.textContent = centro.D_DENOMINA;  
+         //   option.value = centro.D_DENOMINA;  
+         //   centrosSelect.appendChild(option);
+
+            centrosdiv.innerHTML+=centro.D_DENOMINA
+
+
         });
     }
 }
-
 
 function mostrarSitio(centro) {
 
