@@ -1,121 +1,58 @@
-let datosCentros = [];
+let datos =[];
 
-document.addEventListener("DOMContentLoaded",  () => {
-    datosCentros = cargarDatos("../../../../../assets/json/da_centros.csv");
+document.addEventListener("DOMContentLoaded",()=>{
+    cargarDatos("../../../../../assets/json/da_centros.csv");
+});
 
-    console.log("fffff",datosCentros)
-    mostrarCentros(datosCentros);
+function cargarDatos(url){
+    fetch(url)
+    .then(response => response.text())
+    .then(data =>{
+        datos = procesarCSV(data)
+        mostrarDatos(datos);
+    })
+    .catch(error => console.error("Error al cargar datos:", error));
+}
 
-    const buscarInput = document.querySelector("#buscar-input");
-    buscarInput.addEventListener("input", () => {
-        const municipio = buscarInput.value;
-        if (municipio) {
-          //  const centrosFiltrados = filtrarPorMunicipio(municipio);
-            mostrarCentros(datosCentros);
-        } else {
-            mostrarCentros([]);  
-        }
-    });
+function procesarCSV(data){
+    const filas = data.split('\n');
+    const listaPeque = [];
 
-    const centrosSelect = document.querySelector("#centros-select");
-    centrosSelect.addEventListener("change", () => {
-        const centroSeleccionado = centrosSelect.value;
-        if (centroSeleccionado) {
-            const centro = datosCentros.find(c => c.D_DENOMINA === centroSeleccionado);
-            if (centro) {
-                mostrarSitio(centro);  
+    for(let i =1; i<filas.length; i++){
+        const columna = filas[i].split(';');
+        if (columna.length >= 8){
+            const MinCSV={
+                D_DENOMINA: columna[2],
+                D_ESPECIFICA: columna[3],
+                D_MUNICIPIO: columna[8]
             }
-        }
-    });
-});
-
- function cargarDatos(url) {
-     fetch(url)
-        .then(response => response.text())  
-        .then(data => {
-                return procesarCSV(data) 
-        })
-        .catch(error => console.error("Error al cargar datos:", error));
-}
-
-function procesarCSV(data) {
-    // Se divide en filas
-    const filas = data.split('\n');  
-    const listaCentrosMin = [];
-
-    // Saltar el encabezado
-    for (let i = 1; i < filas.length; i++) {
-        const columnas = filas[i].split(',');
-
-        if (columnas.length >= 8) {
-            const centro = {
-                D_DENOMINA: columnas[2],  
-                D_ESPECIFICA: columnas[3], 
-                D_MUNICIPIO: columnas[8]  
-            };
-            listaCentrosMin.push(centro);  
+            listaPeque.push(MinCSV);
         }
     }
-    console.log(listaCentrosMin);
-    return listaCentrosMin;  
+    console.log(listaPeque);
+    return listaPeque;
 }
 
-function filtrarPorMunicipio(municipio) {
-    return datosCentros.filter(centro => {
-        const municipioCentro = centro.D_MUNICIPIO ? centro.D_MUNICIPIO.trim().toLowerCase() : '';
-        return municipioCentro.includes(municipio.trim().toLowerCase());
-    });
-}
-
-document.querySelector("#buscar-btn").addEventListener("click", () => {
-    const municipio = document.querySelector("#buscar-input").value;
-    console.log(municipio);
-
-    if (municipio) {
-        const centrosFiltrados = filtrarPorMunicipio(municipio);
-        console.log(centrosFiltrados);
-        mostrarCentros(centrosFiltrados);
-    }
-});
-
-function mostrarCentros(centros) {
-    const centrosSelect = document.querySelector("#centros-select");
-
-    const centrosdiv = document.querySelector("#centros-div");
-     console.log("aqui", centros)
-
-    centrosSelect.innerHTML = "";
-
-    if (centros.length === 0) {
-        //const option = document.createElement("option");
-       // option.textContent = "No se encontraron centros";
-      //  centrosSelect.appendChild(option);
-        console.log("no hay"); 
-
-    } else {
-        centros.forEach(centro => {
-            console.log(centro.D_DENOMINA); 
-         //   const option = document.createElement("option");
-         //   option.textContent = centro.D_DENOMINA;  
-         //   option.value = centro.D_DENOMINA;  
-         //   centrosSelect.appendChild(option);
-
-            centrosdiv.innerHTML+=centro.D_DENOMINA
-
-
+function mostrarDatos(datos){
+    const tbody = document.querySelector("#list tbody");
+    tbody.innerHTML= "";
+    if (!datos || datos.length === 0){
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan=3;
+        cell.textContent="No se encontraron los datos."
+        cell.style.textAlign = "center";
+        row.appendChild(cell);
+        tbody.appendChild(row);
+    } else{
+        datos.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML=`
+            <td>${item.D_DENOMINA}</td>
+            <td>${item.D_ESPECIFICA}</td>
+            <td>${item.D_MUNICIPIO}</td>
+            `;
+            tbody.appendChild(row);
         });
-    }
-}
-
-function mostrarSitio(centro) {
-
-    const sitioDiv = document.querySelector("#ensenanza-select");
-
-    sitioDiv.innerHTML = "";
-
-    if (centro && centro.D_ESPECIFICA) {
-        sitioDiv.textContent = `Descripción específica: ${centro.D_ESPECIFICA}`;
-    } else {
-        sitioDiv.textContent = "No se encontró una descripción específica.";
     }
 }
