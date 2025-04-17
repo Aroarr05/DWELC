@@ -3,40 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../../assets/css/matricula.css">
     <title>Matricula</title>
 </head>
 <body>
-    <div class="container">
-        <h1>DATOS DE LA MARICULA:</h1>
-        <p>Centro docente en el que se matricula:</p>
-        <hr>
-        <div class="group-from">
-            <label>Comunidades:</label>
-            <select class="comunidad-select">
-                <option>Selecciona una localidad...</option>
-            </select>
-        </div>
-        <div class="group-from">
-            <label>Municipio:</label>
-            <select class="municipio-select">
-                <option>Selecciona una localidad...</option>
-            </select>
-        </div>
-        <div class="group-from">
-            <label>Localidad:</label>
-            <select class="localidad-select">
-                <option>Selecciona una localidad...</option>
-            </select>
+    <div class="contenedor">
+        <div class="matricula">
+            <h1>Matricula:</h1>
+            <h2>DATOS DE LA MARICULA</h2>
+            <hr>
+            <p>Centro docente en el que se matricula:</p>
+            <div class="group-from">
+                <label>Comunidades:</label>
+                <select id="comunidad-selectJson">
+                    <option>Selecciona una localidad...</option>
+                </select>
+         
+                <label>Provincias:</label>
+                <select id="provincia-selectJson">
+                    <option>Selecciona una localidad...</option>
+                </select>
+                
+                <label>Municipio:</label>
+                <select id="municipio-selectJson">
+                    <option>Selecciona una localidad...</option>
+                </select>
+            </div>
+
+            <hr>
+
+            <div class="group-from">
+                <label>Municipio:</label>
+                <select id="municipio-selectCsv">
+                    <option>Selecciona una localidad...</option>
+                </select>
+
+                <label>Enseñanzas:</label>
+                <select id="ensenanza-select"></select>
+      
+                <label>Curso</label>
+                <select id="curso-select"></select>
+            </div>
+
         </div>
 
-        <div class="group-from">
-            <label>Enseñanzas:</label>
-            <select class="ensenanza-select"></select>
-        </div>
+        <div class="autorizar">
+            <h2>PERSONAS AUTORIZADAS PARA RECOGER A SU HIJO/A DURANTE EL CURSO 2024/2025</h2>
+            <hr>
+            <p>Las personas que a continuación relaciona podrían recoger a su hijo/a durante el curso 2020/2021 de
+                cualquier servicio del centro:</p>
+            
+            <div class="d-flex justify-content-end mb-4">
+                <button type="submit" id="add-person" class="btn btn-success">+</button>
+                <button type="button" id="remove-person" class="btn btn-danger ml-2">-</button>
+            </div>
+                
+            <h2>1ª Persona Autorizada:</h2>
 
-        <div class="group-from">
-            <label>Curso</label>
-            <select class="curso-select"></select>
+            <div class="group-from">
+
+                <label>Nombre:</label>
+                <input type="text" id="nombre">
+
+                <label>Primer Apellido:</label>
+                <input type="text" id="primer-apellido">
+
+                <label>Segundo Apellido:</label>
+                <input type="text" id="segundo-apellido">
+
+                <label>Tipo de documentación:</label>
+                <select id="tipo-documentacion">
+                    <option value="">Tipo de documentación</option>
+                    <option value="nie">NIE</option>
+                    <option value="nif">NIF</option>
+                    <option value="pasaporte">Pasaporte</option>
+                </select>
+
+                <label>NIF/NIE/Pasaporte:</label>
+                <input type="text" id="documento">
+
+                <label>Teléfono:</label>
+                <input type="text" id="telefono">
+            </div>
         </div>
     </div>
 
