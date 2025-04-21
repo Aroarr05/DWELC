@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#comunidad-selectJson").addEventListener("change",comunidadChange);
     document.querySelector("#provincia-selectJson").addEventListener("change",provinciaChange);
+    
 });
 
 // CARGAR LOS DATOS
@@ -16,6 +17,9 @@ function cargarDatosCsv(url) {
     .then(response => response.text())
     .then(data => {
         datosCsv = procesarCSV(data);
+        llenarSelectMunicipiosCsv();
+        llenarSelectEnsenanza();
+        llenarSelectCurso();
     })
     .catch(error => console.error("Error al cargar el CSV:", error));
 }
@@ -101,14 +105,4 @@ function llenarSelectMunicipiosJson (municipios){
 
 // LLENAR LOS SELECT CON CSV
 
-function llenarSelectMunicipiosCsv (){
-
-}
-
-function llenarSelectEnsenanza (data){
-
-}
-
-function llenarSelectCurso (data){
-
-}
+ 
