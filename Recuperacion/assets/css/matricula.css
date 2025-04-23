@@ -31,6 +31,13 @@ hr {
     margin-top: 20px;
 }
 
+.persona-autorizada{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
 label {
     font-weight: bold;
     margin-top: 10px;
