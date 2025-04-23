@@ -5,10 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarDatosCsv("../../../../../assets/json/da_centros.csv");
     cargarDatosJson("../../../../../assets/json/provincias.json");
 
-    document.querySelector("#comunidad-selectJson").addEventListener("change", comunidadChange);
-    document.querySelector("#provincia-selectJson").addEventListener("change", provinciaChange);
-   
-    document.querySelector("#municipio-selectCsv").addEventListener("change", municipioCsvChange);
+    document.querySelector("#comunidad-selectJson").addEventListener("change",cambiarComunidad);
+    document.querySelector("#provincia-selectJson").addEventListener("change", cambiarProvincia);
+    document.querySelector("#municipio-selectCsv").addEventListener("change", cambiarMunicipioCsv);
 
     document.querySelector("#add-person").addEventListener("click", anadirautorizacion);
     document.querySelector("#remove-person").addEventListener("click", eliminarautorizacion);
@@ -73,8 +72,8 @@ function filtrarDatosPorMunicipioCsv(municipio) {
     return datosCsv.filter(d => d.D_MUNICIPIO === municipio);
 }
 
-function municipioCsvChange(e) {
-    const municipioSeleccionado = e.target.value;
+function cambiarMunicipioCsv(event) {
+    const municipioSeleccionado = event.target.value;
     const datosFiltrados = filtrarDatosPorMunicipioCsv(municipioSeleccionado);
 
     llenarSelectEnsenanza(datosFiltrados);
@@ -117,8 +116,8 @@ function llenarSelectComunidades(comunidades) {
     });
 }
 
-function comunidadChange(e) {
-    const comunidadCode = e.target.value;
+function cambiarComunidad(event) {
+    const comunidadCode = event.target.value;
     const comunidad = datosJson.find(c => c.code === comunidadCode);
     if (comunidad) {
         llenarSelectProvincias(comunidad.provinces);
@@ -136,8 +135,8 @@ function llenarSelectProvincias(provincias) {
     });
 }
 
-function provinciaChange(e) {
-    const provinciaCode = e.target.value;
+function cambiarProvincia(event) {
+    const provinciaCode = event.target.value;
     const comunidad = datosJson.find(c => c.provinces.some(p => p.code === provinciaCode));
     const provincia = comunidad.provinces.find(p => p.code === provinciaCode);
     if (provincia) {
@@ -150,7 +149,6 @@ function llenarSelectMunicipiosJson(municipios) {
   
     municipios.forEach(municipio => {
         const option = document.createElement('option');
-        option.value = municipio.code;
         option.textContent = municipio.label;
         municipioSelect.appendChild(option);
     });
@@ -162,37 +160,30 @@ let contadorPersonas = 1;
 
 function anadirautorizacion() {
     contadorPersonas++;
-    const contenedor = document.querySelector(".autorizar");
 
+    const contenedor = document.querySelector(".autorizar");
     const titulo = document.createElement("h2");
     titulo.textContent = `${contadorPersonas}ª Persona Autorizada:`;
-    titulo.classList.add("titulo-autorizado");
+    titulo.classList.add("titulo-autorizado"); 
 
-    const baseGrupo = document.querySelector(".persona-autorizada").cloneNode(true);
-    baseGrupo.classList.add("group-from-extra");
+    const formularioClon = document.querySelector(".persona-autorizada").cloneNode(true);
+    formularioClon.classList.add("form-clon"); 
 
-    baseGrupo.querySelectorAll("input").forEach(input => input.value = "");
-    baseGrupo.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-
-    baseGrupo.querySelectorAll("input, select").forEach((element, index) => {
-        const originalId = element.id;
-        if (originalId) {
-            element.id = `${originalId}-${contadorPersonas}`;
-        }
-    });
+    formularioClon.querySelectorAll("input").forEach(input => input.value = "");
+    formularioClon.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
 
     contenedor.appendChild(titulo);
-    contenedor.appendChild(baseGrupo);
+    contenedor.appendChild(formularioClon);
 }
 
 function eliminarautorizacion() {
     if (contadorPersonas > 1) {
         const contenedor = document.querySelector(".autorizar");
-        const titulos = contenedor.querySelectorAll(".titulo-autorizado");
-        const grupos = contenedor.querySelectorAll(".group-from-extra");
+        const titulo = contenedor.querySelectorAll(".titulo-autorizado");
+        const grupos = contenedor.querySelectorAll(".form-clon");
 
-        if (titulos.length > 0) {
-            contenedor.removeChild(titulos[titulos.length - 1]);
+        if (titulo.length > 0) {
+            contenedor.removeChild(titulo[titulo.length - 1]);
         }
 
         if (grupos.length > 0) {
@@ -202,9 +193,10 @@ function eliminarautorizacion() {
     }
 }
 
-// Validaciones 
+// Validacion
+
 function validarAutorizados() {
-    const grupos = document.querySelectorAll(".persona-autorizada, .group-from-extra");
+    const grupos = document.querySelectorAll("#persona-autorizada, #group-from-extra");
     let errores = [];
     
     if (grupos.length < 1) {
@@ -215,10 +207,10 @@ function validarAutorizados() {
     }
 
     grupos.forEach((grupo, index) => {
-        const nombre = grupo.querySelector(`input[id^="nombre"]`).value.trim();
-        const apellido = grupo.querySelector(`input[id^="primer-apellido"]`).value.trim();
-        const docTipo = grupo.querySelector(`select[id^="tipo-documentacion"]`).value;
-        const doc = grupo.querySelector(`input[id^="documento"]`).value.trim();
+        const nombre = grupo.querySelector("#nombre").value.trim();
+        const apellido = grupo.querySelector("#primer-apellido").value.trim();
+        const docTipo = grupo.querySelector("#tipo-documentacion").value;
+        const doc = grupo.querySelector("#documento").value.trim();
 
         if (!nombre) {
             errores.push(`(${index + 1}) El nombre es obligatorio.`);
