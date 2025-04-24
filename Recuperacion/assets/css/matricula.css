@@ -92,3 +92,10 @@ input[type="text"] {
         grid-template-columns: 1fr;
     }
 }
+
+.mensajes-error {
+    color: red;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}

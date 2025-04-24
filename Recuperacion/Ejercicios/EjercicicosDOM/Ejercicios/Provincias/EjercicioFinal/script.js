@@ -15,8 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     actualizarBotones();
 
-    document.querySelector("#crear-autorizacion").addEventListener("click", validarAutorizados);
-    document.querySelector("#crear-autorizacion").addEventListener("click", datosAutorizacion);
+    document.querySelector("#crear-autorizacion").addEventListener("click", function(e) {
+        if (validarAutorizados()) {
+            datosAutorizacion();
+        }
+    });
 
 });
 
@@ -207,7 +210,7 @@ function eliminarautorizacion() {
 
 function actualizarBotones(){
     const botonAnadir = document.querySelector("#anadir-autorizacion");
-    const botonEliminar = document.querySelector("#eliminar-autorizacion");
+    const botonEliminar = document.querySelector("#eliminar-autorizcion");
 
     if ( contadorPersonas >= 5){
         botonAnadir.disabled = true;
@@ -226,42 +229,73 @@ function actualizarBotones(){
 
 function validarAutorizados() {
     const personaAutorizada = document.querySelectorAll(".persona-autorizada, .form-clon");
+    const mensajesError = document.querySelector("#mensajes-error");
     let errores = [];
 
     personaAutorizada.forEach((persona, index) => {
-        const nombre = persona.querySelector("#nombre").value.trim();
-        const apellido = persona.querySelector("#primer-apellido").value.trim();
-        const docTipo = persona.querySelector("#tipo-documentacion").value;
-        const doc = persona.querySelector("#documento").value.trim();
+        const nombre = persona.querySelector("#nombre");
+        const apellido = persona.querySelector("#primer-apellido");
+        const docTipo = persona.querySelector("#tipo-documentacion");
+        const doc = persona.querySelector("#documento");
 
-        if (!nombre) {
-            errores.push(`(${index + 1}) El nombre es obligatorio.`);
-        }
-        if (!apellido) {
-            errores.push(`(${index + 1}) El primer apellido es obligatorio.`);
+     
+        if (!nombre.value.trim()) {
+            errores.push(` ${index + 1}ª persona: Nombre obligatorio`);
         }
 
-        if (!validarDocumento(doc, docTipo)) {
-            errores.push(`(${index + 1}) El documento es inválido o el tipo no coincide.`);
+        if (!apellido.value.trim()) {
+            errores.push(` ${index + 1}ª persona: Primer apellido obligatorio`);
+        }
+
+        const errorDocumento = validarDocumento(doc.value.trim(), docTipo.value);
+        if (errorDocumento) {
+            errores.push(` ${index + 1}ª persona: ${errorDocumento}`);
         }
     });
+
+    if (errores.length > 0) {
+        mensajesError.innerHTML = `
+            <strong>Errores:</strong>
+            <ul>${errores.map(e => `<li>${e}</li>`).join("")}</ul>
+        `;
+        return false; 
+    } else {
+        mensajesError.innerHTML = "";
+        return true; 
+    }
 }
 
 function validarDocumento(doc, tipoDocumento) {
-    const formatoNif = /^[0-9]{8}[A-Za-z]$/;
-    const formatonNie = /^[XYZxyz][0-9]{7}[A-Za-z]$/;
-    const formatoPasaporte = /^[A-Za-z0-9]{5,20}$/;
+    doc = doc.trim().toUpperCase();
+    tipoDocumento = tipoDocumento.toLowerCase();
 
-    switch (tipoDocumento.toLowerCase()) {
-        case "nif":
-            return formatoNif.test(doc);
-        case "nie":
-            return formatonNie.test(doc);
-        case "pasaporte":
-            return formatoPasaporte.test(doc);
-        default:
-            return false;
+    if (doc === "") {
+        return "El documento no puede estar vacío";
     }
+
+    switch (tipoDocumento) {
+        case "nif":
+            if (!/^[0-9]{8}[A-Z]$/.test(doc)) {
+                return "NIF inválido. Debe tener 8 números y 1 letra (Ej: 12345678A)";
+            }
+            break;
+
+        case "nie":
+            if (!/^[XYZ][0-9]{7}[A-Z]$/.test(doc)) {
+                return "NIE inválido. Formato: X/Y/Z + 7 números + 1 letra (Ej: X1234567A)";
+            }
+            break;
+
+        case "pasaporte":
+            if (!/^[A-Z0-9]{5,20}$/.test(doc)) {
+                return "Pasaporte inválido. Use 5-20 letras/números sin espacios";
+            }
+            break;
+
+        default:
+            return "Tipo de documento no válido. Use NIF, NIE o Pasaporte";
+    }
+    return "";
 }
 
 // RELLENAR FORMULARIO
