@@ -7,12 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelector("#comunidad-selectJson").addEventListener("change",cambiarComunidad);
     document.querySelector("#provincia-selectJson").addEventListener("change", cambiarProvincia);
+    
     document.querySelector("#municipio-selectCsv").addEventListener("change", cambiarMunicipioCsv);
 
-    document.querySelector("#add-person").addEventListener("click", anadirautorizacion);
-    document.querySelector("#remove-person").addEventListener("click", eliminarautorizacion);
+    document.querySelector("#anadir-autorizacion").addEventListener("click", anadirautorizacion);
+    document.querySelector("#eliminar-autorizcion").addEventListener("click", eliminarautorizacion);
 
-    document.querySelector("#validar-personas").addEventListener("click", validarAutorizados);
+    actualizarBotones();
+
+    document.querySelector("#crear-autorizacion").addEventListener("click", validarAutorizados);
+    document.querySelector("#crear-autorizacion").addEventListener("click", datosAutorizacion);
+
 });
 
 // CARGAR LOS DATOS
@@ -154,11 +159,12 @@ function llenarSelectMunicipiosJson(municipios) {
     });
 }
 
-// el + o -
+// EL + o -
 
 let contadorPersonas = 1;
 
 function anadirautorizacion() {
+    if (contadorPersonas<5){
     contadorPersonas++;
 
     const contenedor = document.querySelector(".autorizar");
@@ -174,43 +180,59 @@ function anadirautorizacion() {
 
     contenedor.appendChild(titulo);
     contenedor.appendChild(formularioClon);
+
+    actualizarBotones();
+
+    }
 }
 
 function eliminarautorizacion() {
     if (contadorPersonas > 1) {
         const contenedor = document.querySelector(".autorizar");
         const titulo = contenedor.querySelectorAll(".titulo-autorizado");
-        const grupos = contenedor.querySelectorAll(".form-clon");
+        const formClon = contenedor.querySelectorAll(".form-clon");
 
         if (titulo.length > 0) {
             contenedor.removeChild(titulo[titulo.length - 1]);
         }
 
-        if (grupos.length > 0) {
-            contenedor.removeChild(grupos[grupos.length - 1]);
+        if (formClon.length > 0) {
+            contenedor.removeChild(formClon[formClon.length - 1]);
         }
         contadorPersonas--;
+
+        actualizarBotones();
     }
 }
 
-// Validacion
+function actualizarBotones(){
+    const botonAnadir = document.querySelector("#anadir-autorizacion");
+    const botonEliminar = document.querySelector("#eliminar-autorizacion");
+
+    if ( contadorPersonas >= 5){
+        botonAnadir.disabled = true;
+    }else{
+        botonAnadir.disabled = false;
+    }
+
+    if (contadorPersonas <= 1){
+        botonEliminar.disabled = true;
+    }else{
+        botonEliminar.disabled = false;
+    }
+}
+
+// VALIDACIÓN
 
 function validarAutorizados() {
-    const grupos = document.querySelectorAll("#persona-autorizada, #group-from-extra");
+    const personaAutorizada = document.querySelectorAll(".persona-autorizada, .form-clon");
     let errores = [];
-    
-    if (grupos.length < 1) {
-        errores.push("Debe haber al menos una persona autorizada.");
-    }
-    if (grupos.length > 5) {
-        errores.push("No puede haber más de cinco personas autorizadas.");
-    }
 
-    grupos.forEach((grupo, index) => {
-        const nombre = grupo.querySelector("#nombre").value.trim();
-        const apellido = grupo.querySelector("#primer-apellido").value.trim();
-        const docTipo = grupo.querySelector("#tipo-documentacion").value;
-        const doc = grupo.querySelector("#documento").value.trim();
+    personaAutorizada.forEach((persona, index) => {
+        const nombre = persona.querySelector("#nombre").value.trim();
+        const apellido = persona.querySelector("#primer-apellido").value.trim();
+        const docTipo = persona.querySelector("#tipo-documentacion").value;
+        const doc = persona.querySelector("#documento").value.trim();
 
         if (!nombre) {
             errores.push(`(${index + 1}) El nombre es obligatorio.`);
@@ -223,29 +245,48 @@ function validarAutorizados() {
             errores.push(`(${index + 1}) El documento es inválido o el tipo no coincide.`);
         }
     });
-
-    if (errores.length > 0) {
-        alert("Errores encontrados:\n\n" + errores.join("\n"));
-    } else {
-        alert("Todos los datos son válidos.");
-    }
 }
 
-function validarDocumento(doc, tipo) {
-    if (!doc || !tipo) return false;
+function validarDocumento(doc, tipoDocumento) {
+    const formatoNif = /^[0-9]{8}[A-Za-z]$/;
+    const formatonNie = /^[XYZxyz][0-9]{7}[A-Za-z]$/;
+    const formatoPasaporte = /^[A-Za-z0-9]{5,20}$/;
 
-    const nifRegex = /^[0-9]{8}[A-Za-z]$/;
-    const nieRegex = /^[XYZxyz][0-9]{7}[A-Za-z]$/;
-    const pasaporteRegex = /^[A-Za-z0-9]{5,20}$/;
-
-    switch (tipo.toLowerCase()) {
+    switch (tipoDocumento.toLowerCase()) {
         case "nif":
-            return nifRegex.test(doc);
+            return formatoNif.test(doc);
         case "nie":
-            return nieRegex.test(doc);
+            return formatonNie.test(doc);
         case "pasaporte":
-            return pasaporteRegex.test(doc);
+            return formatoPasaporte.test(doc);
         default:
             return false;
     }
+}
+
+// RELLENAR FORMULARIO
+
+function datosAutorizacion() {
+    const personas = document.querySelectorAll(".persona-autorizada, .form-clon");
+    let datosAutoriza = [];
+
+    personas.forEach(persona => {
+        const nombre = persona.querySelector("#nombre").value.trim();
+        const apellido1 = persona.querySelector("#primer-apellido").value.trim();
+        const apellido2 = persona.querySelector("#segundo-apellido").value.trim();
+        const docTipo = persona.querySelector("#tipo-documentacion").value;
+        const documento = persona.querySelector("#documento").value.trim();
+        const telefono = persona.querySelector("#telefono").value.trim();
+
+        datosAutoriza.push({
+            nombre,
+            apellido1,
+            apellido2,
+            docTipo,
+            documento,
+            telefono
+        });
+    });
+
+    console.log("Datos Autorización", datosAutoriza);
 }
