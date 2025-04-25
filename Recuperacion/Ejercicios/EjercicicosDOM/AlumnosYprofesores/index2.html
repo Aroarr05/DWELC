@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <title>Alumnos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Alumnos/Profesores</h1>
+
+        <div class="lista-datos">
+           <select>
+            <option>Alumnos</option>
+            <option>Profesores</option>
+           </select>
+        </div>
+        
+        <br>
+        
+        <div class="filter-section">
+            <div class="filter-group">
+                <label>Nombre:</label>
+                <select id="nombre-select">
+                    <option>Comenzar por</option>
+                    <option>Terminar en</option>
+                    <option>Contiene</option>
+                    <option>Igual a</option>
+                    <option>Está vacío</option>
+                    <option>Está relleno</option>
+                </select>
+                <input type="text" id="nombre-input1">
+            </div>
+            
+            <div class="filter-group">
+                <label>1º Apellido:</label>
+                <select id="apellido1-select">
+                    <option>Comenzar por</option>
+                    <option>Terminar en</option>
+                    <option>Contiene</option>
+                    <option>Igual a</option>
+                    <option>Está vacío</option>
+                    <option>Está relleno</option>
+                </select>
+                <input type="text" id="apellido1-input1">
+            </div>
+            
+            <div class="filter-group">
+                <label>2º Apellido:</label>
+                <select id="apellido2-select">
+                    <option>Comenzar por</option>
+                    <option>Terminar en</option>
+                    <option>Contiene</option>
+                    <option>Igual a</option>
+                    <option>Está vacío</option>
+                    <option>Está relleno</option>
+                </select>
+                <input type="text" id="apellido2-input1">
+            </div>
+            
+            <div class="filter-group">
+                <label>Fecha De Nacimiento:</label>
+                <select id="fechaNacimiento-select">
+                    <option>Igual a</option>
+                    <option>Comprendido entre</option>
+                    <option>Posterior a</option>
+                    <option>Anterior a</option>
+                    <option>Está vacío</option>
+                    <option>Está relleno</option>
+                </select>
+                <input type="date" id="fechaNacimiento-input1">
+                <input type="date" id="fechaNacimiento-input2" disabled>
+            </div>
+            
+            <div class="filter-group">
+                <label>Curso:</label>
+                <select id="curso-select">
+                    <option>Comenzar por</option>
+                    <option>Terminar en</option>
+                    <option>Contiene</option>
+                    <option>Igual a</option>
+                    <option>Está vacío</option>
+                    <option>Está relleno</option>
+                </select>
+                <input type="text" id="curso-input1">
+            </div>
+
+            
+            <div class="filter-group">
+                <label>Ordenar por:</label>
+                <select id="ordenar-select">
+                    <option>Ninguno</option>
+                    <option>Nombre (A-Z)</option>
+                    <option>Nombre (Z-A)</option>
+                    <option>Apellido (A-Z)</option>
+                    <option>Apellido (Z-A)</option>
+                    <option>Curso (A-Z)</option>
+                    <option>Curso (Z-A)</option>
+                    <option>Fecha (Antiguas)</option>
+                    <option>Fecha (Recientes)</option>
+                </select>
+            </div>
+            
+            <button type="button" id="ordenar-btn">Ordenar</button>
+            <button type="button" id="filtrar-btn">Filtrar</button>
+            
+        </div>
+        
+        <h2>Datos de los Alumnos</h2>
+        <table id="alumnos-list">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>1º Apellido</th>
+                    <th>2º Apellido</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Curso</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="total"></div>
+    </div>
+
+    <script src="./terminado-2.js"></script>
+</body>
+</html>
