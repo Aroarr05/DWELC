@@ -135,6 +135,8 @@ function cambiarComunidad(event) {
 function llenarSelectProvincias(provincias) {
     const provinciaSelect = document.querySelector("#provincia-selectJson");
 
+    provinciaSelect.innerHTML = "<option value=''> seleccionar</option>";
+
     provincias.forEach(provincia => {
         const option = document.createElement('option');
         option.value = provincia.code;
@@ -147,6 +149,10 @@ function cambiarProvincia(event) {
     const provinciaCode = event.target.value;
     const comunidad = datosJson.find(c => c.provinces.some(p => p.code === provinciaCode));
     const provincia = comunidad.provinces.find(p => p.code === provinciaCode);
+
+    console.log(comunidad);
+    console.log(provincia);
+
     if (provincia) {
         llenarSelectMunicipiosJson(provincia.towns);
     }
@@ -154,9 +160,12 @@ function cambiarProvincia(event) {
 
 function llenarSelectMunicipiosJson(municipios) {
     const municipioSelect = document.querySelector("#municipio-selectJson");
-  
+      
+    municipioSelect.innerHTML = "<option value=''> seleccionar </option>";
+
     municipios.forEach(municipio => {
         const option = document.createElement('option');
+        option.value = municipio.code;
         option.textContent = municipio.label;
         municipioSelect.appendChild(option);
     });
@@ -177,16 +186,16 @@ function anadirautorizacion() {
 
     const formularioClon = document.querySelector(".persona-autorizada").cloneNode(true);
     formularioClon.classList.add("form-clon"); 
-
+    
     formularioClon.querySelectorAll("input").forEach(input => input.value = "");
     formularioClon.querySelectorAll("select").forEach(select => select.selectedIndex = 0);
-
+    
     contenedor.appendChild(titulo);
     contenedor.appendChild(formularioClon);
-
+    
     actualizarBotones();
-
-    }
+    
+}
 }
 
 function eliminarautorizacion() {
@@ -194,16 +203,16 @@ function eliminarautorizacion() {
         const contenedor = document.querySelector(".autorizar");
         const titulo = contenedor.querySelectorAll(".titulo-autorizado");
         const formClon = contenedor.querySelectorAll(".form-clon");
-
+        
         if (titulo.length > 0) {
             contenedor.removeChild(titulo[titulo.length - 1]);
         }
-
+        
         if (formClon.length > 0) {
             contenedor.removeChild(formClon[formClon.length - 1]);
         }
         contadorPersonas--;
-
+        
         actualizarBotones();
     }
 }
@@ -211,9 +220,10 @@ function eliminarautorizacion() {
 function actualizarBotones(){
     const botonAnadir = document.querySelector("#anadir-autorizacion");
     const botonEliminar = document.querySelector("#eliminar-autorizcion");
-
+    
     if ( contadorPersonas >= 5){
         botonAnadir.disabled = true;
+        botonAnadir.classList.add("disabled");
     }else{
         botonAnadir.disabled = false;
     }
