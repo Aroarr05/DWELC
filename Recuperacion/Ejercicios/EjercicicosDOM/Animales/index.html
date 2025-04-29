@@ -8,13 +8,26 @@
         .fila-seleccionada {
             background-color: #d3f8d3;
         }
+        .contenedor-principal {
+            display: flex;
+            gap: 300px; 
+        }
+        
+        #animales-list {
+            width: 150%; 
+        }
+        
+        #historial-clinico {
+            width: 30%; 
+        }
+</style>
+
     </style>
 </head>
 <body>
-
-    <div>
-        <div>
-            <h2>Animales</h2>
+    <div class="contenedor-principal">
+        <div id = "tabla-animales">
+             <h2>Animales</h2>
             <table id="animales-list">
                 <thead>
                     <tr>
@@ -28,43 +41,47 @@
                 <tbody></tbody>
             </table>
         </div>
-        <div>
+        
+        <div id="historial-clinico">
             <h2>Historial Clínico</h2>
-            <input type="text" id="nombre" placeholder="Nombre">
+            <from>
 
-            <select id="raza">
-                <option>--Raza--</option>
-            </select>
-
-            <div id="sexo">
-                <label>Sexo:</label>
-                <input type="radio" id="hembra">
-                <label>Hembra</label>
-                <input type="radio" id="macho">
-                <label>Macho</label>
-            </div>
-
-            <hr>
-
-            <input type="text" id="peso" placeholder="Peso">
-
-            <div id="revision">
-                <label>Revisión:</label>
-                <input type="checkbox" id="oidos">
-                <label>Oídos</label>
-                <input type="checkbox" id="nariz">
-                <label>Nariz</label>
-                <input type="checkbox" id="boca">
-                <label>Boca/Pico</label>
-                <input type="checkbox" id="ojos">
-                <label>Ojos</label>
-            </div>
-
-            <button id="guardar">Guardar</button>
-
+                <div>
+                    <input type="text" id="nombre" placeholder="Nombre">
+                </div>
+        
+                <select id="raza"></select>
+        
+                <div id="sexo">
+                    <label>Sexo:</label>
+                    <input type="radio" id="hembra">
+                    <label>Hembra</label>
+                    <input type="radio" id="macho">
+                    <label>Macho</label>
+                </div>
+        
+                <hr>
+        
+                <div>
+                    <input type="text" id="peso" placeholder="Peso">
+                </div>
+        
+                <div id="revision">
+                    <label>Revisión:</label>
+                    <input type="checkbox" id="oidos">
+                    <label>Oídos</label>
+                    <input type="checkbox" id="nariz">
+                    <label>Nariz</label>
+                    <input type="checkbox" id="boca">
+                    <label>Boca/Pico</label>
+                    <input type="checkbox" id="ojos">
+                    <label>Ojos</label>
+                </div>
+        
+                <button id="guardar">Guardar</button>
+            </from>
+            <div id = "datos-json"></div>
         </div>
-        <div id="datosJs"></div>
-    </div>
     <script src="./animales.js"></script>
     <script src="./script.js"></script>
 </body>
