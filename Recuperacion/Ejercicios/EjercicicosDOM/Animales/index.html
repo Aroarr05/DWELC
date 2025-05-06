@@ -54,9 +54,9 @@
         
                 <div id="sexo">
                     <label>Sexo:</label>
-                    <input type="radio" id="hembra">
+                    <input type="radio" id="hembra" name ="sexo">
                     <label>Hembra</label>
-                    <input type="radio" id="macho">
+                    <input type="radio" id="macho" name ="sexo">
                     <label>Macho</label>
                 </div>
         
@@ -77,10 +77,15 @@
                     <input type="checkbox" id="ojos">
                     <label>Ojos</label>
                 </div>
+
+                <div>
+                    <label>Diagnóstico:</label>
+                    <textarea></textarea>
+                </div>
         
                 <button id="guardar">Guardar</button>
             </from>
-            <div id = "datos-json"></div>
+            <div id="datos-json"></div>
         </div>
     <script src="./animales.js"></script>
     <script src="./script.js"></script>
