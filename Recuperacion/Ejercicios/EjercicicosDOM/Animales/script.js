@@ -1,5 +1,7 @@
 let animalSeleccionado = null;
 
+// SI ESPECIE ES GATO Y PERRO SE MUESTAR UNAS RAZAS O OTRAS ESO HAY QUE TERMINARLO 
+
 const razas = ["Siamens", "Persa", "Ragdoll", "Labrador", "Bulldog", "Husky"];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -45,6 +47,7 @@ function editarDatos(fila) {
 
     fila.classList.add("fila-seleccionada");
 
+    // sacar el indice a global
     const index = fila.dataset.index;
     animalSeleccionado = animals[index];
 
@@ -57,8 +60,9 @@ function editarDatos(fila) {
     document.querySelector("#macho").checked = sexo === "macho";
     document.querySelector("#hembra").checked = sexo === "hembra";
 
-    document.querySelector("#peso").value = animalSeleccionado.peso || "";
+    document.querySelector("#peso").value = animalSeleccionado.peso || 0 ;
 
+    
     const checkboxes = document.querySelectorAll('#revision input[type="checkbox"]');
     checkboxes.forEach(cb => {
         cb.checked = animalSeleccionado.revison?.includes(cb.nextElementSibling.textContent.trim()) || false;
