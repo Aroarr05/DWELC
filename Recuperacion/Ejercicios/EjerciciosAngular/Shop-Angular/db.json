@@ -1,0 +1,24 @@
+{
+    "providers": [
+        {
+            "id": 1,
+            "name": "TechMovil S.A."
+        },
+        {
+            "id": 2,
+            "name": "ElectroMundo"
+        },
+        {
+            "id": 3,
+            "name": "Distribuidora CeluTech"
+        },
+        {
+            "id": 4,
+            "name": "Innovatech Gadgets"
+        },
+        {
+            "id": 5,
+            "name": "Mundo Smartphone"
+        }
+    ]
+}

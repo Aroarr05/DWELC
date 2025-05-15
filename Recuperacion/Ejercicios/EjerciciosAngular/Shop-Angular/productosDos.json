@@ -1,0 +1,25 @@
+{
+  "productosDos": [
+    {
+      "product_id": 1,
+      "product_name": "Phone XL",
+      "cost": 799,
+      "details": "A large phone with one of the best screens",
+      "supplier": "1"
+    },
+    {
+      "product_id": 2,
+      "product_name": "Phone Mini",
+      "cost": 699,
+      "details": "A great phone with one of the best cameras",
+      "supplier": "2"
+    },
+    {
+      "product_id": 3,
+      "name": "Phone Standard",
+      "cost": 299,
+      "details": "",
+      "supplier": "3"
+    }
+  ]
+}
