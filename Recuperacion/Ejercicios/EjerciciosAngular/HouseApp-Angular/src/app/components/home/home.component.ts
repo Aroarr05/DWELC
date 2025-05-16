@@ -4,12 +4,13 @@ import {HousingLocationComponent} from '../housing-location/housing-location.com
 import {HousingLocation} from '../../model/housinglocation';
 import {HousingService} from '../../service/housing.service';
 import { LogingComponent } from "../loging/loging.component";
+import { FromComponent } from '../from/from.component';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HousingLocationComponent, LogingComponent],
+  imports: [CommonModule, HousingLocationComponent, LogingComponent,FromComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -26,6 +27,10 @@ export class HomeComponent {
       this.housingLocationList = housingLocationList;
       this.filteredLocationList = housingLocationList;
     });
+  }
+
+  navigateToFrom(){
+    this.router.navigate(['/from']);
   }
 
   navigateToLogin() {
