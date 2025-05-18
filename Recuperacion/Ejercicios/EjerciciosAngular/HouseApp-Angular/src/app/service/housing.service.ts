@@ -20,4 +20,23 @@ export class HousingService {
     // tslint:disable-next-line
     console.log(firstName, lastName, email);
   }
+
+  // -----------Formulario
+
+  private housingList: HousingLocation[]=[];
+
+ async addHousingLocation(location: HousingLocation): Promise<void> {
+  await fetch(this.url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(location),
+  });
+}
+
+  getAllHousingLocati(): HousingLocation[]{
+    return this.housingList;
+  }
+
 }
