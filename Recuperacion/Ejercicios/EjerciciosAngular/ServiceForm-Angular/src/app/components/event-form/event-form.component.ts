@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { EmployeeService } from '../../services/employee.service';
+import { EventService } from '../../services/event.service';
 import { Employee } from '../../model/employee.model';
 import { EventM } from '../../model/event.model';
-import { CommonModule } from '@angular/common';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-event-form',
@@ -25,12 +25,16 @@ export class EventFormComponent implements OnInit {
   empleado: Employee | null = null;
   employees: Employee[] = [];
   eventForm: FormGroup;
+  isBrowser: boolean;
 
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
-    private eventService: EventService
+    private eventService: EventService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId); // Saber si estamos en el navegador
+
     this.eventForm = this.fb.group({
       title: ['', Validators.required],
       client: ['', Validators.required],
@@ -42,11 +46,13 @@ export class EventFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadFormFromLocalStorage();
+    if (this.isBrowser) {
+      this.loadFormFromLocalStorage();
 
-    this.eventForm.valueChanges.subscribe(() => {
-      this.saveFormToLocalStorage();
-    });
+      this.eventForm.valueChanges.subscribe(() => {
+        this.saveFormToLocalStorage();
+      });
+    }
 
     this.employeeService.getEmployees().subscribe(employees => {
       this.employees = employees;
@@ -61,13 +67,17 @@ export class EventFormComponent implements OnInit {
   }
 
   private saveFormToLocalStorage() {
-    localStorage.setItem('eventFormData', JSON.stringify(this.eventForm.value));
+    if (this.isBrowser) {
+      localStorage.setItem('eventFormData', JSON.stringify(this.eventForm.value));
+    }
   }
 
   private loadFormFromLocalStorage() {
-    const savedForm = localStorage.getItem('eventFormData');
-    if (savedForm) {
-      this.eventForm.patchValue(JSON.parse(savedForm));
+    if (this.isBrowser) {
+      const savedForm = localStorage.getItem('eventFormData');
+      if (savedForm) {
+        this.eventForm.patchValue(JSON.parse(savedForm));
+      }
     }
   }
 
@@ -91,7 +101,9 @@ export class EventFormComponent implements OnInit {
       };
 
       this.eventService.addEvent(event);
-      localStorage.removeItem('eventFormData'); 
+      if (this.isBrowser) {
+        localStorage.removeItem('eventFormData');
+      }
       this.eventForm.reset();
     }
   }
