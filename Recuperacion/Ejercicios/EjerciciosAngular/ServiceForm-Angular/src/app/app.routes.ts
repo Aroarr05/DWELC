@@ -1,7 +1,7 @@
 
 import { Routes } from '@angular/router';
-import { EventFormComponent } from './component/event-form/event-form.component';
-import { EventListComponent } from './component/event-list/event-list.component'; 
+import { EventFormComponent } from './components/event-form/event-form.component';
+import { EventListComponent } from './components/event-list/event-list.component'; 
 
 export const routes: Routes = [
     {path:'', component:EventFormComponent},
