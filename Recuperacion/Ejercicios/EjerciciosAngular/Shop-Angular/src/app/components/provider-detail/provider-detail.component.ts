@@ -28,5 +28,4 @@ export class ProviderDetailComponent implements OnInit {
       console.log(this.provider);
     })
   }
-
 }

@@ -1,10 +1,14 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Product } from '../../model/products';
+
 @Component({
   selector: 'app-product-alerts',
   templateUrl: './product-alerts.component.html',
-  styleUrl: './product-alerts.component.css',
-  standalone: false
+  styleUrls: ['./product-alerts.component.css'],
+  standalone: true,
+  imports: [CommonModule, RouterModule]
 })
 
 export class ProductAlertsComponent {

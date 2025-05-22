@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css'],
     standalone: false
 })
+
 export class AppComponent {
 }
 
