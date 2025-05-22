@@ -6,8 +6,8 @@ import { Product } from '../../model/products';
   styleUrl: './product-alerts.component.css',
   standalone: false
 })
-export class ProductAlertsComponent {
 
+export class ProductAlertsComponent {
   // @Input() es un decorador que permite que esta propiedad 'product' pueda ser pasada desde el componente padre
   @Input() product: Product | undefined;
 

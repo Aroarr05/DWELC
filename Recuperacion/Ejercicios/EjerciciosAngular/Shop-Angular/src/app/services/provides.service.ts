@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ProvidersM } from '../model/provider';
 import { HttpClient } from '@angular/common/http';
 import { Product, products } from '../model/products';
-import { ProductosDos } from '../model/productosDos';
+import { ProductsTwo } from '../model/productsTwo';
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class ProvidesService {
   providers: ProvidersM[]=[];
 
   private url = "http://localhost:3001/providers";
-  private urlProductosDos = "http://localhost:3002/productosDos";
+  private urlProductsTwo = "http://localhost:3002/productsTwo";
 
   constructor(private http: HttpClient) { }
   
@@ -23,7 +23,7 @@ export class ProvidesService {
   }
 
   getProductos(){
-    return this.http.get<ProductosDos[]>(this.urlProductosDos);
+    return this.http.get<ProductsTwo[]>(this.urlProductsTwo);
   }
   
   getProductProvider(providerId: number): Product[] | undefined{

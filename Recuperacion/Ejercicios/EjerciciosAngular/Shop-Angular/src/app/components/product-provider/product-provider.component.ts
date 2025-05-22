@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
   imports: [CommonModule,RouterModule],
   templateUrl: './product-provider.component.html'
 })
+
 export class ProductProviderComponent implements OnInit{
 
   products : Product[] = [];

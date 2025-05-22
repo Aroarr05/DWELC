@@ -61,11 +61,12 @@ import { Product } from '../../model/products';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-cart',
-    templateUrl: './cart.component.html',
-    styleUrl: './cart.component.css',
-    standalone: false
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrl: './cart.component.css',
+  standalone: false
 })
+
 export class CartComponent {
   items: Product[] = this.cartService.getItems();
   checkoutForm = this.formBuilder.group({
