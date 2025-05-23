@@ -53,6 +53,7 @@ export class CartComponent {
     this.cartService.removeFromCart(product);
   }
 }*/
+
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
@@ -72,8 +73,9 @@ export class CartComponent {
   checkoutForm = this.formBuilder.group({
     name: '',
     address: '',
-    shipping: '' // Add shipping to the form group
+    shipping: '' 
   });
+
   shippingCosts!: Observable<{ type: string, price: number }[]>;
 
   constructor(private cartService: CartService, private formBuilder: FormBuilder) {
@@ -81,7 +83,6 @@ export class CartComponent {
   }
 
   onSubmit(): void {
-    // Process checkout data here
     this.items = this.cartService.clearCart();
     console.warn('Your order has been submitted', this.checkoutForm.value);
     this.checkoutForm.reset();
@@ -89,7 +90,6 @@ export class CartComponent {
 
   removeItem(product: Product) {
     this.cartService.removeFromCart(product);
-    // Update the items array after removal
     this.items = this.cartService.getItems();
   }
 }

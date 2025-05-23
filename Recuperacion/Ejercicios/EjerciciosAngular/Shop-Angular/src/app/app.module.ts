@@ -26,7 +26,9 @@ import { ProductProviderComponent } from './components/product-provider/product-
     ],
     bootstrap: [
         AppComponent
-    ], imports: [BrowserModule,
+    ], 
+    imports: [
+    BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
         { path: '', component: ProductListComponent },

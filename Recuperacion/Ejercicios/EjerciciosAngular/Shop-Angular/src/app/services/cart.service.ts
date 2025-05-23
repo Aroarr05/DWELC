@@ -35,6 +35,7 @@ export class CartService {
     return this.http.get<{type: string, price: number}[]>('/assets/shipping.json');
   }
 }*/
+
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../model/products';
 import { Injectable } from '@angular/core';
@@ -53,7 +54,7 @@ export class CartService {
 
   addToCart(product: Product) {
     this.items.push(product);
-    this.itemsSubject.next(this.items); // Notify subscribers of the change
+    this.itemsSubject.next(this.items); 
   }
 
   getItems() {
@@ -62,7 +63,7 @@ export class CartService {
 
   clearCart() {
     this.items = [];
-    this.itemsSubject.next(this.items); // Notify subscribers of the change
+    this.itemsSubject.next(this.items); 
     return this.items;
   }
 
@@ -71,10 +72,10 @@ export class CartService {
   }
 
   removeFromCart(product: Product) {
-    const index = this.items.findIndex(item => item.id === product.id); // Assuming `id` is a unique identifier for products
+    const index = this.items.findIndex(item => item.id === product.id); 
     if (index !== -1) {
-      this.items.splice(index, 1); // Remove the item
-      this.itemsSubject.next(this.items); // Notify subscribers of the change
+      this.items.splice(index, 1); 
+      this.itemsSubject.next(this.items); 
     }
   }
 }
