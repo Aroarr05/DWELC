@@ -22,24 +22,21 @@ export class EventListComponent implements OnInit {
     classification: new FormControl(this.selectedClassification)
   });
 
-  //Añadimos el servicio EventService
   constructor(private eventService: EventService, private router: Router) { }
 
-  
   ngOnInit() {
     this.eventService.loadEvents(); // cargamos los eventos del servicio
     this.events = this.eventService.getEvents(); // inicializa la lista de eventos con los eventos obtenidos del servicio
   }
   
-  // este metodo se ejecuta cuando se cambia el filtro de clasificación
+  // Filtro de clasificación
   onFilterChange(event: Event){
     const selectedClassification = (event.target as HTMLSelectElement).value; //obtiene la clasificación seleccionada
     if (selectedClassification === 'all'){ // si usamos all  mustra todos los eventos 
-      this.events = this.eventService.getEvents();// obtenemos todos los eventos
+      this.events = this.eventService.getEvents();
     }else{
       //si se selecciona una clasificación especifica, filtra los eventos por la clasificatoria 
-      this.events = this.eventService.getEvents().filter(e => e.classification === selectedClassification);
-      //llama al método que calcula cuántos eventos pertenecen a esa clasificación 
+      this.events = this.eventService.getEvents().filter(e => e.classification === selectedClassification); 
       this.getEventCount(selectedClassification);
     }
   }

@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';//se le añade para la fecha
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';//se le añade para la fecha
 import { importProvidersFrom } from '@angular/core';// se le añade para la fecha
 import { provideRouter } from '@angular/router';
