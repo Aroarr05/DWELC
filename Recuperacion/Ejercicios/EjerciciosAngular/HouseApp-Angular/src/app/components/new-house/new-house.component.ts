@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,10 +14,17 @@ import { HousingLocation } from '../../model/housinglocation';
   styleUrls: ['./new-house.component.css']
 })
 
-export class NewHouseComponent {
+export class NewHouseComponent implements OnInit{
   houseForm: FormGroup;
+  isBrowser: boolean;
 
-  constructor(private fb: FormBuilder, private housingService: HousingService) {
+  constructor(
+    private fb: FormBuilder, 
+    private housingService: HousingService,
+    @Inject(PLATFORM_ID) private platformId :Object
+  ) {
+    this.isBrowser = isPlatformBrowser (this.platformId);
+
     this.houseForm = this.fb.group({
       name: ['', Validators.required],
       city: ['', Validators.required],
@@ -53,6 +61,12 @@ export class NewHouseComponent {
         }
       };
 
+      if (this.isBrowser){
+        localStorage.removeItem('eventFormData');
+      }
+
+      this.houseForm. reset();
+
       try {
         await this.housingService.addHousingLocation(newLocation);
         console.log('Ubicación añadida:', newLocation);
@@ -61,6 +75,30 @@ export class NewHouseComponent {
         console.error('Error al guardar la ubicación:', error);
       }
     }
+  }
+
+  private saveFormToLocalStorage(){
+    if (this.isBrowser){
+      localStorage.setItem('eventFormData', JSON.stringify(this.houseForm.value));
+    }
+  }
+
+  private loadFormFromLocalStorage(){
+    if (this.isBrowser){
+      const savedForm = localStorage.getItem('eventFormData');
+      if(savedForm){
+        this.houseForm.patchValue(JSON.parse(savedForm));
+      }
+    }
+  }
+
+  ngOnInit() {
+    if (this.isBrowser){
+      this.loadFormFromLocalStorage();
+    }
+    this.houseForm.valueChanges.subscribe(()=>{
+      this.saveFormToLocalStorage();
+    })
   }
 
 }
