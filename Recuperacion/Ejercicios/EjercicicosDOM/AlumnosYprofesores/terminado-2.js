@@ -71,13 +71,15 @@ function actualizarInputs() {
 }
 
 function filtrarDatos(data) {
-    return data.filter(item => (
-        filtrarCampo(item.nombre, "nombre") &&
-        filtrarCampo(item.apellido1, "apellido1") &&
-        filtrarCampo(item.apellido2, "apellido2") &&
-        filtrarFecha(item.fechaNacimiento) &&
-        filtrarCampo(item.curso, "curso")
-    ));
+    return data.filter(item => {
+        const pasaFiltroNombre = filtrarCampo(item.nombre, "nombre");
+        const pasaFiltroApellido1 = filtrarCampo(item.apellido1, "apellido1");
+        const pasaFiltroApellido2 = filtrarCampo(item.apellido2, "apellido2");
+        const pasaFiltroFecha = filtrarFecha(item.fechaNacimiento);
+        const pasaFiltroCurso = filtrarCampo(item.curso, "curso");
+        
+        return pasaFiltroNombre && pasaFiltroApellido1 && pasaFiltroApellido2 && pasaFiltroFecha && pasaFiltroCurso;
+    });
 }
 
 function filtrarCampo(valor, campo) {
