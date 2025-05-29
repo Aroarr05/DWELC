@@ -17,7 +17,6 @@ import { map, Observable } from 'rxjs';
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.css'],
   standalone: false
 })
 

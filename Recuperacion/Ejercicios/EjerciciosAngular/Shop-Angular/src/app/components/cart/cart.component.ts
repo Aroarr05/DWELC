@@ -64,7 +64,6 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
   standalone: false
 })
 

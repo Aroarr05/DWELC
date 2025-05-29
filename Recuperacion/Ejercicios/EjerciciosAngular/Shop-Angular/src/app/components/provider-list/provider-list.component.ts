@@ -7,8 +7,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-provider-list',
   imports: [CommonModule, RouterModule],
-  templateUrl: './provider-list.component.html',
-  styleUrl: './provider-list.component.css'
+  templateUrl: './provider-list.component.html'
 })
 
 export class ProviderListComponent implements OnInit {

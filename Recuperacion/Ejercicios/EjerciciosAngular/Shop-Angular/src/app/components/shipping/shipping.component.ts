@@ -6,7 +6,6 @@ import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-shipping',
   templateUrl: './shipping.component.html',
-  styleUrl: './shipping.component.css',
   standalone: false
 })
 

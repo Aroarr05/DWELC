@@ -111,7 +111,6 @@ import { ProvidesService } from '../../services/provides.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css'],
   standalone: true,
   imports: [CommonModule, RouterModule, ProviderListComponent, ProductAlertsComponent]
 })

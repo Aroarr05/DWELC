@@ -8,8 +8,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-provider-detail',
   imports: [CommonModule, RouterModule],
-  templateUrl: './provider-detail.component.html',
-  styleUrl: './provider-detail.component.css'
+  templateUrl: './provider-detail.component.html'
 })
 
 export class ProviderDetailComponent implements OnInit {
