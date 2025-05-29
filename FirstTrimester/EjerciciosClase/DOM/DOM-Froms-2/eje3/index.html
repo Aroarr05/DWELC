@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">-->
+    <title>Enrollment Form</title>
+
+    <style>
+        .seleccionado {
+            background-color: #f0f8ff;
+            border: 2px solid #007bff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="enrollment-form">
+            <h1 class="mb-4">Datos de matrícula</h1>
+            <p>Centro docente en el que se matricula:</p>
+            <hr>
+            <div class="form-group">
+                <label for="Comunidad-select">Comunidades: <span class="text-danger">*</span></label>
+                <select class="form-control" id="comunidades-select" name="provincia-select">
+                    <option value="">Selecciona una localidad</option>
+                </select>
+
+                <label for="provincia-select">Municipio: <span class="text-danger">*</span></label>
+                <select class="form-control" id="municipio-select" name="municipio-select">
+                    <option value="">Selecciona una localidad</option>
+                </select>
+
+                <label for="localidad-select">Localidad: <span class="text-danger">*</span></label>
+                <select class="form-control" id="localidad-select" name="localidad-select">
+                    <option value="">Selecciona una localidad</option>
+                </select>
+            </div>
+        </div>
+
+        <form id="enrollmentForm">
+            <h1 class="mt-4">PERSONAS AUTORIZADAS PARA RECOGER A SU HIJO/A DURANTE EL CURSO 2020/2021</h1>
+            <p>Las personas que a continuación relaciona podrían recoger a su hijo/a durante el curso 2020/2021 de
+                cualquier servicio del centro:</p>
+
+            <div class="d-flex justify-content-end mb-4">
+                <button type="submit" id="add-person" class="btn btn-success">+</button>
+                <button type="button" id="remove-person" class="btn btn-danger ml-2">-</button>
+            </div>
+
+            <div class="authorized-person">
+                <h2 class="text-danger">1ª Persona autorizada:</h2>
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
+
+                    <label for="primer-apellido">Primer apellido:</label>
+                    <input type="text" id="primer-apellido" name="primer-apellido" class="form-control"
+                        placeholder="Primer apellido">
+
+                    <label for="segundo-apellido">Segundo apellido:</label>
+                    <input type="text" id="segundo-apellido" name="segundo-apellido" class="form-control"
+                        placeholder="Segundo apellido">
+
+                    <label for="tipo-documentacion">Tipo de documentación:</label>
+                    <select class="form-control" id="tipo-documentacion">
+                        <option value="">Tipo de documentación</option>
+                        <option value="nie">NIE</option>
+                        <option value="nif">NIF</option>
+                        <option value="pasaporte">Pasaporte</option>
+                    </select>
+
+                    <label for="dni">NIF/NIE/Pasaporte:</label>
+                    <input type="text" id="dni" name="dni" class="form-control" placeholder="NIF/NIE/Pasaporte">
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="text" id="telefono" name="telefono" class="form-control" placeholder="Teléfono">
+                </div>
+            </div>
+        </form><br>
+
+        <div>
+            <hr>
+            <div id="lista-container">
+                <h3>Lista de Personas Autorizadas:</h3>
+                <ul id="listaDatos" class="list-group"></ul>
+            </div><br>
+            <hr>
+            <h3>Editar persona:</h3>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="apellido1">Primer apellido:</label>
+                    <input type="text" id="aeplllido1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="apellido2">Segundo apellido:</label>
+                    <input type="number" id="apellido2" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="documento-persona">Tipo de documento:</label>
+                    <select id="documento-persona" class="form-control">
+                        <option value="true">NIE</option>
+                        <option value="false">NIF</option>
+                        <option value="false">Pasaporte</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dni-persona">NIF/NIE/Pasaporte:</label>
+                    <input type="text" id="dni-persona" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="telefono-persona">Teléfono:</label>
+                    <input type="number" id="telefono-persona" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Actualizar Datos</button>
+            </form>
+        </div><br>
+    </div>
+
+    <script src="/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+
+    <script src="./datos.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
