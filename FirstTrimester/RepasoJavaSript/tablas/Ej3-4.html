@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        th {
+            text-align: center;
+        }
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        span:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container px-5 pt-2 fs-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr id="t1">
+                    <th id="2">Nombre</th>
+                    <th id="3">Apellido</th>
+                    <th id="4">Edad</th>
+                    <th id="5">Emancipado</th>
+                    <th id="6">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="t7">
+                    <td id="8">Samuel</td>
+                    <td id="9">García</td>
+                    <td id="10">23</td>
+                    <td id="11"><span>&#9989;</span></td>
+                    <td id="12"><span>&#128465;</span></td>
+                </tr>
+                <tr id="t13">
+                    <td id="14">Shanshui</td>
+                    <td id="15">Wang</td>
+                    <td id="16">20</td>
+                    <td id="17"><span>&#9989;</span></td>
+                    <td id="18"><span>&#128465;</span></td>
+                </tr>
+                <tr id="t19">
+                    <td id="20">Daniel</td>
+                    <td id="21">Domínguez</td>
+                    <td id="22">19</td>
+                    <td id="23"><span>&#10060;</span></td>
+                    <td id="24"><span>&#128465;</span></td>
+                </tr>
+                <tr id="t25">
+                    <td id="26">Jonathan</td>
+                    <td id="27">Martín</td>
+                    <td id="28">21</td>
+                    <td id="29"><span>&#9989;</span></td>
+                    <td id="30"><span>&#128465;</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <form name="vista" class="border border-success rounded-4 p-2">
+            <div class="row p-1">
+                <div class="col-2">
+                    <label for="name">Nombre:</label>
+                    <input class="form-control" type="text" id="name" name="name">
+                </div>
+                <div class="col-2">
+                    <label for="surname">Apellido:</label>
+                    <input class="form-control" type="text" id="surname" name="surname">
+                </div>
+                <div class="col-2">
+                    <label for="age">Edad:</label>
+                    <input class="form-control" type="text" id="age" name="age">
+                </div>
+                <div class="col-1 form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="emancipated">
+                    <label class="form-check-label" for="emancipated"> Emancipado </label>
+                </div>
+                <div class="col-1 align-self-end">
+                    <button name="send" class="btn btn-success" type="button"> OK</button>
+                </div>
+            </div>
+            <input name="row" type="text" value="" hidden>
+        </form>
+    </div>
+    <div class="container fs-6">
+        <div class="row">
+            <div class="col-4 info">
+            </div>
+            <div class="col-4 infoRow">
+            </div>
+            <div class="col-4 infoCol">
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /* Cosas que hace:
+    - Muestra el número de la fila y de la columna.
+    - Cambia el color de la celda a verde.
+    - Si se presiona Ctrl, cambia a rojo.
+    - Si se presiona Shift, cambia a azul.
+    - Todas las celdas de la misma fila y columna cambian de color.
+    
+    Además, se crea un objeto con la siguiente información:
+    - Etiqueta (`tag`), ID y contenido del elemento.
+    - Contenido de la fila, una lista con los contenidos de las celdas de esa fila.
+    - Contenido de la columna, con una lista similar de las celdas en esa columna.
+    */
+
+    let tabla = document.querySelector("table");
+
+    // Función para obtener las celdas de una columna
+    const arrayColumna = (index) => {
+        let columna = [];
+        for (fila of tabla.rows) {
+            columna.push(fila.cells[index]);
+        }
+        return columna;
+    }
+
+    // Función para restablecer el fondo de todas las celdas
+    const restablecerFondo = () => {
+        let filaColumna = document.querySelectorAll("td, tr, th");
+        filaColumna.forEach(fila => {
+            fila.classList.forEach(clase => {
+                if (clase.startsWith("table-")) {
+                    fila.classList.remove(clase);
+                }
+            })
+        })
+    }
+
+    // Función para mostrar información en la interfaz
+    const mostrarInformacion = (elem) => {
+        let div = document.querySelector(".info");
+        let filaIndex = elem.parentElement.rowIndex;
+        let colIndex = elem.cellIndex;
+        let fila = tabla.rows[filaIndex];
+
+        div.innerHTML = `<p>Número de Fila: ${filaIndex}</p>
+        <p>ID: ${elem.id}</p>
+        <p>Número de Columna: ${colIndex}</p>
+        <p>Contenido: ${elem.textContent}</p>
+        `
+        
+        let divFila = document.querySelector(".infoRow");
+        divFila.innerHTML = `<p>Etiqueta: ${fila.tagName}</p>
+                <p>ID: ${fila.id}</p>
+                <p>Contenido: ${fila.textContent}</p>
+        `
+
+        let stringIds = "";
+        let stringContent = "";
+        for (fila of tabla.rows) {
+            for (celda of fila.cells) {
+                if (celda.cellIndex == colIndex) {
+                    stringIds += celda.id + " ";
+                    stringContent += celda.textContent + " ";
+                }
+            }
+        }
+
+        let divColumna = document.querySelector(".infoCol");
+        divColumna.innerHTML = `<p>Etiqueta: ${elem.tagName}</p>
+                <p>ID: ${stringIds}</p>
+                <p>Contenido: ${stringContent}</p>
+        `
+    }
+
+    // Función para cambiar el fondo de la celda seleccionada
+    const cambiosFondoPropio = (event) => {
+        if (event.ctrlKey && event.shiftKey) {
+            event.target.classList.add("table-dark");
+        } else if (event.ctrlKey) {
+            event.target.classList.add("table-danger");
+        } else if (event.shiftKey) {
+            event.target.classList.add("table-primary");
+        } else {
+            event.target.classList.add("table-success");
+        }
+    }
+
+    // Función para cambiar el fondo de otras celdas de la fila y columna
+    const cambiosFondoOtros = (elem) => {
+        elem.parentElement.classList.add("table-secondary");
+        let col = elem.cellIndex;
+        for (fila of tabla.rows) {
+            fila.cells[col].classList.add("table-secondary");
+        }
+    }
+
+    // Función para rellenar el formulario con los valores de la fila seleccionada
+    const llenarFormulario = (elem) => {
+        let filas = tabla.rows[elem.parentElement.rowIndex];
+        let formulario = document.forms.vista;
+        for (let i = 0; i < filas.cells.length - 1; i++) {
+            formulario[i].value = filas.cells[i].textContent;
+            if (formulario[i].type == "checkbox") {
+                (formulario[i].value == "✅") ? formulario[i].checked = true : formulario[i].checked = false;
+            }
+        }
+        formulario.row.value = elem.parentElement.rowIndex;
+        console.log(formulario.row.value);
+    }
+
+    // Función para editar una fila con los datos del formulario
+    const editarFila = (event) => {
+        let formulario = document.forms.vista;
+        let fila = tabla.rows[formulario.row.value];
+        console.log(fila);
+        let confirmado = true;
+        if (fila.dataset.edited > 2) {
+            confirmado = confirm("¿Has editado esta fila varias veces, estás seguro?");
+        }
+        if (confirmado) {
+            (fila.dataset.edited) ?
+                fila.dataset.edited = +fila.dataset.edited + 1 :
+                fila.dataset.edited = 1;
+            for (let i = 0; i < fila.cells.length - 1; i++) {
+                fila.cells[i].textContent = formulario[i].value;
+            }
+        }
+    }
+
+    // Función para eliminar una fila
+    const eliminarFila = (elem) => {
+        if (elem.cellIndex == 4) {
+            elem.parentElement.remove();
+        }
+    }
+
+    // Función principal de eventos de la tabla
+    const eventosTabla = (event) => {
+        let elem = event.target;
+        mostrarInformacion(elem);
+        restablecerFondo();
+        cambiosFondoPropio(event);
+        cambiosFondoOtros(elem);
+        llenarFormulario(elem);
+        eliminarFila(elem);
+    }
+
+    tabla.addEventListener("click", eventosTabla);
+    document.forms.vista.send.addEventListener("click", editarFila);
+</script>
+
+</html>

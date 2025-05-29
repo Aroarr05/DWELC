@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro de Productos</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .col {
+            flex: 1 1 calc(25% - 1rem);
+            border: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        .card {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Buscar Productos</h1>
+    <div>
+        <input type="text" id="busquedaTexto" placeholder="Buscar por nombre...">
+        <select id="filtroCategoria">
+            <option value="all">Todas las categorías</option>
+            <option value="Electrónica">Electrónica</option>
+            <option value="Hogar">Hogar</option>
+            <option value="Muebles">Muebles</option>
+        </select>
+        <select id="rangoPrecio">
+            <option value="all">Todos los precios</option>
+            <option value="low">Menos de 100 €</option>
+            <option value="medium">Entre 100 € y 500 €</option>
+            <option value="high">Más de 500 €</option>
+        </select>
+        <label>
+            <input type="checkbox" id="enOferta"> Solo en oferta
+        </label>
+        <button id="buscar">Buscar</button>
+    </div>
+    <h2 id="resultadosCantidad">0 producto(s) encontrados</h2>
+    <div id="resultados" class="container"></div>
+
+    <h2>Detalles del Producto</h2>
+    <div id="detallesProducto" class="detalles-container">
+        <p>Selecciona un producto para ver más detalles aquí.</p>
+    </div>
+    
+    <script src="listaProductos.js"></script>
+    <script src="json.js"></script>
+    <!--<script src="script.js"></script>-->
+</body>
+
+</html>
