@@ -3,14 +3,12 @@ import {CommonModule} from '@angular/common';
 import {HousingLocationComponent} from '../housing-location/housing-location.component';
 import {HousingLocation} from '../../model/housinglocation';
 import {HousingService} from '../../service/housing.service';
-import { LogingComponent } from "../loging/loging.component";
-import { NewHouseComponent } from '../new-house/new-house.component';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HousingLocationComponent, LogingComponent,NewHouseComponent],
+  imports: [CommonModule, HousingLocationComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
