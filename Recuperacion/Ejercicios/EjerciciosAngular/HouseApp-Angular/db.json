@@ -161,19 +161,25 @@
       }
     },
     {
-      "id": 1747592325143,
-      "name": "Aroa Rivas Rios",
-      "city": "Málaga",
-      "state": "Málaga",
-      "photo": "s",
-      "availableUnits": 3,
+      "id": 1748595898392,
+      "name": "Av",
+      "city": "ññ",
+      "state": "dd",
+      "photo": "assets/sinImagen.jpg",
+      "availableUnits": 9,
       "wifi": true,
       "laundry": true,
-      "seguridad": "no",
-      "tipoSeguridad": "camaras",
+      "seguridad": "si",
+      "tipoSeguridad": [
+        "Alarmas",
+        "Cámaras",
+        "Puertas reforzadas",
+        "Detector de humo",
+        "Otro"
+      ],
       "coordinates": {
-        "latitude": 4,
-        "longitude": -3
+        "latitude": 99,
+        "longitude": 99
       }
     }
   ]

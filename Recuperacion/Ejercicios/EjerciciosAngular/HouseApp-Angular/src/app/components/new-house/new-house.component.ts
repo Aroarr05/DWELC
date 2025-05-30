@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HousingService } from '../../service/housing.service';
 import { HousingLocation } from '../../model/housinglocation';
@@ -29,12 +29,12 @@ export class NewHouseComponent implements OnInit{
       name: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      photo: ['', Validators.required],
+      photo: [''],
       availableUnits: [0, Validators.required],
       wifi: ['', Validators.required],
       laundry: ['', Validators.required],
       seguridad: ['', Validators.required],
-      tipoSeguridad: ['', Validators.required],
+      tipoSeguridad: this.fb.array([],Validators.required),
       latitude: [null, Validators.required],
       longitude: [null, Validators.required]
     });
@@ -44,12 +44,14 @@ export class NewHouseComponent implements OnInit{
     if (this.houseForm.valid) {
       const formValue = this.houseForm.value;
 
+      const photoUrl = formValue.photo && formValue.photo.trim() !== ''? formValue.photo : 'assets/sinImagen.jpg'
+
       const newLocation: HousingLocation = {
         id: Date.now(),
         name: formValue.name,
         city: formValue.city,
         state: formValue.state,
-        photo: formValue.photo,
+        photo: photoUrl,
         availableUnits: formValue.availableUnits,
         wifi: formValue.wifi === 'si',
         laundry: formValue.laundry === 'si',
@@ -100,5 +102,41 @@ export class NewHouseComponent implements OnInit{
       this.saveFormToLocalStorage();
     })
   }
+
+  //Extra en el formulario Seguridad
+
+  tiposSeguridad = ['Alarmas', 'Cámaras','Puertas reforzadas','Detector de humo','Otro'];
+
+  get tipoSeguridadFormArray(){
+    return this.houseForm.get('tipoSeguridad') as FormArray;
+  }
+
+  isChecked (value: string): boolean{
+    return this.tipoSeguridadFormArray.value.includes(value);
+  }
+
+  onCheckboxChange(event: any){
+    const value = event.target.value;
+    const formArray = this.tipoSeguridadFormArray;
+    if(event.target.checked){
+      if(!formArray.value.includes(value)){
+        formArray.push(this.fb.control(value));
+      }
+    }else{
+      const index = formArray.controls.findIndex(ctrl => ctrl.value === value);
+      if(index >=0){
+        formArray.removeAt(index);
+      }
+    }
+  }
+
+  toggleAllCheckboxes(event: any){
+    const formArray = this.tipoSeguridadFormArray;
+    formArray.clear();
+    if (event.target.checked){
+      this.tiposSeguridad.forEach(tipo=> formArray.push(this.fb.control(tipo)));
+    }
+  }
+
 
 }

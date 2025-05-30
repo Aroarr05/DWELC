@@ -31,10 +31,6 @@ export class HomeComponent {
     this.router.navigate(['/from']);
   }
 
-  navigateToLogin() {
-    this.router.navigate(['/login']); 
-  }
-
   filterResults(text: string) {
     if (!text) {
       this.filteredLocationList = this.housingLocationList;
