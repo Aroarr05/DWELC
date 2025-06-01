@@ -46,7 +46,6 @@ import {
   stringify,
   untracked,
   unwrapSafeValue,
-  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵdefineDirective,
   ɵɵdefineInjectable,
@@ -57,7 +56,7 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-75ZCAQUU.js";
+} from "./chunk-EWSIB724.js";
 import {
   Subject,
   __async,
@@ -4666,7 +4665,7 @@ var NgOptimizedImage = class _NgOptimizedImage {
       src: "src",
       srcset: "srcset"
     },
-    features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
+    features: [void 0, ɵɵNgOnChangesFeature]
   });
 };
 (() => {
@@ -5139,4 +5138,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-523DVN4C.js.map
+//# sourceMappingURL=chunk-2XLMMFL3.js.map

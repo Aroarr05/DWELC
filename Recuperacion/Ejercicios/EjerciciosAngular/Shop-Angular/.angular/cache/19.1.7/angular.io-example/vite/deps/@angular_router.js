@@ -1,7 +1,7 @@
 import {
   Title
-} from "./chunk-46J4PZ7Y.js";
-import "./chunk-V24XRMQD.js";
+} from "./chunk-NVVC4GB5.js";
+import "./chunk-M5RY4ITI.js";
 import {
   DOCUMENT,
   HashLocationStrategy,
@@ -10,7 +10,7 @@ import {
   LocationStrategy,
   PathLocationStrategy,
   ViewportScroller
-} from "./chunk-523DVN4C.js";
+} from "./chunk-2XLMMFL3.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_INITIALIZER,
@@ -59,7 +59,6 @@ import {
   reflectComponentType,
   runInInjectionContext,
   setClassMetadata,
-  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵattribute,
   ɵɵcontentQuery,
@@ -78,7 +77,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-75ZCAQUU.js";
+} from "./chunk-EWSIB724.js";
 import {
   BehaviorSubject,
   ConnectableObservable,
@@ -4969,7 +4968,7 @@ var RouterLink = class _RouterLink {
       replaceUrl: [2, "replaceUrl", "replaceUrl", booleanAttribute],
       routerLink: "routerLink"
     },
-    features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
+    features: [void 0, ɵɵNgOnChangesFeature]
   });
 };
 (() => {
