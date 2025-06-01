@@ -1,7 +1,7 @@
 import {
   Title
-} from "./chunk-NVVC4GB5.js";
-import "./chunk-M5RY4ITI.js";
+} from "./chunk-EDS6V3SC.js";
+import "./chunk-4LNQWTRT.js";
 import {
   DOCUMENT,
   HashLocationStrategy,
@@ -10,7 +10,7 @@ import {
   LocationStrategy,
   PathLocationStrategy,
   ViewportScroller
-} from "./chunk-2XLMMFL3.js";
+} from "./chunk-ZB2C7ZGE.js";
 import {
   APP_BOOTSTRAP_LISTENER,
   APP_INITIALIZER,
@@ -59,6 +59,7 @@ import {
   reflectComponentType,
   runInInjectionContext,
   setClassMetadata,
+  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵattribute,
   ɵɵcontentQuery,
@@ -77,7 +78,7 @@ import {
   ɵɵloadQuery,
   ɵɵqueryRefresh,
   ɵɵsanitizeUrlOrResourceUrl
-} from "./chunk-EWSIB724.js";
+} from "./chunk-SQU6U4ZC.js";
 import {
   BehaviorSubject,
   ConnectableObservable,
@@ -113,7 +114,7 @@ import {
   takeUntil,
   tap,
   throwError
-} from "./chunk-5TID76VL.js";
+} from "./chunk-S35MAB2V.js";
 
 // node_modules/@angular/router/fesm2022/router.mjs
 var PRIMARY_OUTLET = "primary";
@@ -4968,7 +4969,7 @@ var RouterLink = class _RouterLink {
       replaceUrl: [2, "replaceUrl", "replaceUrl", booleanAttribute],
       routerLink: "routerLink"
     },
-    features: [void 0, ɵɵNgOnChangesFeature]
+    features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
   });
 };
 (() => {

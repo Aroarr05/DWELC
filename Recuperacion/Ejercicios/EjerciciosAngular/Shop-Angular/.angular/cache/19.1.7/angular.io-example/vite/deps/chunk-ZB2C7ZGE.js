@@ -46,6 +46,7 @@ import {
   stringify,
   untracked,
   unwrapSafeValue,
+  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵdefineDirective,
   ɵɵdefineInjectable,
@@ -56,13 +57,13 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-EWSIB724.js";
+} from "./chunk-SQU6U4ZC.js";
 import {
   Subject,
   __async,
   __spreadProps,
   __spreadValues
-} from "./chunk-5TID76VL.js";
+} from "./chunk-S35MAB2V.js";
 
 // node_modules/@angular/common/fesm2022/common.mjs
 var _DOM = null;
@@ -4665,7 +4666,7 @@ var NgOptimizedImage = class _NgOptimizedImage {
       src: "src",
       srcset: "srcset"
     },
-    features: [void 0, ɵɵNgOnChangesFeature]
+    features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
   });
 };
 (() => {
@@ -5138,4 +5139,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-2XLMMFL3.js.map
+//# sourceMappingURL=chunk-ZB2C7ZGE.js.map
