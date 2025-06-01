@@ -161,7 +161,7 @@
       }
     },
     {
-      "id": 1748595898392,
+      "id": "1748595898392",
       "name": "Av",
       "city": "ññ",
       "state": "dd",
@@ -180,6 +180,50 @@
       "coordinates": {
         "latitude": 99,
         "longitude": 99
+      }
+    },
+    {
+      "id": 1748798442491,
+      "name": "Aroa Rivas Rios",
+      "city": "Málaga",
+      "state": "Málaga",
+      "photo": "assets/sinImagen.jpg",
+      "availableUnits": 9,
+      "wifi": true,
+      "laundry": true,
+      "seguridad": "si",
+      "tipoSeguridad": [
+        "Alarmas",
+        "Cámaras",
+        "Puertas reforzadas",
+        "Detector de humo",
+        "Otro"
+      ],
+      "coordinates": {
+        "latitude": 556,
+        "longitude": 952
+      }
+    },
+    {
+      "id": 1748798894585,
+      "name": "Aroa Rivas Rios",
+      "city": "Málaga",
+      "state": "Málaga",
+      "photo": "assets/sinImagen.jpg",
+      "availableUnits": 6,
+      "wifi": true,
+      "laundry": true,
+      "seguridad": "si",
+      "tipoSeguridad": [
+        "Alarmas",
+        "Cámaras",
+        "Puertas reforzadas",
+        "Detector de humo",
+        "Otro"
+      ],
+      "coordinates": {
+        "latitude": 625,
+        "longitude": 456
       }
     }
   ]
