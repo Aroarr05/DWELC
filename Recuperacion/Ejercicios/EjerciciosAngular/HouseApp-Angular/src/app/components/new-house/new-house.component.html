@@ -91,59 +91,64 @@
 
   <!-- Mostrar si selecciona que tiene seguridad -->
   <div *ngIf="houseForm.get('seguridad')?.value === 'si'">
-  <label for="tipoSeguridad">Tipo de Seguridad</label>
+    <label for="tipoSeguridad">Tipo de Seguridad</label>
 
-  <label>
-    <input type="checkbox" (change)="toggleAllCheckboxes($event)" /> Todas
-  </label>
+    <label>
+      <input type="checkbox" (change)="toggleAllCheckboxes($event)" /> Todas
+    </label>
 
-  <label>
-    Alarmas <input type="checkbox" value="Alarmas" (change)="onCheckboxChange($event)" [checked]="isChecked('Alarmas')" />
-  </label>
+    <label>
+      Alarmas <input type="checkbox" value="Alarmas" (change)="onCheckboxChange($event)"
+        [checked]="isChecked('Alarmas')" />
+    </label>
 
-  <label>
-    Cámaras <input type="checkbox" value="Cámaras" (change)="onCheckboxChange($event)" [checked]="isChecked('Cámaras')" />
-  </label>
+    <label>
+      Cámaras <input type="checkbox" value="Cámaras" (change)="onCheckboxChange($event)"
+        [checked]="isChecked('Cámaras')" />
+    </label>
 
-  <label>
-    Puertas reforzadas <input type="checkbox" value="Puertas reforzadas" (change)="onCheckboxChange($event)" [checked]="isChecked('Puertas reforzadas')" />
-  </label>
+    <label>
+      Puertas reforzadas <input type="checkbox" value="Puertas reforzadas" (change)="onCheckboxChange($event)"
+        [checked]="isChecked('Puertas reforzadas')" />
+    </label>
 
-  <label>
-    Detector de humo <input type="checkbox" value="Detector de humo" (change)="onCheckboxChange($event)" [checked]="isChecked('Detector de humo')" />
-  </label>
+    <label>
+      Detector de humo <input type="checkbox" value="Detector de humo" (change)="onCheckboxChange($event)"
+        [checked]="isChecked('Detector de humo')" />
+    </label>
 
-  <label>
-    Otro <input type="checkbox" value="Otro" (change)="onCheckboxChange($event)" [checked]="isChecked('Otro')" />
-  </label>
+    <label>
+      Otro <input type="checkbox" value="Otro" (change)="onCheckboxChange($event)" [checked]="isChecked('Otro')" />
+    </label>
 
-  <div *ngIf="houseForm.get('tipoSeguridad')?.touched && houseForm.get('tipoSeguridad')?.invalid">
-    <small *ngIf="houseForm.get('tipoSeguridad')?.hasError('required')">
-      Debe seleccionar al menos un tipo de seguridad
-    </small>
+    <div *ngIf="houseForm.get('tipoSeguridad')?.touched && houseForm.get('tipoSeguridad')?.invalid">
+      <small
+        *ngIf="houseForm.get('tipoSeguridad')?.hasError('required') || houseForm.get('tipoSeguridad')?.hasError('minlength')">
+        Debe seleccionar al menos un tipo de seguridad
+      </small>
+    </div>
   </div>
-</div>
 
 
   <div>
-  <label for="coordinates">Coordenadas</label>
-  <div class="coordinate-group">
-    <div>
-      <label>Latitud</label>
-      <input formControlName="latitude" type="number" />
-      <div *ngIf="houseForm.get('latitude')?.touched && houseForm.get('latitude')?.invalid">
-        <small *ngIf="houseForm.get('latitude')?.hasError('required')">La latitud es obligatoria</small>
+    <label for="coordinates">Coordenadas</label>
+    <div class="coordinate-group">
+      <div>
+        <label>Latitud</label>
+        <input formControlName="latitude" type="number" />
+        <div *ngIf="houseForm.get('latitude')?.touched && houseForm.get('latitude')?.invalid">
+          <small *ngIf="houseForm.get('latitude')?.hasError('required')">La latitud es obligatoria</small>
+        </div>
       </div>
-    </div>
-    <div>
-      <label>Longitud</label>
-      <input formControlName="longitude" type="number" />
-      <div *ngIf="houseForm.get('longitude')?.touched && houseForm.get('longitude')?.invalid">
-        <small *ngIf="houseForm.get('longitude')?.hasError('required')">La longitud es obligatoria</small>
+      <div>
+        <label>Longitud</label>
+        <input formControlName="longitude" type="number" />
+        <div *ngIf="houseForm.get('longitude')?.touched && houseForm.get('longitude')?.invalid">
+          <small *ngIf="houseForm.get('longitude')?.hasError('required')">La longitud es obligatoria</small>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
   <button type="submit" [disabled]="houseForm.invalid">Enviar</button>

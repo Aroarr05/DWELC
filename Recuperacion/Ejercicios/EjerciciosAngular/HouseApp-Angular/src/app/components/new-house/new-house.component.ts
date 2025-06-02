@@ -34,7 +34,7 @@ export class NewHouseComponent implements OnInit{
       wifi: ['', Validators.required],
       laundry: ['', Validators.required],
       seguridad: ['', Validators.required],
-      tipoSeguridad: this.fb.array([],Validators.required),
+      tipoSeguridad: this.fb.array([]),
       latitude: [null, Validators.required],
       longitude: [null, Validators.required]
     });
@@ -44,10 +44,14 @@ export class NewHouseComponent implements OnInit{
     if (this.houseForm.valid) {
       const formValue = this.houseForm.value;
 
+      const existingLocations= this.housingService.getAllHousingLocations();
+      const maxId = (await existingLocations).reduce((max,loc)=> Math.max(max, loc.id), 0);
+      const newId = maxId +1;
+
       const photoUrl = formValue.photo && formValue.photo.trim() !== ''? formValue.photo : 'assets/sinImagen.jpg'
 
       const newLocation: HousingLocation = {
-        id: Date.now(),
+        id: newId,
         name: formValue.name,
         city: formValue.city,
         state: formValue.state,
@@ -100,7 +104,18 @@ export class NewHouseComponent implements OnInit{
     }
     this.houseForm.valueChanges.subscribe(()=>{
       this.saveFormToLocalStorage();
-    })
+    });
+    this.houseForm.get('seguridad')?.valueChanges.subscribe(value =>{
+      const tipoSeguridadControl = this.houseForm.get('tipoSeguridad') as FormArray;
+    
+      if(value === 'si'){
+        tipoSeguridadControl.setValidators([Validators.required, Validators.minLength(1)]);
+      }else{
+        tipoSeguridadControl.clearValidators();
+        tipoSeguridadControl.clear();
+      }
+      tipoSeguridadControl.updateValueAndValidity();
+    });
   }
 
   //Extra en el formulario Seguridad
