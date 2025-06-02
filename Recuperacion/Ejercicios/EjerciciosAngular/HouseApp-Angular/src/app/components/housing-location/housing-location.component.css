@@ -35,6 +35,10 @@ section.listing a::after {
   margin-left: 5px;
 }
 
+.listing-seguridad{
+  padding: 10px 20px 20px;
+}
+
 .listing-coordinates {
   padding: 10px 20px 20px 20px;
   font-size: 14px;
