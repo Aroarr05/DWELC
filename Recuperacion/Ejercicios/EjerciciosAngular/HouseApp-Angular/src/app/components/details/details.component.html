@@ -1,10 +1,6 @@
 <article>
-  <img
-    class="listing-photo"
-    [src]="housingLocation?.photo"
-    alt="Exterior photo of {{ housingLocation?.name }}"
-    crossorigin
-  />
+  <img class="listing-photo" [src]="housingLocation?.photo" alt="Exterior photo of {{ housingLocation?.name }}"
+    crossorigin />
   <section class="listing-description">
     <h2 class="listing-heading">{{ housingLocation?.name }}</h2>
     <p class="listing-location">{{ housingLocation?.city }}, {{ housingLocation?.state }}</p>
@@ -32,7 +28,16 @@
   <section>
     <h3>Status</h3>
     <ul>
-      <li>{{housingLocation?.state}}</li>
+      <li>{{housingLocation?.status}}.</li>
+    </ul>
+  </section>
+
+  <br>
+
+  <section>
+    <h3>Unidades disponibles</h3>
+    <ul>
+      <li>{{housingLocation?.availableUnits}}</li>
     </ul>
   </section>
 
@@ -46,7 +51,9 @@
       </div>
     </div>
   </section>
-  
+
+  <br>
+
   <section class="listing-apply">
     <h2 class="section-heading">Apply now to live here</h2>
     <form [formGroup]="applyForm" (submit)="submitApplication()">
@@ -56,7 +63,12 @@
       <input id="last-name" type="text" formControlName="lastName" />
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" />
-      <button type="submit" class="primary">Apply now</button>
+
+      <button type="submit" class="primary" [disabled]="applyForm.invalid || housingLocation?.availableUnits === 0">
+        Apply now
+      </button>
+
     </form>
   </section>
+
 </article>

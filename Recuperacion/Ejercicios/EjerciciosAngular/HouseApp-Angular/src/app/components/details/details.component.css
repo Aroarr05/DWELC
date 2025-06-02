@@ -73,3 +73,18 @@ input {
     height: 400px;
   }
 }
+
+button.primary {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.primary:disabled {
+  background-color: red; 
+  cursor: not-allowed;
+  opacity: 0.7;
+}
