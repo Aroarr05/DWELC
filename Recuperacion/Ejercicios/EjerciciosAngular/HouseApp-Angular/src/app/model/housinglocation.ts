@@ -14,5 +14,6 @@ export interface HousingLocation {
   laundry: boolean;
   seguridad: string;
   tipoSeguridad: "alarmas" | "camaras" | "puertasReforzadas" | "detectorHumos" | "otro"| "noTiene";
+  status: "desponible" | "reservado" | "vendido" | "alquilado";
   coordinates: Coordinates;
 }

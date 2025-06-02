@@ -61,6 +61,7 @@ export class NewHouseComponent implements OnInit{
         laundry: formValue.laundry === 'si',
         seguridad: formValue.seguridad,
         tipoSeguridad: formValue.tipoSeguridad,
+        status:'desponible',
         coordinates: {
           latitude: formValue.latitude,
           longitude: formValue.longitude,
