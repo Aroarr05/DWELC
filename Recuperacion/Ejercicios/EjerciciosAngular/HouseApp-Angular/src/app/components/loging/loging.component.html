@@ -1,36 +1,36 @@
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div>
-    <label for="firstName">First Name</label>
-    <input id="firstName" formControlName="firstName" type="text" placeholder="Enter your first name" />
+    <label for="firstName">Nombre</label>
+    <input id="firstName" formControlName="firstName" type="text" placeholder="Ingresa tu nombre" />
     <div *ngIf="loginForm.get('firstName')?.touched && loginForm.get('firstName')?.invalid">
       <small *ngIf="loginForm.get('firstName')?.hasError('required')">
-        First Name is required
+        El nombre es obligatorio
       </small>
     </div>
   </div>
 
   <div>
-    <label for="lastName">Last Name</label>
-    <input id="lastName" formControlName="lastName" type="text" placeholder="Enter your last name" />
+    <label for="lastName">Apellido</label>
+    <input id="lastName" formControlName="lastName" type="text" placeholder="Ingresa tu apellido" />
     <div *ngIf="loginForm.get('lastName')?.touched && loginForm.get('lastName')?.invalid">
       <small *ngIf="loginForm.get('lastName')?.hasError('required')">
-        Last Name is required
+        El apellido es obligatorio
       </small>
     </div>
   </div>
 
   <div>
-    <label for="email">Email</label>
-    <input id="email" formControlName="email" type="email" placeholder="Enter your email" />
+    <label for="email">Correo electrónico</label>
+    <input id="email" formControlName="email" type="email" placeholder="Ingresa tu correo electrónico" />
     <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
       <small *ngIf="loginForm.get('email')?.hasError('required')">
-        Email is required
+        El correo es obligatorio
       </small>
       <small *ngIf="loginForm.get('email')?.hasError('email')">
-        Please enter a valid email address
+        Ingresa una dirección de correo válida
       </small>
     </div>
   </div>
 
-  <button type="submit" [disabled]="loginForm.invalid">Submit</button>
+  <button type="submit" [disabled]="loginForm.invalid">Enviar</button>
 </form>

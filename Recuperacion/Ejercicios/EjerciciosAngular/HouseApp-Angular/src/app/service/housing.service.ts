@@ -3,6 +3,7 @@ import { HousingLocation } from '../model/housinglocation';
 @Injectable({
   providedIn: 'root',
 })
+
 export class HousingService {
   url = 'http://localhost:3000/locations';
 
