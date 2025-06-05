@@ -1,71 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-    cargarProductos();
-    cargarCarrito();
-
+    mostrarDatos();
+    mostrarCarrito();
 });
 
 
-function cargarProductos() {
-    let productoCard = null;
-    //const contenedor = document.querySelector("#contenedor");
-    const divProductos = document.querySelector("#divProductos");
-    if (productoCard) {
-        divProductos.innerHtml =
-            `<img src="${products.imagen && products.imagen.length > 0 ? products.imagen[0] : products.imagen}" class="carta-imagen">
-            <h3>${products.nombre}</h3>
-            <p>Precio: ${products.precio}€ ${products.stock}</p>
-            <input type="number" class="input-cantidad">
-            <button class="botonComprar">Comprar</button>
-            `;
-        cargarProductos();
-    }
-   /* const botonComprar = document.querySelector(".comprar");
-    botonComparar.addEventListener("click", function () {
-        productoCard.removeChild();
-    })
-    */
-  /* const cantidad = domcument.querySelector(".cantidad");
-   cantidad.addEventListener("click",function(){
+function mostrarDatos() {
+   const contenedor = document.querySelector('#divProductos');
+   contenedor.innerHTML='';
 
-
-   })*/
+   productos.forEach((producto, index)=>{
+    const tarjeta= document.createElement('div');
+    tarjeta.innerHTML=`
+        <img src=${producto.imagen} alt="${producto.nombre}">
+        <br>
+        <strong>${producto.nombre}</strong><br>
+        Precio: $${producto.precio}<br>
+        Stock: ${producto.stock}<br>
+        <button onclick ="agregarAlCarrito(${index})">Añadir al carrito</button>
+    `;
+    contenedor.appendChild(tarjeta);
+   });
 }
 
-function cargarCarrito() {
-    const contenedor = document.querySelector("#contenedor");
-    const divCarrito = document.querySelector("#divCarrito");
-    divCarrito.innerHtml= '';
-    
-    /*let productoEliminar;
-    const divCarrito = document.querySelector("#carrito");
-    if(){
-    divCarrito.innHtml =
-        `<table>
+function mostrarCarrito(){
+    const tablaBody = document.querySelector('#tablaDatos tbody');
+    tablaBody.innerHTML='';
+    productos.forEach((producto, index) =>{
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td>${producto.nombre}</td>
+            <td>${producto.stock}</td>
+            <td>${producto.precio}</td>
+            <td></td>
             <td>
-            <th>Cantidad</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Total</th>
-            <th>Acción</th>
+                <button onclick="modificarCantidad(${index},-1)">-<button>
+                <button onclick="modificarCantidad(${index},+1)">+<button>
+                <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
             </td>
-            <td>
-            <tr>${cantidad}</tr>
-            <tr>${products.nombre}</tr>
-            <tr>${products.precio}</tr>
-            <tr></tr>
-            <tr><button class="botonEliminar">Eliminar</button></tr>
-            </td>
-            </table>
-            <h2>Total: </h2>`;
-    const botonEliminar = preDiv.querySelector(".eliminar");
-    }
-    botonEliminar.addEventListener("click", function () {
-        productoEliminar.removeChild();
-        productoEliminar.classList.remove('')
-    })*/
-   /*const carrito = document.querySelector(".cantidad");
-   carrito.addEventListener("click", function(){
-
-   })*/
+        `;
+        tablaBody.appendChild(fila);
+    });
 }
-
