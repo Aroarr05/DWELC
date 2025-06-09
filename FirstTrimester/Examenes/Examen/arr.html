@@ -1,36 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AROA RIVAS RIOS</title>
+    <meta name="description" content="Tienda online de Aroa Rivas Ríos">
+    <title>AROA RIVAS RIOS - Tienda Online</title>
 </head>
 <body>
-    <h1>Aroa Rivas Rios</h1>
-    <form>
-        <div class="contenedor">
-            <div>
-                <h1>Productos</h1>
-                <div id="divProductos"></div>
+    <header>
+        <h1>Aroa Rivas Rios</h1>
+    </header>
+    
+    <main>
+        <section class="productos-carrito">
+            <div class="contenedor">
+                <div class="productos-section">
+                    <h2>Productos</h2>
+                    <div id="divProductos" class="productos-grid"></div>
+                </div>
+                <div class="carrito-section">
+                    <h2>Carrito de Compras</h2>
+                    <table id="tablaDatos">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Stock</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">Total</td>
+                                <td id="total-carrito">$0.00</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
-            <div>
-                <h1>Carrito</h1>
-                <table id="tablaDatos" border="1">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Total</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </div>
-    </form>
-    <script src="./products.js"></script>
-    <script src="./arr.js"></script>
+        </section>
+    </main>
+
+    <!--<script src="./products.js"></script>
+    <script src="./arr.js"></script>-->
+    <script src="./fetch.js"></script>
 </body>
 </html>

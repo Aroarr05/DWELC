@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online - Aroa Rivas Ríos</title>
+    <style>
+        .contenedor {
+            display: flex;
+            gap: 20px;
+        }
+        .producto-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            cursor: pointer;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aroa Rivas Ríos - Tienda Online</h1>
+    
+    <div class="contenedor">
+        <div>
+            <h2>Productos Disponibles</h2>
+            <div id="divProductos"></div>
+        </div>
+        <div>
+            <h2>Tu Carrito</h2>
+            <table id="tablaDatos" border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Stock</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">Total del Carrito</td>
+                        <td id="total-carrito">$0.00</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Datos de productos (simulados)
+        const productos = [
+            { nombre: "Camisa", precio: 25.99, stock: 10, imagen: "camisa.jpg" },
+            { nombre: "Pantalón", precio: 35.50, stock: 7, imagen: "pantalon.jpg" },
+            { nombre: "Zapatos", precio: 49.99, stock: 5, imagen: "zapatos.jpg" }
+        ];
+
+        let carrito = []; // Carrito vacío al inicio
+
+        // Mostrar productos cuando la página cargue
+        document.addEventListener("DOMContentLoaded", mostrarDatos);
+
+        function mostrarDatos() {
+            const contenedor = document.getElementById('divProductos');
+            contenedor.innerHTML = '';
+
+            productos.forEach((producto, index) => {
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'producto-card';
+                tarjeta.innerHTML = `
+                    <h3>${producto.nombre}</h3>
+                    <p>Precio: $${producto.precio.toFixed(2)}</p>
+                    <p>Stock: ${producto.stock}</p>
+                    <div>
+                        Cantidad: <input type="number" id="cantidad-${index}" min="1" max="${producto.stock}" value="1">
+                        <button onclick="agregarAlCarrito(${index})">Añadir al carrito</button>
+                    </div>
+                `;
+                contenedor.appendChild(tarjeta);
+            });
+        }
+
+        function agregarAlCarrito(index) {
+            const inputCantidad = document.getElementById(`cantidad-${index}`);
+            const cantidad = parseInt(inputCantidad.value);
+            const producto = productos[index];
+
+            // Validaciones
+            if (isNaN(cantidad)) {
+                alert("Por favor ingrese una cantidad válida");
+                return;
+            }
+
+            if (cantidad <= 0) {
+                alert("La cantidad debe ser mayor a cero");
+                return;
+            }
+
+            if (cantidad > producto.stock) {
+                alert("No hay suficiente stock disponible");
+                return;
+            }
+
+            // Buscar si el producto ya está en el carrito
+            const productoEnCarrito = carrito.find(item => item.nombre === producto.nombre);
+
+            if (productoEnCarrito) {
+                // Verificar que no exceda el stock al sumar
+                if (productoEnCarrito.cantidad + cantidad > producto.stock) {
+                    alert("No puedes agregar más de lo que hay en stock");
+                    return;
+                }
+                productoEnCarrito.cantidad += cantidad;
+            } else {
+                // Agregar nuevo producto al carrito
+                carrito.push({
+                    nombre: producto.nombre,
+                    precio: producto.precio,
+                    stock: producto.stock,
+                    cantidad: cantidad
+                });
+            }
+
+            // Actualizar vista del carrito
+            mostrarCarrito();
+        }
+
+        function mostrarCarrito() {
+            const tbody = document.querySelector('#tablaDatos tbody');
+            tbody.innerHTML = '';
+            let totalCarrito = 0;
+
+            carrito.forEach((producto, index) => {
+                const totalProducto = producto.precio * producto.cantidad;
+                totalCarrito += totalProducto;
+
+                const fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${producto.nombre}</td>
+                    <td>${producto.stock}</td>
+                    <td>${producto.cantidad}</td>
+                    <td>$${producto.precio.toFixed(2)}</td>
+                    <td>$${totalProducto.toFixed(2)}</td>
+                    <td>
+                        <button onclick="modificarCantidad(${index}, -1)">-</button>
+                        <button onclick="modificarCantidad(${index}, 1)">+</button>
+                        <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
+                    </td>
+                `;
+                tbody.appendChild(fila);
+            });
+
+            // Actualizar total del carrito
+            document.getElementById('total-carrito').textContent = `$${totalCarrito.toFixed(2)}`;
+        }
+
+        function modificarCantidad(index, cambio) {
+            const producto = carrito[index];
+            const nuevoValor = producto.cantidad + cambio;
+
+            // Validaciones
+            if (nuevoValor <= 0) {
+                eliminarDelCarrito(index);
+                return;
+            }
+
+            if (nuevoValor > producto.stock) {
+                alert("No puedes agregar más de lo que hay en stock");
+                return;
+            }
+
+            producto.cantidad = nuevoValor;
+            mostrarCarrito();
+        }
+
+        function eliminarDelCarrito(index) {
+            carrito.splice(index, 1);
+            mostrarCarrito();
+        }
+    </script>
+</body>
+</html>
